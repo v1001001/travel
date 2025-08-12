@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>旅行攻略集合 - 探索美丽中国</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 50px;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        .travel-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .travel-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .travel-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 25px;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            color: #2d3436;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .card-subtitle {
+            color: #74b9ff;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .card-description {
+            color: #636e72;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .card-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .feature-tag {
+            background: #f8f9fa;
+            color: #74b9ff;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .card-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            flex: 1;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #74b9ff, #0984e3);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: #f8f9fa;
+            color: #74b9ff;
+            border: 2px solid #74b9ff;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+        }
+
+        .stats-section {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #74b9ff;
+            display: block;
+        }
+
+        .stat-label {
+            color: #636e72;
+            font-size: 1rem;
+            margin-top: 5px;
+        }
+
+        .footer {
+            text-align: center;
+            color: white;
+            margin-top: 50px;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .travel-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .card-buttons {
+                flex-direction: column;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>东北+呼伦贝尔精华环线</h1>
+            <p>长春出发 · 海拉尔收官 · 秋季自然风光最佳路线</p>
+        </div>
+
+        <div class="stats-section">
+            <h2 style="color: #2d3436; margin-bottom: 20px;">📊 行程概要</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">15</span>
+                    <span class="stat-label">行程天数</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">5000+</span>
+                    <span class="stat-label">总里程(公里)</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">20+</span>
+                    <span class="stat-label">核心景点</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">5</span>
+                    <span class="stat-label">核心区域</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="travel-grid">
+            <!-- 仅保留这个行程入口 -->
+            <div class="travel-card" onclick="openTravel('northeast-hulunbeier-travel.html')">
+                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=200&fit=crop"
+                    alt="东北+呼伦贝尔环线" class="card-image">
+                <div class="card-content">
+                    <div class="card-title">东北+呼伦贝尔15天精华环线</div>
+                    <div class="card-subtitle">🌟 史诗级自驾 - 最新推荐</div>
+                    <div class="card-description">
+                        穿越长白山、大兴安岭、呼伦贝尔草原的史诗级自驾之旅，总里程5000公里，涵盖5大核心区域。
+                    </div>
+                    <div class="card-features">
+                        <span class="feature-tag">🏔️ 长白山</span>
+                        <span class="feature-tag">🌲 大兴安岭</span>
+                        <span class="feature-tag">🌾 呼伦贝尔</span>
+                        <span class="feature-tag">🌋 阿尔山</span>
+                    </div>
+                    <div class="card-buttons">
+                        <a href="northeast-hulunbeier-travel.html" class="btn btn-primary">进入行程</a>
+                        <a href="ne3-7d.html" class="btn btn-secondary">东北三省7天</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>© 2024 旅行攻略项目 | 基于小红书旅行笔记创建</p>
+            <p>探索美丽中国，发现精彩旅程 🚗✨</p>
+        </div>
+    </div>
+
+    <script>
+        function openTravel(url) {
+            window.open(url, '_blank');
+        }
+
+        // 添加页面滚动动画
+        document.addEventListener('DOMContentLoaded', function () {
+            const cards = document.querySelectorAll('.travel-card');
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            });
+
+            // 延迟显示动画
+            setTimeout(() => {
+                cards.forEach((card, index) => {
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, index * 200);
+                });
+            }, 300);
+
+            // 滚动动画
+            window.addEventListener('scroll', function () {
+                const cards = document.querySelectorAll('.travel-card');
+                cards.forEach(card => {
+                    const cardTop = card.getBoundingClientRect().top;
+                    const cardVisible = 150;
+
+                    if (cardTop < window.innerHeight - cardVisible) {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>东三省7天旅行攻略</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .weather-section {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .weather-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .weather-card {
+            background: linear-gradient(135deg, #74b9ff, #0984e3);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .weather-card h3 {
+            margin-bottom: 10px;
+        }
+
+        .trip-section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .day-title {
+            font-size: 1.5rem;
+            color: #2d3436;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #74b9ff;
+        }
+
+        .attractions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .attraction-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .attraction-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .attraction-image {
+            width: 100%;
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .attraction-info {
+            padding: 20px;
+        }
+
+        .attraction-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2d3436;
+        }
+
+        .attraction-desc {
+            color: #636e72;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .attraction-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: #74b9ff;
+        }
+
+        .map-section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .map-container {
+            height: 500px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 20px;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #74b9ff, #0984e3);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px 10px 10px 0;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(116, 185, 255, 0.4);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #a29bfe, #6c5ce7);
+        }
+
+        .btn-secondary:hover {
+            box-shadow: 0 5px 15px rgba(162, 155, 254, 0.4);
+        }
+
+        .transport-info {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+            border-left: 4px solid #74b9ff;
+        }
+
+        .transport-info h4 {
+            color: #2d3436;
+            margin-bottom: 8px;
+        }
+
+        .transport-info p {
+            color: #636e72;
+            margin: 5px 0;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .attractions-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .weather-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>东三省7天旅行攻略</h1>
+            <p>探索东北的冰雪奇缘与历史风情</p>
+        </div>
+
+        <div class="weather-section">
+            <h2>天气查询</h2>
+            <div class="weather-grid" id="weatherGrid">
+                <!-- 天气信息将通过JavaScript动态加载 -->
+            </div>
+        </div>
+
+        <div class="trip-section">
+            <h2 class="day-title">第1天 - 哈尔滨</h2>
+            <div class="attractions-grid">
+                <div class="attraction-card">
+                    <div class="attraction-image"
+                        style="background-image: url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=400&h=200&fit=crop')">
+                    </div>
+                    <div class="attraction-info">
+                        <div class="attraction-name">中央大街</div>
+                        <div class="attraction-desc">欧式建筑风格的历史街区，感受哈尔滨的异国情调</div>
+                        <div class="attraction-meta">
+                            <span>游览时间: 2-3小时</span>
+                            <span>门票: 免费</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="attraction-card">
+                    <div class="attraction-image"
+                        style="background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=200&fit=crop')">
+                    </div>
+                    <div class="attraction-info">
+                        <div class="attraction-name">圣索菲亚教堂</div>
+                        <div class="attraction-desc">拜占庭式建筑，哈尔滨的标志性建筑</div>
+                        <div class="attraction-meta">
+                            <span>游览时间: 1-2小时</span>
+                            <span>门票: ¥20</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="transport-info">
+                <h4>🚕 交通安排</h4>
+                <p>中央大街 → 圣索菲亚教堂：打车约15分钟，费用约¥20</p>
+                <button class="btn"
+                    onclick="window.location.href='amapuri://openFeature?featureName=TakeCarPage&sourceApplication=travel&fromName=中央大街&fromLat=45.774835&fromLng=126.617682&toName=圣索菲亚教堂&toLat=45.770011&toLng=126.627180'">🚕
+                    打车前往</button>
+            </div>
+        </div>
+
+        <div class="trip-section">
+            <h2 class="day-title">第2天 - 哈尔滨</h2>
+            <div class="attractions-grid">
+                <div class="attraction-card">
+                    <div class="attraction-image"
+                        style="background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=200&fit=crop')">
+                    </div>
+                    <div class="attraction-info">
+                        <div class="attraction-name">太阳岛</div>
+                        <div class="attraction-desc">松花江上的美丽岛屿，冬季可观赏雪雕艺术</div>
+                        <div class="attraction-meta">
+                            <span>游览时间: 3-4小时</span>
+                            <span>门票: ¥30</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="attraction-card">
+                    <div class="attraction-image"
+                        style="background-image: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=200&fit=crop')">
+                    </div>
+                    <div class="attraction-info">
+                        <div class="attraction-name">冰雪大世界</div>
+                        <div class="attraction-desc">世界最大的冰雪主题乐园，夜晚灯光璀璨</div>
+                        <div class="attraction-meta">
+                            <span>游览时间: 3-4小时</span>
+                            <span>门票: ¥330</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="transport-info">
+                <h4>🚕 交通安排</h4>
+                <p>太阳岛 → 冰雪大世界：打车约25分钟，费用约¥35</p>
+                <button class="btn"
+                    onclick="window.location.href='amapuri://openFeature?featureName=TakeCarPage&sourceApplication=travel&fromName=太阳岛&fromLat=45.783&fromLng=126.567&toName=冰雪大世界&toLat=45.783&toLng=126.567'">🚕
+                    打车前往</button>
+            </div>
+        </div>
+
+        <div class="trip-section">
+            <h2 class="day-title">第3天 - 长春</h2>
+            <div class="attractions-grid">
+                <div class="attraction-card">
+                    <div class="attraction-image"
+                        style="background-image: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=200&fit=crop')">
+                    </div>
+                    <div class="attraction-info">
+                        <div class="attraction-name">伪满皇宫博物院</div>
+                        <div class="attraction-desc">了解伪满洲国历史，感受建筑艺术之美</div>
+                        <div class="attraction-meta">
+                            <span>游览时间: 2-3小时</span>
+                            <span>门票: ¥80</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="attraction-card">
+                    <div class="attraction-image"
+                        style="background-image: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=200&fit=crop')">
+                    </div>
+                    <div class="attraction-info">
+                        <div class="attraction-name">净月潭</div>
+                        <div class="attraction-desc">长春的绿肺，冬季可体验冰雪运动</div>
+                        <div class="attraction-meta">
+                            <span>游览时间: 3-4小时</span>
+                            <span>门票: ¥30</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="transport-info">
+                <h4>🚕 交通安排</h4>
+                <p>伪满皇宫 → 净月潭：打车约30分钟，费用约¥40</p>
+                <button class="btn"
+                    onclick="window.location.href='amapuri://openFeature?featureName=TakeCarPage&sourceApplication=travel&fromName=伪满皇宫博物院&fromLat=43.896&fromLng=125.324&toName=净月潭&toLat=43.817&toLng=125.324'">🚕
+                    打车前往</button>
+            </div>
+        </div>
+
+        <div class="trip-section">
+            <h2 class="day-title">第4天 - 沈阳</h2>
+            <div class="attractions-grid">
+                <div class="attraction-card">
+                    <div class="attraction-image"
+                        style="background-image: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=200&fit=crop')">
+                    </div>
+                    <div class="attraction-info">
+                        <div class="attraction-name">沈阳故宫</div>
+                        <div class="attraction-desc">清朝发祥地，中国现存两大宫殿建筑群之一</div>
+                        <div class="attraction-meta">
+                            <span>游览时间: 3-4小时</span>
+                            <span>门票: ¥60</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="attraction-card">
+                    <div class="attraction-image"
+                        style="background-image: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=200&fit=crop')">
+                    </div>
+                    <div class="attraction-info">
+                        <div class="attraction-name">张氏帅府</div>
+                        <div class="attraction-desc">张学良故居，了解近代历史风云</div>
+                        <div class="attraction-meta">
+                            <span>游览时间: 2-3小时</span>
+                            <span>门票: ¥50</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="transport-info">
+                <h4>🚕 交通安排</h4>
+                <p>沈阳故宫 → 张氏帅府：打车约15分钟，费用约¥20</p>
+                <button class="btn"
+                    onclick="window.location.href='amapuri://openFeature?featureName=TakeCarPage&sourceApplication=travel&fromName=沈阳故宫&fromLat=41.797344&fromLng=123.454343&toName=张氏帅府&toLat=41.792&toLng=123.432'">🚕
+                    打车前往</button>
+            </div>
+        </div>
+
+        <div class="trip-section">
+            <h2 class="day-title">第5天 - 大连</h2>
+            <div class="attractions-grid">
+                <div class="attraction-card">
+                    <div class="attraction-image"
+                        style="background-image: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=200&fit=crop')">
+                    </div>
+                    <div class="attraction-info">
+                        <div class="attraction-name">星海广场</div>
+                        <div class="attraction-desc">亚洲最大的城市广场，海滨风光优美</div>
+                        <div class="attraction-meta">
+                            <span>游览时间: 2-3小时</span>
+                            <span>门票: 免费</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="attraction-card">
+                    <div class="attraction-image"
+                        style="background-image: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=200&fit=crop')">
+                    </div>
+                    <div class="attraction-info">
+                        <div class="attraction-name">老虎滩海洋公园</div>
+                        <div class="attraction-desc">海洋动物表演，适合亲子游玩</div>
+                        <div class="attraction-meta">
+                            <span>游览时间: 4-5小时</span>
+                            <span>门票: ¥220</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="transport-info">
+                <h4>🚕 交通安排</h4>
+                <p>星海广场 → 老虎滩海洋公园：打车约20分钟，费用约¥30</p>
+                <button class="btn"
+                    onclick="window.location.href='amapuri://openFeature?featureName=TakeCarPage&sourceApplication=travel&fromName=星海广场&fromLat=38.882379&fromLng=121.588870&toName=老虎滩海洋公园&toLat=38.914&toLng=121.618'">🚕
+                    打车前往</button>
+            </div>
+        </div>
+
+        <div class="trip-section">
+            <h2 class="day-title">第6天 - 大连</h2>
+            <div class="attractions-grid">
+                <div class="attraction-card">
+                    <div class="attraction-image"
+                        style="background-image: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=200&fit=crop')">
+                    </div>
+                    <div class="attraction-info">
+                        <div class="attraction-name">金石滩</div>
+                        <div class="attraction-desc">国家地质公园，奇石景观独特</div>
+                        <div class="attraction-meta">
+                            <span>游览时间: 3-4小时</span>
+                            <span>门票: ¥70</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="attraction-card">
+                    <div class="attraction-image"
+                        style="background-image: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=200&fit=crop')">
+                    </div>
+                    <div class="attraction-info">
+                        <div class="attraction-name">发现王国</div>
+                        <div class="attraction-desc">主题乐园，刺激的游乐设施</div>
+                        <div class="attraction-meta">
+                            <span>游览时间: 4-5小时</span>
+                            <span>门票: ¥280</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="transport-info">
+                <h4>🚕 交通安排</h4>
+                <p>金石滩 → 发现王国：打车约25分钟，费用约¥35</p>
+                <button class="btn"
+                    onclick="window.location.href='amapuri://openFeature?featureName=TakeCarPage&sourceApplication=travel&fromName=金石滩&fromLat=39.056&fromLng=121.618&toName=发现王国&toLat=39.056&toLng=121.618'">🚕
+                    打车前往</button>
+            </div>
+        </div>
+
+        <div class="trip-section">
+            <h2 class="day-title">第7天 - 大连</h2>
+            <div class="attractions-grid">
+                <div class="attraction-card">
+                    <div class="attraction-image"
+                        style="background-image: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=200&fit=crop')">
+                    </div>
+                    <div class="attraction-info">
+                        <div class="attraction-name">滨海路</div>
+                        <div class="attraction-desc">世界最长的海滨木栈道，风景如画</div>
+                        <div class="attraction-meta">
+                            <span>游览时间: 2-3小时</span>
+                            <span>门票: 免费</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="attraction-card">
+                    <div class="attraction-image"
+                        style="background-image: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=200&fit=crop')">
+                    </div>
+                    <div class="attraction-info">
+                        <div class="attraction-name">俄罗斯风情街</div>
+                        <div class="attraction-desc">异国风情建筑，购物休闲好去处</div>
+                        <div class="attraction-meta">
+                            <span>游览时间: 2-3小时</span>
+                            <span>门票: 免费</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="transport-info">
+                <h4>🚕 交通安排</h4>
+                <p>滨海路 → 俄罗斯风情街：打车约20分钟，费用约¥25</p>
+                <button class="btn"
+                    onclick="window.location.href='amapuri://openFeature?featureName=TakeCarPage&sourceApplication=travel&fromName=滨海路&fromLat=38.914&fromLng=121.618&toName=俄罗斯风情街&toLat=38.914&toLng=121.618'">🚕
+                    打车前往</button>
+            </div>
+        </div>
+
+        <div class="map-section">
+            <h2>路线规划地图</h2>
+            <p>点击下方按钮查看完整行程路线规划</p>
+            <button class="btn" onclick="showRouteMap()">查看路线规划</button>
+            <button class="btn btn-secondary" onclick="openAmapApp()">在高德地图中打开</button>
+            <div class="map-container" id="mapContainer">
+                <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: #666;">
+                    <div style="text-align: center;">
+                        <div style="font-size: 3rem; margin-bottom: 20px;">🗺️</div>
+                        <div>点击上方按钮查看路线规划</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="trip-section">
+            <h2 class="day-title">旅行总结</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px;">
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; border-left: 4px solid #74b9ff;">
+                    <h3 style="color: #2d3436; margin-bottom: 15px;">💰 预算估算</h3>
+                    <div style="color: #636e72; line-height: 1.8;">
+                        <p><strong>门票费用:</strong> 约 ¥1,080</p>
+                        <p><strong>交通费用:</strong> 约 ¥205 (打车)</p>
+                        <p><strong>住宿费用:</strong> 约 ¥2,100 (7晚，每晚¥300)</p>
+                        <p><strong>餐饮费用:</strong> 约 ¥1,400 (7天，每天¥200)</p>
+                        <p><strong>总预算:</strong> 约 ¥4,785</p>
+                    </div>
+                </div>
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; border-left: 4px solid #a29bfe;">
+                    <h3 style="color: #2d3436; margin-bottom: 15px;">📋 注意事项</h3>
+                    <div style="color: #636e72; line-height: 1.8;">
+                        <p>• 11月天气较冷，请准备保暖衣物</p>
+                        <p>• 建议提前预订酒店和景点门票</p>
+                        <p>• 准备现金和移动支付工具</p>
+                        <p>• 注意保管好随身物品</p>
+                        <p>• 关注天气变化，合理安排行程</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 城市坐标数据
+        const cities = [
+            { name: '哈尔滨', lat: 45.803, lng: 126.535 },
+            { name: '长春', lat: 43.817, lng: 125.324 },
+            { name: '沈阳', lat: 41.805, lng: 123.432 },
+            { name: '大连', lat: 38.914, lng: 121.618 }
+        ];
+
+        // 景点数据（使用真实GPS坐标）
+        const attractions = [
+            // 哈尔滨
+            { name: '中央大街', lat: 45.774835, lng: 126.617682, city: '哈尔滨' },
+            { name: '圣索菲亚教堂', lat: 45.770011, lng: 126.627180, city: '哈尔滨' },
+            { name: '太阳岛', lat: 45.783, lng: 126.567, city: '哈尔滨' },
+            { name: '冰雪大世界', lat: 45.783, lng: 126.567, city: '哈尔滨' },
+            // 长春
+            { name: '伪满皇宫博物院', lat: 43.896, lng: 125.324, city: '长春' },
+            { name: '净月潭', lat: 43.817, lng: 125.324, city: '长春' },
+            // 沈阳
+            { name: '沈阳故宫', lat: 41.797344, lng: 123.454343, city: '沈阳' },
+            { name: '张氏帅府', lat: 41.792, lng: 123.432, city: '沈阳' },
+            // 大连
+            { name: '星海广场', lat: 38.882379, lng: 121.588870, city: '大连' },
+            { name: '老虎滩海洋公园', lat: 38.914, lng: 121.618, city: '大连' },
+            { name: '金石滩', lat: 39.056, lng: 121.618, city: '大连' },
+            { name: '发现王国', lat: 39.056, lng: 121.618, city: '大连' },
+            { name: '滨海路', lat: 38.914, lng: 121.618, city: '大连' },
+            { name: '俄罗斯风情街', lat: 38.914, lng: 121.618, city: '大连' }
+        ];
+
+        // 真实天气数据
+        function loadWeatherData() {
+            const weatherGrid = document.getElementById('weatherGrid');
+            const weatherData = {
+                '哈尔滨': { daytemp: '24', nighttemp: '16', dayweather: '多云', nightweather: '多云', daywind: '西', daypower: '1-3' },
+                '长春': { daytemp: '25', nighttemp: '20', dayweather: '多云', nightweather: '小雨', daywind: '东', daypower: '1-3' },
+                '沈阳': { daytemp: '31', nighttemp: '21', dayweather: '多云', nightweather: '多云', daywind: '东南', daypower: '1-3' },
+                '大连': { daytemp: '31', nighttemp: '24', dayweather: '晴', nightweather: '晴', daywind: '南', daypower: '4' }
+            };
+
+            Object.keys(weatherData).forEach(city => {
+                const data = weatherData[city];
+                const weatherIcon = data.dayweather.includes('晴') ? '☀️' :
+                    data.dayweather.includes('多云') ? '⛅' :
+                        data.dayweather.includes('雨') ? '🌧️' : '❄️';
+
+                const weatherCard = document.createElement('div');
+                weatherCard.className = 'weather-card';
+                weatherCard.innerHTML = `
+                    <h3>${city}</h3>
+                    <div style="font-size: 2rem; margin: 10px 0;">${weatherIcon}</div>
+                    <div>温度: ${data.daytemp}°C ~ ${data.nighttemp}°C</div>
+                    <div>天气: ${data.dayweather}</div>
+                    <div>风向: ${data.daywind}风 ${data.daypower}级</div>
+                `;
+                weatherGrid.appendChild(weatherCard);
+            });
+        }
+
+        // 显示路线规划
+        function showRouteMap() {
+            const mapContainer = document.getElementById('mapContainer');
+            mapContainer.innerHTML = `
+                <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: #666;">
+                    <div style="text-align: center;">
+                        <div style="font-size: 3rem; margin-bottom: 20px;">🗺️</div>
+                        <div>路线规划功能需要集成高德地图API</div>
+                        <div style="margin-top: 20px;">
+                            <button class="btn" onclick="openAmapApp()">在高德地图中查看</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // 在高德地图中打开
+        function openAmapApp() {
+            // 使用高德地图个人地图链接
+            const personalMapUri = 'amapuri://workInAmap/createWithToken?polymericId=mcp_c3a2d83078504d518e50744b5d1aa0dd&from=MCP';
+
+            // 尝试打开高德地图APP
+            window.location.href = personalMapUri;
+
+            // 如果无法打开APP，则打开网页版
+            setTimeout(() => {
+                const webUri = 'https://uri.amap.com/workInAmap/createWithToken?polymericId=mcp_c3a2d83078504d518e50744b5d1aa0dd&from=MCP';
+                window.open(webUri, '_blank');
+            }, 2000);
+        }
+
+        // 生成打车链接
+        function generateTaxiLink(from, to, fromLat, fromLng, toLat, toLng) {
+            const taxiUri = `amapuri://openFeature?featureName=TakeCarPage&sourceApplication=travel&fromName=${encodeURIComponent(from)}&fromLat=${fromLat}&fromLng=${fromLng}&toName=${encodeURIComponent(to)}&toLat=${toLat}&toLng=${toLng}`;
+            return taxiUri;
+        }
+
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', function () {
+            loadWeatherData();
+        });
+    </script>
+</body>
+
+</html>

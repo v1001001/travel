@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>东北三省7天6晚精华行程</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: #333;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            color: #fff;
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 6px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 22px;
+            margin-bottom: 18px;
+            box-shadow: 0 10px 28px rgba(0, 0, 0, .08);
+        }
+
+        h2.title {
+            font-size: 18px;
+            color: #2d3436;
+            margin-bottom: 14px;
+            text-align: center;
+        }
+
+        .points {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .pt {
+            background: #f1f5ff;
+            color: #2563eb;
+            border: 1px solid #cfe0ff;
+            border-radius: 20px;
+            padding: 6px 12px;
+            font-size: 13px;
+        }
+
+        #routeCanvas {
+            width: 100%;
+            height: 300px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .day {
+            border: 1px solid #ecf0f1;
+            border-radius: 12px;
+            padding: 14px;
+            margin-bottom: 10px;
+        }
+
+        .day h3 {
+            font-size: 16px;
+            margin-bottom: 6px;
+            color: #2d3436;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 10px;
+        }
+
+        .info {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 10px;
+            font-size: 13px;
+        }
+
+        .cta {
+            margin-top: 10px;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #74b9ff, #0984e3);
+            color: #fff;
+            border: none;
+            border-radius: 18px;
+            padding: 8px 14px;
+            font-size: 12px;
+            text-decoration: none;
+        }
+
+        .btn.alt {
+            background: #f8f9fa;
+            color: #0984e3;
+            border: 1px solid #cde5ff;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 14px;
+            }
+
+            .header h1 {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>东北三省7天6晚精华行程</h1>
+            <div>辽宁 · 吉林 · 黑龙江｜城市精华 + 长白山自然地貌｜秋季最佳</div>
+        </div>
+
+        <div class="card">
+            <h2 class="title">🗺️ 路线概览（建议走法）</h2>
+            <div class="points">
+                <div class="pt">沈阳</div>
+                <div class="pt">大连</div>
+                <div class="pt">长春</div>
+                <div class="pt">二道白河（长白山镇）</div>
+                <div class="pt">哈尔滨</div>
+            </div>
+            <canvas id="routeCanvas"></canvas>
+        </div>
+
+        <div class="card">
+            <h2 class="title">📅 7天6晚行程表</h2>
+            <div id="days"></div>
+        </div>
+
+        <div class="card">
+            <h2 class="title">💡 小贴士</h2>
+            <ul style="padding-left:18px; line-height: 1.8; font-size: 14px; color:#555;">
+                <li>交通原则：城际尽量高铁/航班节省时间，长白山段以自驾/包车为主。</li>
+                <li>最佳时间：9月底-10月中上旬，城市与山地秋色同框；长白山需备冲锋衣。</li>
+                <li>门票：长白山北坡需预留一整天，建议提前预约购票。</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // 城市坐标
+        const placeCoords = {
+            "沈阳": [123.431, 41.8057],
+            "大连": [121.6147, 38.914],
+            "长春": [125.3235, 43.8171],
+            "二道白河": [128.206, 42.404], // 长白山镇
+            "哈尔滨": [126.534967, 45.803775]
+        };
+
+        // 路线城市
+        const routeCities = ["沈阳", "大连", "长春", "二道白河", "哈尔滨"];
+
+        // 7天6晚详细
+        const tripDays = [
+            {
+                d: 1, title: "沈阳集结｜沈阳故宫 · 张氏帅府", start: "沈阳", end: "沈阳",
+                plan: ["抵达沈阳，入住中街/太原街一带", "游览沈阳故宫、张氏帅府", "老四季抻面/老边饺子可作晚餐"],
+                traffic: "航班/高铁抵达沈阳站/沈阳北站，地铁2/9号线直达市区",
+                stay: "沈河/和平区酒店"
+            },
+
+            {
+                d: 2, title: "沈阳 → 大连｜星海广场 · 滨海路", start: "沈阳", end: "大连", distance: 400, hours: 2.5,
+                plan: ["早乘高铁G字到大连（约2.5h）", "下午星海广场、晚沿滨海路看夜景"],
+                traffic: "沈阳南/北站→大连北站高铁最省时；市内地铁1/2号线换乘",
+                stay: "星海/人民路一带酒店"
+            },
+
+            {
+                d: 3, title: "大连 → 长春｜伪满皇宫 · 桂林路美食", start: "大连", end: "长春", distance: 900, hours: 4.5,
+                plan: ["上午高铁至长春（约4.5h）", "下午伪满皇宫博物院，晚桂林路小吃街"],
+                traffic: "大连北→长春站/长春西站高铁；市内打车/地铁1号线换乘",
+                stay: "朝阳区/南关区酒店"
+            },
+
+            {
+                d: 4, title: "长春 → 二道白河（长白山镇）", start: "长春", end: "二道白河", distance: 420, hours: 5.5,
+                plan: ["自驾/包车经抚长高速至二道白河", "或长春→敦化高铁+敦化巴士/包车进镇"],
+                traffic: "自驾约5-6h；公共交通：长春→敦化高铁1.5-2h，转巴士约2.5h",
+                stay: "二道白河温泉酒店/万达小镇民宿"
+            },
+
+            {
+                d: 5, title: "长白山北坡一日｜天池 · 瀑布 · 温泉群", start: "二道白河", end: "二道白河",
+                plan: ["早入园乘环保车上山", "天池—瀑布—温泉群—谷底森林（视体力走西坡台阶）"],
+                traffic: "园区环保车循环，入园需携带身份证，注意保暖",
+                stay: "二道白河同前"
+            },
+
+            {
+                d: 6, title: "二道白河 → 哈尔滨｜中央大街 · 索菲亚夜景", start: "二道白河", end: "哈尔滨", distance: 520, hours: 7,
+                plan: ["早出发经鹤大/G11前往哈尔滨", "晚逛中央大街、观看索菲亚教堂夜景"],
+                traffic: "自驾约7h；或敦化/延吉/长春中转高铁前往哈尔滨",
+                stay: "道里区/中央大街周边酒店"
+            },
+
+            {
+                d: 7, title: "哈尔滨｜太阳岛 · 松花江 · 返程", start: "哈尔滨", end: "哈尔滨",
+                plan: ["上午太阳岛/极地馆（可选）", "午后松花江边漫步或伏尔加庄园（半日）", "晚班机/高铁返程"],
+                traffic: "地铁2号线直达中央大街区域；至太平国际机场可走地铁3号线+机场快线/打车",
+                stay: "— 行程结束 —"
+            }
+        ];
+
+        // 渲染天
+        function renderDays() {
+            const box = document.getElementById('days');
+            tripDays.forEach(d => {
+                const div = document.createElement('div');
+                div.className = 'day';
+                div.innerHTML = `
+          <h3>第${d.d}天｜${d.title}</h3>
+          <div class="grid">
+            <div class="info"><b>时间安排</b><br>${(d.plan || []).join('；')}</div>
+            ${d.distance ? `<div class="info"><b>城际交通</b><br>约${d.distance}km · 参考${d.hours || ''}h</div>` : ''}
+            <div class="info"><b>公共交通</b><br>${d.traffic || '—'}</div>
+            <div class="info"><b>住宿建议</b><br>${d.stay || '—'}</div>
+          </div>
+          <div class="cta">
+            ${d.end ? `<a class="btn" target="_blank" rel="noopener" href="https://uri.amap.com/navigation?from=${(placeCoords[d.start] || []).join(',')},${encodeURIComponent(d.start)}&to=${(placeCoords[d.end] || []).join(',')},${encodeURIComponent(d.end)}&mode=car">📍 高德一键导航</a>` : ''}
+          </div>
+        `;
+                box.appendChild(div);
+            });
+        }
+
+        // 轻量路线图（Canvas）
+        function project(points, w, h, pad = 30) {
+            const xs = points.map(p => p[0]), ys = points.map(p => p[1]);
+            const minX = Math.min(...xs), maxX = Math.max(...xs);
+            const minY = Math.min(...ys), maxY = Math.max(...ys);
+            const sx = (w - 2 * pad) / (maxX - minX), sy = (h - 2 * pad) / (maxY - minY);
+            return points.map(([x, y]) => [pad + (x - minX) * sx, h - pad - (y - minY) * sy]);
+        }
+        function drawRoute() {
+            const c = document.getElementById('routeCanvas');
+            const ratio = window.devicePixelRatio || 1; const cssW = c.clientWidth, cssH = c.clientHeight;
+            c.width = cssW * ratio; c.height = cssH * ratio; const ctx = c.getContext('2d'); ctx.scale(ratio, ratio);
+            ctx.clearRect(0, 0, cssW, cssH);
+            const geo = routeCities.map(n => placeCoords[n]);
+            const proj = project(geo, cssW, cssH, 40);
+            ctx.strokeStyle = '#0ea5e9'; ctx.lineWidth = 3; ctx.beginPath();
+            proj.forEach(([x, y], i) => { if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y); }); ctx.stroke();
+            ctx.fillStyle = '#2563eb'; ctx.font = '12px sans-serif';
+            proj.forEach(([x, y], i) => { ctx.beginPath(); ctx.arc(x, y, 4, 0, Math.PI * 2); ctx.fill(); ctx.fillText(routeCities[i], x + 6, y - 6); });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => { renderDays(); drawRoute(); });
+        window.addEventListener('resize', drawRoute);
+    </script>
+</body>
+
+</html>
