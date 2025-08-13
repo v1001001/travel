@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>东北+呼伦贝尔 · 3D区块图</title>
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Segoe UI', Roboto, Helvetica, Arial;
+            background: #0b1220;
+        }
+
+        .toolbar {
+            position: fixed;
+            left: 12px;
+            top: 12px;
+            z-index: 10;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .btn {
+            background: #111827;
+            color: #e5e7eb;
+            border: 1px solid #334155;
+            padding: 8px 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .btn.primary {
+            background: linear-gradient(135deg, #60a5fa, #22d3ee);
+            color: #0b1220;
+            border: none;
+        }
+
+        #map {
+            width: 100%;
+            height: 100%;
+        }
+
+        .legend {
+            position: fixed;
+            right: 12px;
+            bottom: 12px;
+            background: rgba(17, 24, 39, .85);
+            color: #e5e7eb;
+            padding: 8px 10px;
+            border-radius: 10px;
+            font-size: 12px;
+        }
+    </style>
+    <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="toolbar">
+        <button class="btn primary" id="btnPlay">播放层级</button>
+        <button class="btn" id="btnStop">停止</button>
+        <button class="btn" id="btnExport">导出PNG</button>
+    </div>
+    <div id="map"></div>
+    <div class="legend">3D区块图（示意）：分省拉伸高度不同，表现行政区层级感</div>
+
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+    <script>
+        const token = window.MAPBOX_TOKEN || localStorage.getItem('MAPBOX_TOKEN') || '';
+        mapboxgl.accessToken = token || 'no-token';
+        const map = new mapboxgl.Map({
+            container: 'map',
+            style: token ? 'mapbox://styles/mapbox/dark-v11' : 'https://demotiles.maplibre.org/style.json',
+            center: [123.5, 47.8], zoom: 4.1, pitch: 60, bearing: -10,
+            hash: false, attributionControl: true
+        });
+
+        // 省界数据（取阿里DataV在线GeoJSON，加载后做 extrude）
+        async function loadProvince(code, name, height) {
+            try {
+                const resp = await fetch(`https://geo.datav.aliyun.com/areas_v3/bound/${code}_full.json`);
+                const gj = await resp.json();
+                map.addSource(name, { type: 'geojson', data: gj });
+                map.addLayer({
+                    id: name + '-extrude', type: 'fill-extrusion', source: name,
+                    paint: {
+                        'fill-extrusion-color': ['case', ['boolean', ['feature-state', 'hl'], false], '#22d3ee', '#60a5fa'],
+                        'fill-extrusion-height': height,
+                        'fill-extrusion-opacity': 0.9
+                    }
+                });
+                map.addLayer({ id: name + '-line', type: 'line', source: name, paint: { 'line-color': '#93c5fd', 'line-width': 1 } });
+            } catch (e) { console.warn('load province failed', name, e); }
+        }
+
+        map.on('load', async () => {
+            await loadProvince('230000', '黑龙江', 22000);
+            await loadProvince('220000', '吉林', 14000);
+            await loadProvince('210000', '辽宁', 8000);
+            await loadProvince('150000', '内蒙古', 12000);
+
+            // 主路线（简化点）
+            const path = [[125.3235, 43.8171], [128.08, 42.05], [126.53, 45.80], [128.89, 47.72], [127.49, 50.24], [122.36, 53.55], [121.516, 50.783], [120.182, 50.243], [119.736, 49.213], [117.458, 49.588], [119.943, 47.177], [119.736, 49.213]];
+            map.addSource('route', { type: 'geojson', data: { type: 'Feature', properties: {}, geometry: { type: 'LineString', coordinates: path } } });
+            map.addLayer({ id: 'route-line', type: 'line', source: 'route', paint: { 'line-color': '#22d3ee', 'line-width': 4 } });
+
+            // 播放：逐个高亮省块
+            const provs = ['黑龙江', '吉林', '内蒙古', '辽宁'];
+            let timer = null, idx = 0;
+            function highlight(i) {
+                provs.forEach((n, j) => map.setFeatureState({ source: n }, { hl: j === i }));
+            }
+            document.getElementById('btnPlay').onclick = () => {
+                if (timer) clearInterval(timer);
+                idx = 0; highlight(idx);
+                timer = setInterval(() => { idx = (idx + 1) % provs.length; highlight(idx); }, 1200);
+            };
+            document.getElementById('btnStop').onclick = () => { if (timer) clearInterval(timer); timer = null; provs.forEach(n => map.setFeatureState({ source: n }, { hl: false })); };
+
+            // 导出PNG（使用 canvas 快照）
+            document.getElementById('btnExport').onclick = () => {
+                const c = map.getCanvas();
+                const url = c.toDataURL('image/png');
+                const a = document.createElement('a'); a.href = url; a.download = 'nb-3d.png'; a.click();
+            };
+        });
+    </script>
+</body>
+
+</html>

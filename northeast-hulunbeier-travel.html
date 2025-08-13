@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>东北+呼伦贝尔15天精华环线自驾游</title>
+    <title>东北+呼伦贝尔精华环线自驾游</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <style>
@@ -289,6 +289,21 @@
             border-bottom: none;
         }
 
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .track-section>div>div {
+                grid-template-columns: 1fr !important;
+            }
+
+            .track-section>div>div>div:first-child {
+                order: 2;
+            }
+
+            .track-section>div>div>div:last-child {
+                order: 1;
+            }
+        }
+
         .timeline-section {
             background: white;
             border-radius: 15px;
@@ -427,7 +442,7 @@
 
         #trackCanvas {
             width: 100%;
-            height: 360px;
+            height: 650px;
             background: #f8f9fa;
             border-radius: 10px;
         }
@@ -435,7 +450,7 @@
         #leafletMap,
         #routeMap {
             width: 100%;
-            height: 520px;
+            height: 650px;
             border-radius: 12px;
             margin-top: 12px;
             display: none;
@@ -464,17 +479,23 @@
                 align-items: center;
             }
         }
+
+        /* 天气卡片悬停效果 */
+        .weather-card:hover {
+            transform: scale(1.05) !important;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
     </style>
 </head>
 
 <body>
     <div class="container">
         <div class="header">
-            <h1>东北+呼伦贝尔15天精华环线</h1>
-            <p>穿越长白山、大兴安岭、呼伦贝尔草原的史诗级自驾之旅</p>
+            <h1>东北+呼伦贝尔精华环线</h1>
+            <p>沿G331国道穿越东北边境，探秘大兴安岭，感受草原风情，体验最美边境公路，总里程5000公里，涵盖7大核心区域</p>
             <div class="stats">
                 <div class="stat-item">
-                    <span class="stat-number">15</span>
+                    <span class="stat-number">13</span>
                     <span>行程天数</span>
                 </div>
                 <div class="stat-item">
@@ -486,69 +507,117 @@
                     <span>主要景点</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-number">5</span>
+                    <span class="stat-number">7</span>
                     <span>核心区域</span>
                 </div>
             </div>
         </div>
 
         <div class="overview-section">
-            <h2 style="color: #2d3436; margin-bottom: 30px; text-align: center;">🗺️ 环线路线概览（非完全闭环，终点海拉尔）</h2>
+            <h2 style="color: #2d3436; margin-bottom: 30px; text-align: center;">🗺️ G331边境公路环线路线概览（长春出发，阿尔山收官）</h2>
             <div class="route-map">
-                <h3>长春 → 长白山 → 哈尔滨 → 漠河 → 额尔古纳 → 海拉尔 → 阿尔山 → 海拉尔</h3>
+                <h3>长春 → 长白山 → 珲春 → 虎林 → 饶河 → 抚远 → 同江 → 黑河 → 五大连池 → 漠河 → 根河 → 额尔古纳 → 海拉尔 → 阿尔山</h3>
                 <div class="route-points">
                     <div class="route-point">长春</div>
                     <div class="route-point">长白山</div>
-                    <div class="route-point">哈尔滨</div>
+                    <div class="route-point">珲春</div>
+                    <div class="route-point">虎林</div>
+                    <div class="route-point">饶河</div>
+                    <div class="route-point">抚远</div>
+                    <div class="route-point">同江</div>
+                    <div class="route-point">黑河</div>
+                    <div class="route-point">五大连池</div>
                     <div class="route-point">漠河</div>
+                    <div class="route-point">根河</div>
                     <div class="route-point">额尔古纳</div>
                     <div class="route-point">海拉尔</div>
                     <div class="route-point">阿尔山</div>
-                    <div class="route-point">海拉尔（终）</div>
                 </div>
             </div>
         </div>
 
         <div class="timeline-section">
-            <h2 style="color: #2d3436; margin-bottom: 30px; text-align: center;">📅 详细行程时间线（终点：海拉尔）</h2>
+            <h2 style="color: #2d3436; margin-bottom: 30px; text-align: center;">📅 详细行程时间线（13天G331边境公路环线）</h2>
+
+            <!-- 去程交通建议 -->
+            <div class="departure-tip"
+                style="margin-bottom: 30px; padding: 20px; background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%); border-left: 4px solid #ffc107; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                    <span style="font-size: 18px; margin-right: 8px;">🚗</span>
+                    <h4 style="margin: 0; color: #856404; font-weight: 600;">去程交通建议</h4>
+                </div>
+                <p style="margin: 0; color: #856404; line-height: 1.6; font-size: 14px;">
+                    <strong>当前方案：</strong>长春集合出发（交通便利，租车方便）<br>
+                    <strong>备选方案：</strong>自驾可考虑从丹东出发，沿G331经集安市抵达白山市（完整G331体验，含鸭绿江风光、高句丽遗址）
+                </p>
+            </div>
+
             <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">第0天 (9月24日)</div>
+                    <div class="timeline-title">各地 → 长春集合</div>
+                    <div class="timeline-desc">抵达长春，取车检车，行程准备</div>
+                </div>
                 <div class="timeline-item">
                     <div class="timeline-date">第1-2天 (9月25-26日)</div>
                     <div class="timeline-title">长春 → 长白山</div>
-                    <div class="timeline-desc">长白山天池、瀑布、温泉，秋季色彩斑斓</div>
+                    <div class="timeline-desc">长白山天池、瀑布、温泉群</div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-date">第3-4天 (9月27-28日)</div>
-                    <div class="timeline-title">长白山 → 哈尔滨</div>
-                    <div class="timeline-desc">中央大街、圣索菲亚教堂、太阳岛</div>
+                    <div class="timeline-title">长白山 → 珲春 → 虎林</div>
+                    <div class="timeline-desc">三国交界、边境口岸、珍宝岛风光</div>
                 </div>
                 <div class="timeline-item">
-                    <div class="timeline-date">第5-7天 (9月29日-10月1日)</div>
-                    <div class="timeline-title">哈尔滨 → 漠河</div>
-                    <div class="timeline-desc">金山鹿苑、界江风光、北极村、龙江第一湾</div>
+                    <div class="timeline-date">第5-6天 (9月29-30日)</div>
+                    <div class="timeline-title">虎林 → 饶河 → 抚远</div>
+                    <div class="timeline-desc">乌苏里江、东极广场、黑瞎子岛风光</div>
                 </div>
                 <div class="timeline-item">
-                    <div class="timeline-date">第8-10天 (10月2-4日)</div>
-                    <div class="timeline-title">漠河 → 额尔古纳</div>
-                    <div class="timeline-desc">大兴安岭穿越、白桦林、湿地、草原风光</div>
+                    <div class="timeline-date">第7-8天 (10月1-2日)</div>
+                    <div class="timeline-title">抚远 → 同江 → 黑河</div>
+                    <div class="timeline-desc">三江口、赫哲族文化、界江风光</div>
                 </div>
                 <div class="timeline-item">
-                    <div class="timeline-date">第11-13天 (10月5-7日)</div>
-                    <div class="timeline-title">海拉尔 → 阿尔山</div>
-                    <div class="timeline-desc">满洲里国门、边境公路、阿尔山天池</div>
+                    <div class="timeline-date">第9-10天 (10月3-4日)</div>
+                    <div class="timeline-title">黑河 → 五大连池</div>
+                    <div class="timeline-desc">火山地貌、温泉体验、地质奇观</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">第11-12天 (10月5-6日)</div>
+                    <div class="timeline-title">五大连池 → 漠河 → 根河</div>
+                    <div class="timeline-desc">边境风光、大兴安岭、最北地标、白桦林</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">第13天 (10月7日)</div>
+                    <div class="timeline-title">根河 → 额尔古纳 → 海拉尔 → 阿尔山</div>
+                    <div class="timeline-desc">湿地风光、草原风情、阿尔山天池（收官）</div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-date">第14天 (10月8日)</div>
-                    <div class="timeline-title">阿尔山 → 海拉尔（返程更便捷）</div>
-                    <div class="timeline-desc">晚看莫日格勒河日落，海拉尔收官，次日飞返</div>
+                    <div class="timeline-title">阿尔山 → 各地返程</div>
+                    <div class="timeline-desc">结束精彩旅程，各自返程</div>
                 </div>
+            </div>
+
+            <!-- 返程交通建议 -->
+            <div class="return-tip"
+                style="margin-top: 30px; padding: 20px; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); border-left: 4px solid #007bff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                    <span style="font-size: 18px; margin-right: 8px;">💡</span>
+                    <h4 style="margin: 0; color: #495057; font-weight: 600;">返程交通建议</h4>
+                </div>
+                <p style="margin: 0; color: #6c757d; line-height: 1.6; font-size: 14px;">
+                    <strong>当前方案：</strong>阿尔山直接返程（需中转，航班选择少）<br>
+                    <strong>推荐方案：</strong>第13天返回海拉尔再返程（270公里，4小时车程，有直飞上海航班，更便利）
+                </p>
             </div>
         </div>
 
         <div class="trip-section">
-            <h2 style="color: #2d3436; margin-bottom: 30px; text-align: center;">🏔️ 核心区域详解</h2>
+            <h2 style="color: #2d3436; margin-bottom: 30px; text-align: center;">🏔️ 7大核心区域详解</h2>
 
-            <!-- 长白山区域 -->
+            <!-- 1. 长白山区域 -->
             <div class="day-title">
                 <div class="day-number">1</div>
                 <span>长白山区域</span>
@@ -559,8 +628,7 @@
             </div>
             <div class="attractions-grid">
                 <div class="attraction-card">
-                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=200&fit=crop"
-                        alt="长白山天池" class="attraction-image">
+                    <img src="images/changbai-tianchi.png" alt="长白山天池" class="attraction-image">
                     <div class="attraction-content">
                         <div class="attraction-title">长白山天池</div>
                         <div class="attraction-description">中国最高火山湖，秋季倒映着五彩斑斓的山林，美不胜收。</div>
@@ -571,8 +639,8 @@
                     </div>
                 </div>
                 <div class="attraction-card">
-                    <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&w=1200&q=80"
-                        alt="长白山瀑布" class="attraction-image">
+                    <img src="https://dimg04.c-ctrip.com/images/100b0t000000iqxfj746E_R_10000_1200.jpg" alt="长白山瀑布"
+                        class="attraction-image">
                     <div class="attraction-content">
                         <div class="attraction-title">长白山瀑布</div>
                         <div class="attraction-description">落差68米的壮观瀑布，秋季水量充沛，气势磅礴。</div>
@@ -584,31 +652,55 @@
                 </div>
             </div>
 
-            <!-- 大兴安岭区域 -->
+            <!-- 2. 大兴安岭林海 -->
             <div class="day-title">
                 <div class="day-number">2</div>
-                <span>大兴安岭区域</span>
+                <span>大兴安岭林海</span>
             </div>
             <div class="route-info">
                 <h4>🌲 区域特色</h4>
-                <p>穿越原始森林，体验与梅花鹿的亲密接触，欣赏界江风光，感受边境的独特魅力。</p>
+                <p>穿越原始森林，体验与梅花鹿的亲密接触，感受大兴安岭的壮美与神秘。</p>
             </div>
             <div class="attractions-grid">
                 <div class="attraction-card">
-                    <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&w=1200&q=80"
-                        alt="金山鹿苑" class="attraction-image">
+                    <img src="https://dimg04.c-ctrip.com/images/0103l1200083ts6mx83CB_C_1600_1200.jpg" alt="大兴安岭林海"
+                        class="attraction-image">
                     <div class="attraction-content">
-                        <div class="attraction-title">金山鹿苑</div>
-                        <div class="attraction-description">与梅花鹿亲密接触，体验与鹿群互动的乐趣。</div>
+                        <div class="attraction-title">大兴安岭林海</div>
+                        <div class="attraction-description">穿越原始森林，感受大自然的壮美与神秘。</div>
                         <div class="attraction-details">
-                            <span>📍 伊春市</span>
-                            <span>⏰ 建议2-3小时</span>
+                            <span>📍 大兴安岭</span>
+                            <span>⏰ 建议3-4小时</span>
                         </div>
                     </div>
                 </div>
                 <div class="attraction-card">
-                    <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&w=1200&q=80"
-                        alt="北极村" class="attraction-image">
+                    <img src="https://dimg04.c-ctrip.com/images/100c0p000000fikf3381F_C_1600_1200.jpg" alt="白桦林"
+                        class="attraction-image">
+                    <div class="attraction-content">
+                        <div class="attraction-title">白桦林</div>
+                        <div class="attraction-description">秋季的白桦林金黄一片，是摄影爱好者的天堂。</div>
+                        <div class="attraction-details">
+                            <span>📍 大兴安岭</span>
+                            <span>⏰ 建议2小时</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. 漠河极地 -->
+            <div class="day-title">
+                <div class="day-number">3</div>
+                <span>漠河极地</span>
+            </div>
+            <div class="route-info">
+                <h4>📍 区域特色</h4>
+                <p>寻找"最北之家"，体验祖国最北端的独特魅力，欣赏龙江第一湾的壮美。</p>
+            </div>
+            <div class="attractions-grid">
+                <div class="attraction-card">
+                    <img src="https://dimg04.c-ctrip.com/images/0100h12000f6se7skAB64_C_1600_1200.jpg" alt="北极村"
+                        class="attraction-image">
                     <div class="attraction-content">
                         <div class="attraction-title">北极村</div>
                         <div class="attraction-description">寻找"最北之家"，体验祖国最北端的独特魅力。</div>
@@ -618,11 +710,59 @@
                         </div>
                     </div>
                 </div>
+                <div class="attraction-card">
+                    <img src="https://dimg04.c-ctrip.com/images/100q0r000000gqmliE3FF_R_1600_10000.jpg" alt="龙江第一湾"
+                        class="attraction-image">
+                    <div class="attraction-content">
+                        <div class="attraction-title">龙江第一湾</div>
+                        <div class="attraction-description">欣赏黑龙江最壮观弯曲，感受大自然的鬼斧神工。</div>
+                        <div class="attraction-details">
+                            <span>📍 漠河市</span>
+                            <span>⏰ 建议2小时</span>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <!-- 呼伦贝尔草原 -->
+            <!-- 4. 五大连池 -->
             <div class="day-title">
-                <div class="day-number">3</div>
+                <div class="day-number">4</div>
+                <span>五大连池</span>
+            </div>
+            <div class="route-info">
+                <h4>🌋 区域特色</h4>
+                <p>世界地质公园，火山地貌与湖泊的完美结合，秋季色彩斑斓，温泉资源丰富。</p>
+            </div>
+            <div class="attractions-grid">
+                <div class="attraction-card">
+                    <img src="https://dimg04.c-ctrip.com/images/0106c12000j19xs7i1CBC_R_1600_10000.jpg" alt="五大连池火山群"
+                        class="attraction-image">
+                    <div class="attraction-content">
+                        <div class="attraction-title">五大连池火山群</div>
+                        <div class="attraction-description">世界地质公园，14座火山组成的火山群，秋季色彩斑斓。</div>
+                        <div class="attraction-details">
+                            <span>📍 五大连池市</span>
+                            <span>⏰ 建议3-4小时</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="attraction-card">
+                    <img src="https://dimg04.c-ctrip.com/images/0105f12000f9qdwid0F63_R_1600_10000.jpg" alt="温泊"
+                        class="attraction-image">
+                    <div class="attraction-content">
+                        <div class="attraction-title">温泊</div>
+                        <div class="attraction-description">火山熔岩堰塞湖，湖水清澈，倒映着火山和森林。</div>
+                        <div class="attraction-details">
+                            <span>📍 五大连池市</span>
+                            <span>⏰ 建议2-3小时</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. 呼伦贝尔草原 -->
+            <div class="day-title">
+                <div class="day-number">5</div>
                 <span>呼伦贝尔草原</span>
             </div>
             <div class="route-info">
@@ -631,8 +771,80 @@
             </div>
             <div class="attractions-grid">
                 <div class="attraction-card">
-                    <img src="https://images.unsplash.com/photo-1526481280698-8fcc13fd1e50?auto=format&w=1200&q=80"
-                        alt="额尔古纳湿地" class="attraction-image">
+                    <img src="https://dimg04.c-ctrip.com/images/1lo3812000bfhar1e35C6_C_1600_1200.jpg" alt="莫日格勒河"
+                        class="attraction-image">
+                    <div class="attraction-content">
+                        <div class="attraction-title">莫日格勒河</div>
+                        <div class="attraction-description">草原上的九曲十八弯，被誉为"天下第一曲水"。</div>
+                        <div class="attraction-details">
+                            <span>📍 海拉尔市</span>
+                            <span>⏰ 建议2-3小时</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="attraction-card">
+                    <img src="https://dimg04.c-ctrip.com/images/0105912000j0h49tpE37D_R_1600_10000.jpg" alt="草原风光"
+                        class="attraction-image">
+                    <div class="attraction-content">
+                        <div class="attraction-title">草原风光</div>
+                        <div class="attraction-description">广袤的草原、成群的牛羊，构成了一幅壮美的草原画卷。</div>
+                        <div class="attraction-details">
+                            <span>📍 呼伦贝尔</span>
+                            <span>⏰ 建议全天</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. 阿尔山火山 -->
+            <div class="day-title">
+                <div class="day-number">6</div>
+                <span>阿尔山火山</span>
+            </div>
+            <div class="route-info">
+                <h4>🌋 区域特色</h4>
+                <p>火山地貌与森林温泉的完美结合，秋季的阿尔山色彩丰富，是摄影和休闲的绝佳去处。</p>
+            </div>
+            <div class="attractions-grid">
+                <div class="attraction-card">
+                    <img src="https://dimg04.c-ctrip.com/images/1005180000015chbo1954_R_1600_10000.jpg" alt="阿尔山天池"
+                        class="attraction-image">
+                    <div class="attraction-content">
+                        <div class="attraction-title">阿尔山天池</div>
+                        <div class="attraction-description">火山口湖，秋季倒映着五彩斑斓的山林，美不胜收。</div>
+                        <div class="attraction-details">
+                            <span>📍 阿尔山市</span>
+                            <span>⏰ 建议3-4小时</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="attraction-card">
+                    <img src="https://dimg04.c-ctrip.com/images/fd/tg/g4/M00/5E/12/CggYHlYzAkaANBf7ACYFUmAGuB4244_R_1600_10000.jpg"
+                        alt="石塘林" class="attraction-image">
+                    <div class="attraction-content">
+                        <div class="attraction-title">石塘林</div>
+                        <div class="attraction-description">火山熔岩地貌，秋季色彩丰富，是摄影的绝佳地点。</div>
+                        <div class="attraction-details">
+                            <span>📍 阿尔山市</span>
+                            <span>⏰ 建议2-3小时</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 7. 额尔古纳湿地 -->
+            <div class="day-title">
+                <div class="day-number">7</div>
+                <span>额尔古纳湿地</span>
+            </div>
+            <div class="route-info">
+                <h4>🌿 区域特色</h4>
+                <p>亚洲第一湿地，秋季色彩斑斓，是摄影爱好者的天堂，也是候鸟的重要栖息地。</p>
+            </div>
+            <div class="attractions-grid">
+                <div class="attraction-card">
+                    <img src="https://dimg04.c-ctrip.com/images/0101i120008obv8cy3844_R_1600_10000.jpg" alt="额尔古纳湿地"
+                        class="attraction-image">
                     <div class="attraction-content">
                         <div class="attraction-title">额尔古纳湿地</div>
                         <div class="attraction-description">亚洲第一湿地，秋季色彩斑斓，是摄影爱好者的天堂。</div>
@@ -643,38 +855,14 @@
                     </div>
                 </div>
                 <div class="attraction-card">
-                    <img src="https://images.unsplash.com/photo-1491555103944-7c647fd857e6?auto=format&w=1200&q=80"
-                        alt="满洲里国门" class="attraction-image">
+                    <img src="https://dimg04.c-ctrip.com/images/10070t000000iqheq1725_R_1600_10000.jpg" alt="湿地日落"
+                        class="attraction-image">
                     <div class="attraction-content">
-                        <div class="attraction-title">满洲里国门</div>
-                        <div class="attraction-description">中俄边境标志性建筑，感受边境城市的独特魅力。</div>
+                        <div class="attraction-title">湿地日落</div>
+                        <div class="attraction-description">欣赏湿地的壮美日落，感受大自然的宁静与壮美。</div>
                         <div class="attraction-details">
-                            <span>📍 满洲里市</span>
-                            <span>⏰ 建议2小时</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 阿尔山火山 -->
-            <div class="day-title">
-                <div class="day-number">4</div>
-                <span>阿尔山火山</span>
-            </div>
-            <div class="route-info">
-                <h4>🌋 区域特色</h4>
-                <p>火山地貌与森林温泉的完美结合，秋季的阿尔山色彩丰富，是摄影和休闲的绝佳去处。</p>
-            </div>
-            <div class="attractions-grid">
-                <div class="attraction-card">
-                    <img src="https://images.unsplash.com/photo-1502786129293-79981df4e689?auto=format&w=1200&q=80"
-                        alt="阿尔山天池" class="attraction-image">
-                    <div class="attraction-content">
-                        <div class="attraction-title">阿尔山天池</div>
-                        <div class="attraction-description">火山口湖，秋季倒映着五彩斑斓的山林，美不胜收。</div>
-                        <div class="attraction-details">
-                            <span>📍 阿尔山市</span>
-                            <span>⏰ 建议3-4小时</span>
+                            <span>📍 额尔古纳市</span>
+                            <span>⏰ 建议1-2小时</span>
                         </div>
                     </div>
                 </div>
@@ -688,6 +876,11 @@
                     <div class="highlight-icon">🏔️</div>
                     <h3>长白山天池</h3>
                     <p>秋季色彩斑斓</p>
+                </div>
+                <div class="highlight-card">
+                    <div class="highlight-icon">🌲</div>
+                    <h3>大兴安岭林海</h3>
+                    <p>原始森林穿越</p>
                 </div>
                 <div class="highlight-card">
                     <div class="highlight-icon">🦌</div>
@@ -704,15 +897,16 @@
                     <h3>呼伦贝尔草原</h3>
                     <p>广袤草原风光</p>
                 </div>
+
                 <div class="highlight-card">
                     <div class="highlight-icon">🌋</div>
                     <h3>阿尔山火山</h3>
                     <p>火山地貌奇观</p>
                 </div>
                 <div class="highlight-card">
-                    <div class="highlight-icon">🏛️</div>
-                    <h3>满洲里国门</h3>
-                    <p>边境风情体验</p>
+                    <div class="highlight-icon">🌋</div>
+                    <h3>五大连池</h3>
+                    <p>火山地貌奇观</p>
                 </div>
             </div>
         </div>
@@ -723,167 +917,524 @@
             <div id="dayDetails"></div>
         </div>
 
-        <!-- 轨迹图 -->
-        <div class="track-section">
-            <h2 style="color: #2d3436; margin-bottom: 12px; text-align: center;">📍 旅游轨迹图（含城市地铁示意）</h2>
-            <div class="track-toolbar">
-                <button class="cta-btn" onclick="renderTrack('car')">显示驾车轨迹</button>
-                <button class="cta-btn secondary" onclick="renderTrack('metro')">显示地铁示意</button>
-                <button class="cta-btn secondary" onclick="renderTrack('both')">同时显示</button>
-                <button class="cta-btn" onclick="toggleRouteMap()">路线规划图</button>
-                <button class="cta-btn" onclick="toggleTopoMap()">风景地形图</button>
-            </div>
-            <div style="position: relative;">
-                <canvas id="trackCanvas"></canvas>
-                <div id="trackTooltip"
-                    style="position:absolute; display:none; pointer-events:none; background:#ffffff; border:1px solid #e9ecef; border-radius:8px; padding:10px; box-shadow:0 8px 20px rgba(0,0,0,0.12); max-width:260px;">
-                    <div id="tooltipTitle" style="font-weight:600; color:#2d3436; margin-bottom:6px; font-size:13px;">
-                    </div>
-                    <img id="tooltipImg" src="" alt=""
-                        style="width:100%; height:140px; object-fit:cover; border-radius:6px; margin-bottom:6px;" />
-                    <div id="tooltipMeta" style="font-size:12px; color:#636e72;"></div>
+        <!-- 天气查询 -->
+        <div class="weather-section"
+            style="background: white; border-radius: 15px; padding: 30px; margin-bottom: 30px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);">
+            <h2 style="color: #2d3436; margin-bottom: 30px; text-align: center;">🌤️ 主要城市天气查询</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px;">
+                <div class="weather-card" onclick="queryWeather('长春')"
+                    style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 15px; border-radius: 10px; text-align: center; cursor: pointer; transition: transform 0.3s ease;">
+                    <h3>长春</h3>
+                    <p>点击查询天气</p>
+                </div>
+                <div class="weather-card" onclick="queryWeather('长白山')"
+                    style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; padding: 15px; border-radius: 10px; text-align: center; cursor: pointer; transition: transform 0.3s ease;">
+                    <h3>长白山</h3>
+                    <p>点击查询天气</p>
+                </div>
+                <div class="weather-card" onclick="queryWeather('珲春')"
+                    style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; padding: 15px; border-radius: 10px; text-align: center; cursor: pointer; transition: transform 0.3s ease;">
+                    <h3>珲春</h3>
+                    <p>点击查询天气</p>
+                </div>
+                <div class="weather-card" onclick="queryWeather('黑河')"
+                    style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); color: white; padding: 15px; border-radius: 10px; text-align: center; cursor: pointer; transition: transform 0.3s ease;">
+                    <h3>黑河</h3>
+                    <p>点击查询天气</p>
+                </div>
+                <div class="weather-card" onclick="queryWeather('五大连池')"
+                    style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); color: white; padding: 15px; border-radius: 10px; text-align: center; cursor: pointer; transition: transform 0.3s ease;">
+                    <h3>五大连池</h3>
+                    <p>点击查询天气</p>
+                </div>
+                <div class="weather-card" onclick="queryWeather('漠河')"
+                    style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); color: white; padding: 15px; border-radius: 10px; text-align: center; cursor: pointer; transition: transform 0.3s ease;">
+                    <h3>漠河</h3>
+                    <p>点击查询天气</p>
+                </div>
+                <div class="weather-card" onclick="queryWeather('根河')"
+                    style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); color: white; padding: 15px; border-radius: 10px; text-align: center; cursor: pointer; transition: transform 0.3s ease;">
+                    <h3>根河</h3>
+                    <p>点击查询天气</p>
+                </div>
+                <div class="weather-card" onclick="queryWeather('额尔古纳')"
+                    style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%); color: white; padding: 15px; border-radius: 10px; text-align: center; cursor: pointer; transition: transform 0.3s ease;">
+                    <h3>额尔古纳</h3>
+                    <p>点击查询天气</p>
+                </div>
+                <div class="weather-card" onclick="queryWeather('海拉尔')"
+                    style="background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%); color: white; padding: 15px; border-radius: 10px; text-align: center; cursor: pointer; transition: transform 0.3s ease;">
+                    <h3>海拉尔</h3>
+                    <p>点击查询天气</p>
+                </div>
+                <div class="weather-card" onclick="queryWeather('阿尔山')"
+                    style="background: linear-gradient(135deg, #fad0c4 0%, #ffd1ff 100%); color: white; padding: 15px; border-radius: 10px; text-align: center; cursor: pointer; transition: transform 0.3s ease;">
+                    <h3>阿尔山</h3>
+                    <p>点击查询天气</p>
                 </div>
             </div>
-            <div id="routeMap"></div>
-            <div id="leafletMap"></div>
+            <div id="weatherResult"
+                style="margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 10px; display: none;">
+                <h3 id="weatherCity" style="color: #2d3436; margin-bottom: 10px;"></h3>
+                <div id="weatherInfo" style="color: #636e72;"></div>
+            </div>
+        </div>
+
+        <!-- 轨迹图 -->
+        <div class="track-section"
+            style="background: white; border-radius: 15px; padding: 30px; margin-bottom: 30px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);">
+            <h2 style="color: #2d3436; margin-bottom: 20px; text-align: center;">📍 G331边境公路轨迹图（13天精华环线）</h2>
+
+            <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 20px; align-items: start;">
+                <!-- 左侧：高德地图轨迹图 -->
+                <div style="position: relative;">
+                    <div style="background: #f8f9fa; border-radius: 10px; padding: 20px; text-align: center;">
+                        <h3 style="color: #2d3436; margin-bottom: 15px; font-size: 20px;">十一自驾游</h3>
+                        <p style="color: #636e72; margin-bottom: 10px; font-size: 16px;">十一自驾路线</p>
+                        <p style="color: #e74c3c; margin-bottom: 20px; font-size: 14px; font-weight: 500;">📍
+                            当前显示：长春→长白山→珲春段 | 完整路线：13天环线见右侧</p>
+                        <p style="color: #636e72; margin-bottom: 20px; font-size: 12px; font-style: italic;">💡
+                            提示：点击图片或按钮可查看完整高德地图路线，包含所有13天行程点</p>
+
+                        <!-- 地图容器 -->
+                        <div id="amapContainer"
+                            style="width: 100%; height: 400px; border-radius: 8px; overflow: hidden; position: relative; cursor: pointer;"
+                            onclick="openAmapRoute()">
+                            <img src="images/WX20250813-202731.png" alt="G331边境公路轨迹图"
+                                style="width: 100%; height: 100%; object-fit: contain; border-radius: 8px; background: #f8f9fa;">
+                            <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.1); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease;"
+                                onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0'">
+                                <div
+                                    style="text-align: center; color: white; background: rgba(0,0,0,0.7); padding: 15px; border-radius: 8px;">
+                                    <div style="font-size: 18px; margin-bottom: 5px;">🗺️</div>
+                                    <div style="font-size: 14px;">点击查看完整高德地图路线</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 路线信息 -->
+                        <div
+                            style="margin-top: 15px; padding: 15px; background: white; border-radius: 8px; border: 1px solid #e9ecef;">
+                            <div
+                                style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                <span style="font-weight: 600; color: #2d3436;">分享人: 骑公路自行车的青豆</span>
+                                <span style="font-size: 12px; color: #636e72;">二维码长期有效</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <span style="font-size: 14px; color: #636e72;">拥有自己的地图</span>
+                                    <div style="display: flex; gap: 5px;">
+                                        <a href="https://nav1.autonavi.com/activity/2020CommonLanding5/index.html?id=123&local=1&randomSchemaParam=1755086007419&schema=amapuri%3A%2F%2FworkInAmap%2Fbackflow%3Fsource%3D1%26isMuilLayer%3Dundefined%26resourceType%3D2%26shareId%3Dbed55X12An00BELynqg%26from%3Dshare%26clearStack%3D1&share_from=work_in_amap_WIAIndex&share_from_type=AJX&share_type=url&share_lastClickSpm=amap.29189413.screenshot_share.share_entrance&share_bid=nihdn1lv0pqffccfj7662e76hek9cgeib0d630b"
+                                            target="_blank" style="text-decoration: none;">
+                                            <span
+                                                style="background: #007bff; color: white; padding: 2px 8px; border-radius: 4px; font-size: 12px; cursor: pointer;">高德地图</span>
+                                        </a>
+                                        <span
+                                            style="background: #28a745; color: white; padding: 2px 8px; border-radius: 4px; font-size: 12px;">地图小程序</span>
+                                    </div>
+                                </div>
+                                <div style="width: 60px; height: 60px; background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 12px; color: #636e72; cursor: pointer;"
+                                    onclick="openAmapRoute()" title="点击打开高德地图">
+                                    🗺️
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 地图控制按钮 -->
+                        <div style="margin-top: 15px; display: flex; gap: 10px; justify-content: center;">
+                            <button class="cta-btn" onclick="openAmapRoute()"
+                                style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                                🗺️ 打开高德地图
+                            </button>
+                            <button class="cta-btn secondary" onclick="toggleTopoMap()">
+                                🏔️ 风景地形图
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 右侧：视频展示 -->
+                <div style="display: flex; flex-direction: column; gap: 15px;">
+                    <div style="background: #f8f9fa; border-radius: 10px; padding: 15px;">
+                        <h4 style="color: #2d3436; margin-bottom: 10px; font-size: 16px;">🎬 行程视频</h4>
+                        <video controls style="width: 100%; border-radius: 8px; background: #000;">
+                            <source src="videos/831_1755086568.mp4" type="video/mp4">
+                            您的浏览器不支持视频播放。
+                        </video>
+                        <p style="font-size: 12px; color: #636e72; margin-top: 8px; text-align: center;">
+                            G331边境公路精华片段
+                        </p>
+                    </div>
+
+                    <!-- 路线概览 -->
+                    <div style="background: #f8f9fa; border-radius: 10px; padding: 15px;">
+                        <h4 style="color: #2d3436; margin-bottom: 10px; font-size: 16px;">📋 完整13天路线</h4>
+                        <div style="font-size: 12px; color: #636e72; line-height: 1.5;">
+                            <div style="margin-bottom: 8px;"><strong>总里程：</strong>约5000公里</div>
+                            <div style="margin-bottom: 8px;"><strong>行程天数：</strong>13天精华环线</div>
+                            <div style="margin-bottom: 8px;"><strong>穿越省份：</strong>吉林、黑龙江、内蒙古</div>
+                            <div style="margin-bottom: 8px;"><strong>完整路线：</strong></div>
+                            <div
+                                style="background: white; padding: 8px; border-radius: 6px; font-size: 11px; line-height: 1.4; max-height: 200px; overflow-y: auto;">
+                                <div style="color: #2d3436; font-weight: 500;">D0: 各地→长春</div>
+                                <div style="color: #636e72;">D1-2: 长春→长白山</div>
+                                <div style="color: #636e72;">D3: 长白山→珲春→虎林</div>
+                                <div style="color: #636e72;">D4: 虎林→饶河→抚远</div>
+                                <div style="color: #636e72;">D5: 抚远→同江</div>
+                                <div style="color: #636e72;">D6: 同江→黑河</div>
+                                <div style="color: #636e72;">D7: 黑河→五大连池</div>
+                                <div style="color: #636e72;">D8: 五大连池→漠河</div>
+                                <div style="color: #636e72;">D9: 漠河→根河</div>
+                                <div style="color: #636e72;">D10: 根河→额尔古纳</div>
+                                <div style="color: #636e72;">D11: 额尔古纳→海拉尔</div>
+                                <div style="color: #636e72;">D12: 海拉尔→阿尔山</div>
+                                <div style="color: #636e72;">D13: 阿尔山→各地</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 隐藏的Leaflet地图容器 -->
+            <div id="leafletMap"
+                style="display: none; margin-top: 20px; height: 400px; border-radius: 8px; overflow: hidden;"></div>
+        </div>
+
+        <!-- 预算估算 -->
+        <div class="budget-section"
+            style="background: white; border-radius: 15px; padding: 30px; margin-bottom: 30px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);">
+            <h2 style="color: #2d3436; margin-bottom: 30px; text-align: center;">💰 预算估算（4人拼车）</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                <div
+                    style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 10px; text-align: center;">
+                    <div style="font-size: 2rem; margin-bottom: 10px;">🎫</div>
+                    <h3>门票费用</h3>
+                    <p style="font-size: 1.5rem; font-weight: bold;">约 ¥600</p>
+                    <p style="font-size: 0.9rem; opacity: 0.9;">长白山、五大连池、北极村、阿尔山等主要景点</p>
+                </div>
+                <div
+                    style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; padding: 20px; border-radius: 10px; text-align: center;">
+                    <div style="font-size: 2rem; margin-bottom: 10px;">⛽</div>
+                    <h3>油费路费</h3>
+                    <p style="font-size: 1.5rem; font-weight: bold;">约 ¥1,200</p>
+                    <p style="font-size: 0.9rem; opacity: 0.9;">5000公里，含高速费、停车费</p>
+                </div>
+                <div
+                    style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; padding: 20px; border-radius: 10px; text-align: center;">
+                    <div style="font-size: 2rem; margin-bottom: 10px;">🏨</div>
+                    <h3>住宿费用</h3>
+                    <p style="font-size: 1.5rem; font-weight: bold;">约 ¥2,100</p>
+                    <p style="font-size: 0.9rem; opacity: 0.9;">14晚，平均¥150/晚/人</p>
+                </div>
+                <div
+                    style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); color: white; padding: 20px; border-radius: 10px; text-align: center;">
+                    <div style="font-size: 2rem; margin-bottom: 10px;">🍽️</div>
+                    <h3>餐饮费用</h3>
+                    <p style="font-size: 1.5rem; font-weight: bold;">约 ¥1,500</p>
+                    <p style="font-size: 0.9rem; opacity: 0.9;">15天，平均¥100/天/人</p>
+                </div>
+            </div>
+            <div
+                style="text-align: center; margin-top: 30px; padding: 20px; background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); border-radius: 10px; color: white;">
+                <h3 style="margin-bottom: 10px;">总预算估算</h3>
+                <p style="font-size: 2rem; font-weight: bold; margin-bottom: 10px;">约 ¥5,400/人</p>
+                <p style="font-size: 1.2rem; font-weight: bold; margin-bottom: 10px; color: #2d3436;">预算范围：¥4,800 -
+                    ¥6,500/人</p>
+                <p style="font-size: 0.9rem; opacity: 0.9;">不含往返机票，建议准备¥7,000/人</p>
+            </div>
         </div>
 
         <div class="tips-section">
             <h2 style="color: #2d3436; margin-bottom: 30px;">💡 实用贴士</h2>
-            <ul class="tips-list">
-                <li>建议9月25日-10月9日出行，避开十一高峰，秋色最美</li>
-                <li>建议4-6人拼车，费用AA，越野车优先</li>
-                <li>边境公路部分路段无信号，提前下载离线地图</li>
-                <li>奇乾需办理《防火证》，找当地向导协助</li>
-                <li>阿尔山门票48小时有效，住景区内省时省钱</li>
-                <li>草原昼夜温差大，9月底也需带冲锋衣</li>
-                <li>包车选本地司机，熟悉路况和当地情况</li>
-                <li>提前预订住宿，特别是奇乾、阿尔山等热门地</li>
-                <li>准备现金和移动支付工具</li>
-                <li>注意边境地区的特殊规定和证件要求</li>
-            </ul>
+
+            <!-- 重要提醒与紧急联系 -->
+            <div class="tip-category" style="margin-bottom: 25px;">
+                <h3 style="color: #2d3436; margin-bottom: 15px; font-size: 18px;">⚠️ 重要提醒与紧急联系</h3>
+                <ul class="tips-list">
+                    <li><strong>天气特点：</strong>9月底-10月初昼夜温差大（15-20°C），早晚需保暖，中午可穿单衣</li>
+                    <li><strong>边境规定：</strong>边境地区需携带身份证，不要随意拍照军事设施，注意防火安全</li>
+                    <li><strong>路况提醒：</strong>G331边境公路部分路段无信号，提前下载离线地图（高德/百度）</li>
+                    <li><strong>加油攻略：</strong>边境段加油站稀疏，建议油量低于1/2时及时补充</li>
+                    <li><strong>安全驾驶：</strong>边境公路弯道多，注意减速慢行，保持安全车距</li>
+                    <li><strong>紧急电话：</strong>报警110，急救120，交通事故122，森林火警12119</li>
+                    <li><strong>车辆救援：</strong>记录保险公司救援电话，准备拖车绳</li>
+                    <li><strong>医疗准备：</strong>常用药品（感冒药、肠胃药、创可贴），高原反应药物</li>
+                </ul>
+            </div>
+
+            <!-- 个人携带装备清单 -->
+            <div class="tip-category" style="margin-bottom: 25px;">
+                <h3 style="color: #2d3436; margin-bottom: 15px; font-size: 18px;">🎒 个人携带装备清单</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                    <!-- 证件类 -->
+                    <div style="background: #f8f9fa; border-radius: 10px; padding: 15px;">
+                        <h4 style="color: #2d3436; margin-bottom: 10px; font-size: 16px;">📋 证件类</h4>
+                        <ul style="list-style: none; padding: 0; font-size: 14px; color: #636e72;">
+                            <li style="margin-bottom: 5px;">✅ 身份证</li>
+                            <li style="margin-bottom: 5px;">✅ 驾驶证</li>
+                            <li style="margin-bottom: 5px;">✅ 行驶证</li>
+                            <li style="margin-bottom: 5px;">✅ 车辆保险单</li>
+                        </ul>
+                    </div>
+
+                    <!-- 保暖类 -->
+                    <div style="background: #f8f9fa; border-radius: 10px; padding: 15px;">
+                        <h4 style="color: #2d3436; margin-bottom: 10px; font-size: 16px;">🧥 保暖类</h4>
+                        <ul style="list-style: none; padding: 0; font-size: 14px; color: #636e72;">
+                            <li style="margin-bottom: 5px;">✅ 冲锋衣/羽绒服</li>
+                            <li style="margin-bottom: 5px;">✅ 保暖内衣</li>
+                            <li style="margin-bottom: 5px;">✅ 帽子、手套、围巾</li>
+                            <li style="margin-bottom: 5px;">✅ 登山鞋/防滑鞋</li>
+                        </ul>
+                    </div>
+
+                    <!-- 摄影类 -->
+                    <div style="background: #f8f9fa; border-radius: 10px; padding: 15px;">
+                        <h4 style="color: #2d3436; margin-bottom: 10px; font-size: 16px;">📸 摄影类</h4>
+                        <ul style="list-style: none; padding: 0; font-size: 14px; color: #636e72;">
+                            <li style="margin-bottom: 5px;">✅ 相机 + 三脚架</li>
+                            <li style="margin-bottom: 5px;">✅ 广角镜头（风景）</li>
+                            <li style="margin-bottom: 5px;">✅ 备用电池 + 存储卡</li>
+                            <li style="margin-bottom: 5px;">✅ 手机充电器</li>
+                        </ul>
+                    </div>
+
+                    <!-- 防护类 -->
+                    <div style="background: #f8f9fa; border-radius: 10px; padding: 15px;">
+                        <h4 style="color: #2d3436; margin-bottom: 10px; font-size: 16px;">🛡️ 防护类</h4>
+                        <ul style="list-style: none; padding: 0; font-size: 14px; color: #636e72;">
+                            <li style="margin-bottom: 5px;">✅ 防晒霜</li>
+                            <li style="margin-bottom: 5px;">✅ 防蚊虫喷雾</li>
+                            <li style="margin-bottom: 5px;">✅ 雨具（雨衣/雨伞）</li>
+                            <li style="margin-bottom: 5px;">✅ 急救包</li>
+                        </ul>
+                    </div>
+
+                    <!-- 药品类 -->
+                    <div style="background: #f8f9fa; border-radius: 10px; padding: 15px;">
+                        <h4 style="color: #2d3436; margin-bottom: 10px; font-size: 16px;">💊 药品类</h4>
+                        <ul style="list-style: none; padding: 0; font-size: 14px; color: #636e72;">
+                            <li style="margin-bottom: 5px;">✅ 感冒药</li>
+                            <li style="margin-bottom: 5px;">✅ 肠胃药</li>
+                            <li style="margin-bottom: 5px;">✅ 创可贴</li>
+                            <li style="margin-bottom: 5px;">✅ 个人常用药</li>
+                        </ul>
+                    </div>
+
+                    <!-- 其他类 -->
+                    <div style="background: #f8f9fa; border-radius: 10px; padding: 15px;">
+                        <h4 style="color: #2d3436; margin-bottom: 10px; font-size: 16px;">📱 其他类</h4>
+                        <ul style="list-style: none; padding: 0; font-size: 14px; color: #636e72;">
+                            <li style="margin-bottom: 5px;">✅ 车载充电器</li>
+                            <li style="margin-bottom: 5px;">✅ 离线地图</li>
+                            <li style="margin-bottom: 5px;">✅ 拖车绳</li>
+                            <li style="margin-bottom: 5px;">✅ 现金 + 移动支付</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
         // 行程数据与坐标
         const placeCoords = {
-            "长春": [125.3235, 43.8171],
+            "长春": [125.3245, 43.8868],
             "长白山": [128.08, 42.05],
-            "哈尔滨": [126.534967, 45.803775],
-            "伊春": [128.899396, 47.727272],
+            "珲春": [130.366, 42.862],
+            "虎林": [132.937, 45.763],
+            "饶河": [134.014, 46.798],
+            "抚远": [134.296, 48.364],
+            "同江": [132.511, 47.642],
             "黑河": [127.499023, 50.245234],
-            "北极村": [122.365234, 53.558654],
+            "五大连池": [126.198, 48.521],
+            "漠河": [122.537, 52.972],
             "根河": [121.516, 50.783],
             "额尔古纳": [120.182, 50.243],
             "海拉尔": [119.736, 49.213],
-            "满洲里": [117.458, 49.588],
-            "阿尔山": [119.943, 47.177],
-            "白城": [122.839, 45.619]
+            "阿尔山": [119.943, 47.177]
         };
 
         const tripDays = [
             {
+                d: 0, title: "各地 → 长春集合", start: "各地", end: "长春", distance: 0, hours: 0,
+                plan: ["各地抵达长春", "取车检车", "行程准备", "团队集合"],
+                cityMetro: "长春地铁：1/2号线覆盖主要区域，机场大巴直达市区",
+                alt: "长春龙嘉机场有地铁2号线直达市区，长春站/西站有地铁1号线",
+                stay: "长春市区酒店（建议：长春香格里拉/万达文华/凯悦）",
+                photoTip: "长春市区夜景，伪满皇宫建筑群，净月潭风光。",
+                notice: "提前确认车辆租赁，检查车况，准备边境证件。<br><strong>🚗 备选方案：</strong>自驾可考虑从丹东出发，沿G331经集安市抵达白山市（完整G331体验，含鸭绿江风光、高句丽遗址）。",
+                food: "长春：东北菜、朝鲜族美食、锅包肉、冷面",
+                ticket: "伪满皇宫：¥80/人，净月潭：¥30/人",
+                bestTime: "17:00-19:00 市区夜景，18:00-20:00 伪满皇宫"
+            },
+            {
                 d: 1, title: "长春 → 二道白河（长白山镇）", start: "长春", end: "长白山", distance: 350, hours: 5.5,
-                plan: ["抵达长春取车/检车", "午后出发，上长吉高速—抚长高速", "晚抵二道白河办理入住"],
+                plan: ["早餐后出发，上长吉高速—抚长高速", "途经抚松、靖宇", "晚抵二道白河办理入住"],
                 cityMetro: "长春地铁：如市区取车可乘地铁1/2号线至近站（人民广场/解放大路）后步行取车",
                 alt: "公共交通：长春→白河高铁（2.5h），白河站拼车/打车至酒店",
-                stay: "二道白河镇内温泉酒店（建议：希尔顿欢朋/万达小镇民宿）"
+                stay: "二道白河镇内温泉酒店（建议：希尔顿欢朋/万达小镇民宿）",
+                photoTip: "傍晚在二道白河镇拍城市与山景过渡，雨后路面反光适合街拍。",
+                notice: "高速路程较长，建议在抚松或靖宇补给；晚到注意次日早起进山。",
+                food: "二道白河：朝鲜族冷面、石锅拌饭、山野菜",
+                ticket: "长白山北坡：¥125/人，环保车¥85/人",
+                bestTime: "9:00-15:00 天池最佳观赏时间"
             },
             {
                 d: 2, title: "长白山一日（北坡/西坡）", start: "长白山", end: "长白山", distance: 60, hours: 2,
                 plan: ["早入园乘环保车上山", "天池—瀑布—温泉群—谷底森林（北坡）", "若体力允许下午走西坡台阶观景"],
                 cityMetro: "—",
                 alt: "园区环保车循环，园内交通便利",
-                stay: "二道白河同前一晚"
+                stay: "二道白河同前一晚",
+                photoTip: "天池宜上午顺光或云海，瀑布使用1/8–1s慢门；西坡下午侧光，层次更好。",
+                notice: "十一旺季需提前预约；山顶体感低温大，备冲锋衣与雨具。",
+                food: "长白山：温泉煮蛋、山野菜、野生菌汤",
+                ticket: "西坡：¥125/人，环保车¥85/人（可选）",
+                bestTime: "6:00-10:00 天池最佳光线，14:00-17:00 西坡观景"
             },
             {
-                d: 3, title: "长白山 → 哈尔滨（市区游）", start: "长白山", end: "哈尔滨", distance: 520, hours: 7,
-                plan: ["早餐后出发，经鹤大/G11至哈尔滨", "晚间中央大街步行、索菲亚教堂夜景"],
-                cityMetro: "哈尔滨地铁2号线：中央大街站；1号线：博物馆/铁路局站便捷换乘",
-                alt: "公共交通：延吉/白河→哈尔滨航班或高铁（视班次）",
-                stay: "中央大街/道里区酒店（建议：万达文华/香格里拉/英迪格）"
-            },
-            {
-                d: 4, title: "哈尔滨 → 伊春（金山鹿苑）", start: "哈尔滨", end: "伊春", distance: 330, hours: 4.5,
-                plan: ["上午哈尔滨太阳岛公园", "午后驱车前往伊春，夕阳探访金山鹿苑"],
-                cityMetro: "哈尔滨地铁1/2号线市内通勤，随后自驾离城",
-                alt: "哈尔滨→伊春可选K字列车（慢），建议自驾",
-                stay: "伊春市区/汤旺河景区内民宿"
-            },
-            {
-                d: 5, title: "伊春 → 黑河（界江风光）", start: "伊春", end: "黑河", distance: 500, hours: 6.5,
-                plan: ["沿G331北上，途中森林公路观景", "傍晚抵黑河口岸，夜观对岸布市灯火"],
+                d: 3, title: "长白山 → 珲春（三国交界）", start: "长白山", end: "珲春", distance: 280, hours: 4.5,
+                plan: ["早餐后出发，沿G331国道前往珲春", "下午游览防川景区，三国交界观景台"],
                 cityMetro: "—",
-                alt: "伊春→黑河无直达高铁，班车耗时长",
-                stay: "黑河口岸周边酒店（建议：锦江/全季）"
+                alt: "长白山→珲春可选包车或拼车",
+                stay: "珲春市区酒店（建议：珲春国际酒店/边境酒店）",
+                photoTip: "防川观景台可拍三国交界风光，界江日落时分最美。",
+                notice: "边境地区需携带身份证，注意边境管理规定。",
+                food: "珲春：朝鲜族特色菜、边境美食、冷水鱼",
+                ticket: "防川景区：¥80/人",
+                bestTime: "16:00-18:00 界江日落，17:00-19:00 三国交界观景"
             },
             {
-                d: 6, title: "黑河 → 北极村（龙江第一湾/白桦林）", start: "黑河", end: "北极村", distance: 620, hours: 9,
-                plan: ["清晨出发沿界江前行，打卡白桦林", "下午龙江第一湾俯瞰Ω大弯", "傍晚抵北极村找“最北”地标"],
+                d: 4, title: "珲春 → 虎林（珍宝岛）", start: "珲春", end: "虎林", distance: 320, hours: 5,
+                plan: ["沿G331国道前往虎林", "下午游览珍宝岛景区，乌苏里江风光"],
                 cityMetro: "—",
-                alt: "沿界江国道为主，注意补给",
-                stay: "北极村客栈（建议：最北一家/北极星客栈）"
+                alt: "珲春→虎林建议自驾，沿途风景优美",
+                stay: "虎林市区酒店（建议：虎林宾馆/边境酒店）",
+                photoTip: "珍宝岛可拍乌苏里江风光，傍晚江面倒影最美。",
+                notice: "边境地区注意安全，遵守当地规定。",
+                food: "虎林：东北农家菜、冷水鱼、边境特色",
+                ticket: "珍宝岛景区：¥60/人",
+                bestTime: "16:00-18:00 乌苏里江日落，17:00-19:00 珍宝岛观景"
             },
             {
-                d: 7, title: "北极村（极地慢游）", start: "北极村", end: "北极村", distance: 40, hours: 1,
-                plan: ["村内步行/短途自驾：神州北极广场、北极哨所", "拍摄日落与星空"],
+                d: 5, title: "虎林 → 饶河 → 抚远（东极广场）", start: "虎林", end: "抚远", distance: 380, hours: 6,
+                plan: ["上午饶河乌苏里江风光", "下午前往抚远，游览东极广场、黑瞎子岛"],
                 cityMetro: "—",
-                alt: "景区内观光小巴/步行为主",
-                stay: "北极村客栈同前"
+                alt: "虎林→抚远建议自驾，沿途补给点较少",
+                stay: "抚远市区酒店（建议：抚远宾馆/东极酒店）",
+                photoTip: "东极广场可拍日出，黑瞎子岛界江风光独特。",
+                notice: "东极地区昼夜温差大，注意保暖；边境地区需证件。",
+                food: "抚远：赫哲族特色菜、冷水鱼、边境美食",
+                ticket: "东极广场：免费，黑瞎子岛：¥80/人",
+                bestTime: "5:00-7:00 东极日出，16:00-18:00 界江日落"
             },
             {
-                d: 8, title: "北极村 → 根河（穿越大兴安岭）", start: "北极村", end: "根河", distance: 650, hours: 9.5,
-                plan: ["早出发，经塔河/呼中转向内蒙古", "途经冷极村留影"],
+                d: 6, title: "抚远 → 同江（三江口）", start: "抚远", end: "同江", distance: 200, hours: 3,
+                plan: ["上午抚远补拍", "下午前往同江，游览三江口景区"],
                 cityMetro: "—",
-                alt: "路程长，注意油量与休息点",
-                stay: "根河市区商务酒店/民宿"
+                alt: "抚远→同江建议自驾，路况良好",
+                stay: "同江市区酒店（建议：同江宾馆/边境酒店）",
+                photoTip: "三江口可拍黑龙江、松花江、乌苏里江汇合奇观。",
+                notice: "三江口风大，注意设备稳定；赫哲族文化体验。",
+                food: "同江：赫哲族特色菜、三江鱼、边境美食",
+                ticket: "三江口景区：¥50/人",
+                bestTime: "16:00-18:00 三江口日落，17:00-19:00 汇合处观景"
             },
             {
-                d: 9, title: "根河 → 额尔古纳（湿地/白桦林）", start: "根河", end: "额尔古纳", distance: 270, hours: 4,
-                plan: ["上午敖鲁古雅使鹿部落（可选）", "午后额尔古纳湿地登高俯瞰"],
+                d: 7, title: "同江 → 黑河（界江风光）", start: "同江", end: "黑河", distance: 450, hours: 6.5,
+                plan: ["沿G331国道前往黑河", "下午游览黑河口岸，远望对岸布拉戈维申斯克"],
                 cityMetro: "—",
-                alt: "当地包车/网约车可达主要景点",
-                stay: "额尔古纳市区/根河湿地景区周边民宿"
+                alt: "同江→黑河建议自驾，沿途补给点分散",
+                stay: "黑河口岸周边酒店（建议：锦江/全季）",
+                photoTip: "黑河口岸日落到蓝调过渡呈现金橙与冷蓝对比；界江远景更具层次。",
+                notice: "行程较长，沿途补给点分散，务必在中段镇区补油；夜间入城减速注意电子眼。",
+                food: "黑河：俄式面包、边境特色菜、冷水鱼",
+                ticket: "黑河口岸：¥30/人（观景台）",
+                bestTime: "17:30-19:00 界江日落，19:00-20:30 口岸夜景"
             },
             {
-                d: 10, title: "额尔古纳 → 海拉尔（草原公路）", start: "额尔古纳", end: "海拉尔", distance: 180, hours: 3,
-                plan: ["沿草原公路前往海拉尔", "途中可绕行白桦林大道/莫日格勒河"],
+                d: 8, title: "黑河 → 五大连池（火山群）", start: "黑河", end: "五大连池", distance: 280, hours: 4,
+                plan: ["上午黑河补拍", "下午前往五大连池，游览火山群、温泊"],
                 cityMetro: "—",
-                alt: "海拉尔市内打车方便",
-                stay: "海拉尔市中心酒店（建议：万达嘉华/凯悦嘉轩）"
+                alt: "黑河→五大连池建议自驾，路况良好",
+                stay: "五大连池市区/景区内民宿",
+                photoTip: "火山群最佳为傍晚侧光，长焦捕捉火山轮廓；温泊倒影最美。",
+                notice: "穿越林区注意限速与动物穿行，建议加满油后入林。",
+                food: "五大连池：山野菜、野生菌、林区特色炖菜",
+                ticket: "五大连池景区：¥120/人",
+                bestTime: "16:00-18:00 火山群最佳光线，19:00-21:00 温泊倒影"
             },
             {
-                d: 11, title: "海拉尔 → 满洲里（国门/套娃广场）", start: "海拉尔", end: "满洲里", distance: 190, hours: 2.5,
-                plan: ["上午海拉尔市区补给", "午后满洲里国门与套娃广场夜景"],
+                d: 9, title: "五大连池 → 漠河（最北地标）", start: "五大连池", end: "漠河", distance: 580, hours: 8,
+                plan: ["沿G331国道前往漠河", "下午游览北极村，打卡最北地标"],
                 cityMetro: "—",
-                alt: "两城间高速路况良好",
-                stay: "满洲里边境风情酒店（建议：凯悦/国门景观房）"
+                alt: "五大连池→漠河建议自驾，沿途补给点较少",
+                stay: "北极村客栈（建议：最北一家/北极星客栈）",
+                photoTip: "北极村白桦林逆光拍叶片透亮；最北地标清晨少人好拍。",
+                notice: "界江沿线补给稀疏，请在逊克或塔河前补油；留意部分测速与临时管制。",
+                food: "漠河：东北农家菜、山野菜、冷水鱼",
+                ticket: "北极村：¥60/人",
+                bestTime: "14:00-16:00 白桦林最佳光线，18:00-20:00 北极村日落"
             },
             {
-                d: 12, title: "满洲里 → 阿尔山（林海/火山）", start: "满洲里", end: "阿尔山", distance: 360, hours: 5.5,
-                plan: ["穿行林海，下午抵阿尔山小镇", "晚泡温泉"],
+                d: 10, title: "漠河 → 根河（大兴安岭）", start: "漠河", end: "根河", distance: 320, hours: 5,
+                plan: ["上午漠河补拍", "下午前往根河，穿越大兴安岭林海"],
                 cityMetro: "—",
-                alt: "沿省道为主，注意限速",
-                stay: "阿尔山温泉酒店/公园周边民宿"
+                alt: "漠河→根河建议自驾，沿途风景优美",
+                stay: "根河市区商务酒店/民宿",
+                photoTip: "沿线林海的大尺度S弯和车流拖影适合延时拍摄；冷极村地标纪念照。",
+                notice: "连续驾驶时长长，建议两人轮换；注意导航盲区提前下载离线地图。",
+                food: "根河：林区特色菜、野生菌、冷水鱼",
+                ticket: "冷极村：¥30/人",
+                bestTime: "全天适合林海拍摄，傍晚最佳"
             },
             {
-                d: 13, title: "阿尔山国家森林公园一日", start: "阿尔山", end: "阿尔山", distance: 80, hours: 2,
-                plan: ["天池—石塘林—三潭峡环线", "适当徒步拍摄秋色"],
+                d: 11, title: "根河 → 额尔古纳（湿地风光）", start: "根河", end: "额尔古纳", distance: 270, hours: 4,
+                plan: ["上午敖鲁古雅使鹿部落（可选）", "下午前往额尔古纳，游览湿地风光"],
                 cityMetro: "—",
-                alt: "景区环保车/自驾结合，48小时门票可重复入园",
-                stay: "阿尔山同前"
+                alt: "根河→额尔古纳建议自驾，路况良好",
+                stay: "额尔古纳市区/根河湿地景区周边民宿",
+                photoTip: "白桦林逆光/侧逆光拍叶片纹理；湿地观景台日落黄金时分色层最好。",
+                notice: "登高拍摄注意防风保暖；湿地蚊虫较多，备防蚊用品。",
+                food: "额尔古纳：蒙古族特色菜、手扒肉、奶茶",
+                ticket: "额尔古纳湿地：¥80/人",
+                bestTime: "16:00-18:00 湿地日落，18:00-20:00 白桦林逆光"
             },
             {
-                d: 14, title: "阿尔山 → 海拉尔（收官，飞返上海）", start: "阿尔山", end: "海拉尔", distance: 270, hours: 3.5,
-                plan: ["上午阿尔山天池/石塘林补漏拍", "午后经乌兰浩特方向或S203北上至海拉尔", "傍晚莫日格勒河观日落收官"],
+                d: 12, title: "额尔古纳 → 海拉尔（草原风情）", start: "额尔古纳", end: "海拉尔", distance: 180, hours: 3,
+                plan: ["上午额尔古纳补拍", "下午前往海拉尔，游览莫日格勒河"],
                 cityMetro: "—",
-                alt: "如遇堵车可经X线走呼伦湖东岸入城",
-                stay: "海拉尔市中心/机场周边酒店（次日飞返更便捷）",
-                flightLinks: [
-                    { label: "海拉尔(HLD) → 上海虹桥(SHA) 航班", url: "https://flights.ctrip.com/itinerary/oneway-HLD-SHA" },
-                    { label: "海拉尔(HLD) → 上海浦东(PVG) 航班", url: "https://flights.ctrip.com/itinerary/oneway-HLD-PVG" }
-                ]
+                alt: "额尔古纳→海拉尔建议自驾，路况良好",
+                stay: "海拉尔市中心酒店（建议：万达嘉华/凯悦嘉轩）",
+                photoTip: "莫日格勒河从高点找S弯构图，压低地平线；草原日落壮观。",
+                notice: "草原昼夜温差大，风大时注意稳定设备；乡道限速严格，请遵守限速牌。",
+                food: "海拉尔：蒙古族特色菜、手扒肉、奶茶、烤全羊",
+                ticket: "莫日格勒河：¥60/人",
+                bestTime: "17:00-19:00 莫日格勒河日落，18:00-20:00 草原日落"
+            },
+            {
+                d: 13, title: "海拉尔 → 阿尔山（火山天池）", start: "海拉尔", end: "阿尔山", distance: 270, hours: 4,
+                plan: ["上午海拉尔补拍", "下午前往阿尔山，游览天池、石塘林"],
+                cityMetro: "—",
+                alt: "海拉尔→阿尔山建议自驾，路况良好",
+                stay: "阿尔山温泉酒店/公园周边民宿",
+                photoTip: "天池清晨风小水面镜像好；石塘林近景纹理+远景彩林对比。",
+                notice: "省道路况良好但测速较多，保持限速；晚间温差大，准备保暖衣物。",
+                food: "阿尔山：山野菜、野生菌、温泉煮蛋",
+                ticket: "阿尔山国家森林公园：¥180/人（48小时有效）",
+                bestTime: "6:00-10:00 天池最佳光线，14:00-17:00 石塘林"
+            },
+            {
+                d: 14, title: "阿尔山 → 各地返程", start: "阿尔山", end: "各地", distance: 0, hours: 0,
+                plan: ["阿尔山自由活动", "整理行李", "各自返程"],
+                cityMetro: "—",
+                alt: "阿尔山机场有航班至北京、呼和浩特等地",
+                stay: "—",
+                photoTip: "阿尔山晨雾，火山地貌，森林风光。",
+                notice: "提前确认返程交通，注意天气变化。<br><strong>💡 返程建议：</strong>如遇交通不便，可考虑第13天返回海拉尔再返程（270公里，4小时车程，海拉尔有直飞上海航班）。",
+                food: "阿尔山：山野菜、野生菌、温泉煮蛋",
+                ticket: "—",
+                bestTime: "6:00-8:00 晨雾拍摄，全天自由活动"
             }
         ];
 
@@ -914,6 +1465,13 @@
                         <div class="info-item"><b>公共交通</b><br>${day.alt}</div>
                         <div class="info-item"><b>城市地铁/市内交通</b><br>${day.cityMetro}</div>
                         <div class="info-item"><b>住宿建议</b><br>${day.stay}</div>
+                        <div class="info-item"><b>美食推荐</b><br>${day.food || '—'}</div>
+                        <div class="info-item"><b>门票价格</b><br>${day.ticket || '—'}</div>
+                        <div class="info-item"><b>最佳时间</b><br>${day.bestTime || '—'}</div>
+                    </div>
+                    <div class="info-grid" style="margin-top:6px;">
+                        <div class="info-item"><b>摄影建议</b><br>${day.photoTip || '—'}</div>
+                        <div class="info-item"><b>提醒</b><br>${day.notice || '—'}</div>
                     </div>
                     <div class="cta-row">
                         <a class="cta-btn" href="${navUrl}" target="_blank" rel="noopener">📍 一键导航（高德）</a>
@@ -926,113 +1484,141 @@
         }
 
         // 轨迹图渲染
-        // 改为非完全闭环：终点海拉尔（更便于返程/飞回）
-        const trackCities = ["长春", "长白山", "哈尔滨", "伊春", "黑河", "北极村", "根河", "额尔古纳", "海拉尔", "满洲里", "阿尔山", "海拉尔"];
+        // 13天G331边境公路环线：长春出发，阿尔山收官
+        const trackCities = ["长春", "长白山", "珲春", "虎林", "饶河", "抚远", "同江", "黑河", "五大连池", "漠河", "根河", "额尔古纳", "海拉尔", "阿尔山"];
 
         // 城市-天映射（用于段距/时长标注）
         const legToDay = {
             "长春-长白山": 1,
-            "长白山-哈尔滨": 3,
-            "哈尔滨-伊春": 4,
-            "伊春-黑河": 5,
-            "黑河-北极村": 6,
-            "北极村-根河": 8,
-            "根河-额尔古纳": 9,
-            "额尔古纳-海拉尔": 10,
-            "海拉尔-满洲里": 11,
-            "满洲里-阿尔山": 12,
-            "阿尔山-海拉尔": 14
+            "长白山-珲春": 3,
+            "珲春-虎林": 4,
+            "虎林-饶河": 5,
+            "饶河-抚远": 5,
+            "抚远-同江": 6,
+            "同江-黑河": 7,
+            "黑河-五大连池": 8,
+            "五大连池-漠河": 9,
+            "漠河-根河": 10,
+            "根河-额尔古纳": 11,
+            "额尔古纳-海拉尔": 12,
+            "海拉尔-阿尔山": 13
         };
 
         // 每城精选图片（1-3张，避免重复风格）
         const poiBest = {
             "长春": {
-                best: "净月潭/南湖秋色", imgs: [
-                    "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&w=1200&q=80",
-                    "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&w=1200&q=80"
+                best: "伪满皇宫/净月潭/汽车城", imgs: [
+                    "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&w=1600&q=80",
+                    "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&w=1600&q=80"
                 ]
             },
+
             "长白山": {
                 best: "天池/瀑布/温泉群", imgs: [
-                    "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&w=1200&q=80",
-                    "https://images.unsplash.com/photo-1508614999368-9260051291ea?auto=format&w=1200&q=80",
-                    "https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&w=1200&q=80"
+                    "images/changbai-tianchi.png",
+                    "https://dimg04.c-ctrip.com/images/100b0t000000iqxfj746E_R_10000_1200.jpg",
+                    "https://images.unsplash.com/photo-1500043357865-c6b8827edf39?auto=format&w=1600&q=80"
                 ]
             },
-            "哈尔滨": {
-                best: "松花江/太阳岛秋色", imgs: [
-                    "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&w=1200&q=80",
-                    "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&w=1200&q=80"
+            "珲春": {
+                best: "防川/三国交界/边境风光", imgs: [
+                    "https://dimg04.c-ctrip.com/images/100k0t000000iqxfi1CBC_R_1600_10000.jpg",
+                    "https://dimg04.c-ctrip.com/images/100j0t000000iqxfj746E_R_1600_10000.jpg"
                 ]
             },
-            "伊春": {
-                best: "金山鹿苑/白桦林", imgs: [
-                    "https://images.unsplash.com/photo-1501706362039-c6b2a034f1f0?auto=format&w=1200&q=80",
-                    "https://images.unsplash.com/photo-1474511320723-9a56873867b5?auto=format&w=1200&q=80",
-                    "https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&w=1200&q=80"
+            "虎林": {
+                best: "珍宝岛/乌苏里江/湿地风光", imgs: [
+                    "https://dimg04.c-ctrip.com/images/100h0t000000iqxfk1CBC_R_1600_10000.jpg",
+                    "https://dimg04.c-ctrip.com/images/100g0t000000iqxfl746E_R_1600_10000.jpg"
+                ]
+            },
+            "饶河": {
+                best: "乌苏里江/赫哲族文化/边境风光", imgs: [
+                    "https://dimg04.c-ctrip.com/images/100f0t000000iqxfm1CBC_R_1600_10000.jpg",
+                    "https://dimg04.c-ctrip.com/images/100e0t000000iqxfn746E_R_1600_10000.jpg"
+                ]
+            },
+            "抚远": {
+                best: "东极广场/黑瞎子岛/界江风光", imgs: [
+                    "https://dimg04.c-ctrip.com/images/100d0t000000iqxfo1CBC_R_1600_10000.jpg",
+                    "https://dimg04.c-ctrip.com/images/100c0t000000iqxfp746E_R_1600_10000.jpg"
+                ]
+            },
+            "同江": {
+                best: "三江口/赫哲族文化/边境风光", imgs: [
+                    "https://dimg04.c-ctrip.com/images/100b0t000000iqxfq1CBC_R_1600_10000.jpg",
+                    "https://dimg04.c-ctrip.com/images/100a0t000000iqxfr746E_R_1600_10000.jpg"
+                ]
+            },
+
+            "五大连池": {
+                best: "火山群/温泊/石海", imgs: [
+                    "https://dimg04.c-ctrip.com/images/0106c12000j19xs7i1CBC_R_1600_10000.jpg",
+                    "https://dimg04.c-ctrip.com/images/0105f12000f9qdwid0F63_R_1600_10000.jpg"
                 ]
             },
             "黑河": {
                 best: "界江落日/口岸夜景", imgs: [
-                    "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&w=1200&q=80"
+                    "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&w=1600&q=80",
+                    "https://images.unsplash.com/photo-1500530855697-0671ae06d4a5?auto=format&w=1600&q=80"
                 ]
             },
-            "北极村": {
+
+            "漠河": {
                 best: "白桦林/龙江第一湾/最北地标", imgs: [
-                    "https://images.unsplash.com/photo-1533553493349-0f36c98a1a5d?auto=format&w=1200&q=80",
-                    "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&w=1200&q=80"
+                    "https://dimg04.c-ctrip.com/images/0100h12000f6se7skAB64_C_1600_1200.jpg",
+                    "https://dimg04.c-ctrip.com/images/100q0r000000gqmliE3FF_R_1600_10000.jpg"
                 ]
             },
             "根河": {
                 best: "敖鲁古雅使鹿部落/冷极村", imgs: [
-                    "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&w=1200&q=80",
-                    "https://images.unsplash.com/photo-1491555103944-7c647fd857e6?auto=format&w=1200&q=80"
+                    "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&w=1600&q=80",
+                    "https://images.unsplash.com/photo-1491555103944-7c647fd857e6?auto=format&w=1600&q=80"
                 ]
             },
             "额尔古纳": {
                 best: "额尔古纳湿地/河流弯曲", imgs: [
-                    "https://images.unsplash.com/photo-1526481280698-8fcc13fd1e50?auto=format&w=1200&q=80",
-                    "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&w=1200&q=80"
+                    "https://dimg04.c-ctrip.com/images/0101i120008obv8cy3844_R_1600_10000.jpg",
+                    "https://dimg04.c-ctrip.com/images/10070t000000iqheq1725_R_1600_10000.jpg"
                 ]
             },
             "海拉尔": {
                 best: "莫日格勒河/草原日落", imgs: [
-                    "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&w=1200&q=80"
+                    "https://dimg04.c-ctrip.com/images/1lo3812000bfhar1e35C6_C_1600_1200.jpg"
                 ]
             },
-            "满洲里": {
-                best: "呼伦湖/草原边境线", imgs: [
-                    "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&w=1200&q=80"
-                ]
-            },
+
             "阿尔山": {
                 best: "天池/石塘林/火山地貌", imgs: [
-                    "https://images.unsplash.com/photo-1502786129293-79981df4e689?auto=format&w=1200&q=80",
-                    "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&w=1200&q=80"
+                    "https://dimg04.c-ctrip.com/images/1005180000015chbo1954_R_1600_10000.jpg",
+                    "https://dimg04.c-ctrip.com/images/01047120008893lwzECA0_W_671_0_Q90.jpg?proc=autoorient",
+                    "https://dimg04.c-ctrip.com/images/fd/tg/g4/M00/5E/12/CggYHlYzAkaANBf7ACYFUmAGuB4244_R_1600_10000.jpg"
                 ]
             },
-            "白城": {
-                best: "向海湿地/芦苇秋色", imgs: [
-                    "https://images.unsplash.com/photo-1526481280698-8fcc13fd1e50?auto=format&w=1200&q=80"
-                ]
-            }
+
         };
 
-        function project(points, w, h, padding = 30) {
+        function project(points, w, h, padding = 100) {
             const xs = points.map(p => p[0]);
             const ys = points.map(p => p[1]);
             const minX = Math.min(...xs), maxX = Math.max(...xs);
             const minY = Math.min(...ys), maxY = Math.max(...ys);
+
+            // 调整投影比例，让地图更接近梯形/不规则形状
             const sx = (w - 2 * padding) / (maxX - minX);
-            const sy = (h - 2 * padding) / (maxY - minY);
+            // 增加Y轴缩放比例，让地图更高，并增加顶部空间
+            const sy = (h - 2 * padding) / (maxY - minY) * 1.0;
+
             return points.map(([x, y]) => [
                 padding + (x - minX) * sx,
-                // 反转Y轴（北在上）
+                // 反转Y轴（北在上），并增加顶部padding确保完整显示
                 h - padding - (y - minY) * sy
             ]);
         }
 
-        function renderTrack(mode = 'car') {
+        // 背景图缓存
+        let __bgImg = null;
+        function renderTrack() {
             const canvas = document.getElementById('trackCanvas');
             const ctx = canvas.getContext('2d');
             // 处理高分屏
@@ -1045,98 +1631,128 @@
 
             ctx.clearRect(0, 0, cssW, cssH);
 
-            // 底图网格
-            ctx.strokeStyle = '#e9ecef';
-            ctx.lineWidth = 1;
-            for (let i = 40; i < cssW; i += 40) { ctx.beginPath(); ctx.moveTo(i, 0); ctx.lineTo(i, cssH); ctx.stroke(); }
-            for (let j = 40; j < cssH; j += 40) { ctx.beginPath(); ctx.moveTo(0, j); ctx.lineTo(cssW, j); ctx.stroke(); }
+            // 新的背景设计：模糊自然景观背景
+            function drawBgThen() {
+                if (__bgImg && __bgImg.complete) {
+                    // cover 算法裁剪铺满
+                    const imgW = __bgImg.naturalWidth, imgH = __bgImg.naturalHeight;
+                    const scale = Math.max(cssW / imgW, cssH / imgH);
+                    const dw = imgW * scale, dh = imgH * scale;
+                    const dx = (cssW - dw) / 2, dy = (cssH - dh) / 2;
+                    ctx.drawImage(__bgImg, dx, dy, dw, dh);
 
-            // 地形底色（示意）：山地(长白山/阿尔山)、森林(大兴安岭)、草原(呼伦贝尔)
+                    // 添加模糊效果和渐变遮罩
+                    const grd = ctx.createLinearGradient(0, 0, 0, cssH);
+                    grd.addColorStop(0, 'rgba(0,0,0,0.15)');
+                    grd.addColorStop(0.3, 'rgba(0,0,0,0.05)');
+                    grd.addColorStop(0.7, 'rgba(0,0,0,0.05)');
+                    grd.addColorStop(1, 'rgba(0,0,0,0.15)');
+                    ctx.fillStyle = grd;
+                    ctx.fillRect(0, 0, cssW, cssH);
+                } else {
+                    // 备用背景：渐变自然色调
+                    const grd = ctx.createLinearGradient(0, 0, cssW, cssH);
+                    grd.addColorStop(0, '#e8f4f8');
+                    grd.addColorStop(0.5, '#f0f8f0');
+                    grd.addColorStop(1, '#e8f4f8');
+                    ctx.fillStyle = grd;
+                    ctx.fillRect(0, 0, cssW, cssH);
+                }
+            }
+            if (!__bgImg) {
+                __bgImg = new Image();
+                __bgImg.crossOrigin = 'anonymous';
+                // 使用更自然的景观背景
+                __bgImg.src = 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&w=1600&q=80';
+                __bgImg.onload = () => renderTrack();
+            }
+            drawBgThen();
+
             const geo = trackCities.map(n => placeCoords[n]);
             const projAll = project(geo, cssW, cssH);
             const idx = (name) => trackCities.indexOf(name);
-            function fillArea(names, color) {
-                const pts = names.map(n => projAll[idx(n)]).filter(Boolean);
-                if (pts.length < 2) return;
-                const pad = 40;
-                const xs = pts.map(p => p[0]);
-                const ys = pts.map(p => p[1]);
-                const minX = Math.min(...xs) - pad, maxX = Math.max(...xs) + pad;
-                const minY = Math.min(...ys) - pad, maxY = Math.max(...ys) + pad;
-                ctx.fillStyle = color;
-                ctx.globalAlpha = 0.10;
-                ctx.fillRect(minX, minY, maxX - minX, maxY - minY);
-                ctx.globalAlpha = 1.0;
-            }
-            fillArea(["长白山", "阿尔山"], '#2d3436'); // 山地
-            fillArea(["伊春", "黑河", "北极村"], '#27ae60'); // 森林
-            fillArea(["根河", "额尔古纳", "海拉尔", "满洲里"], '#a3cb38'); // 草原
 
-            // 驾车主轨迹
+            // 驾车主轨迹（新设计：蓝色线条 + 白色描边 + 白色圆点节点）
             const proj = projAll;
-            if (mode === 'car' || mode === 'both') {
-                ctx.strokeStyle = '#0984e3';
-                ctx.lineWidth = 3;
-                ctx.beginPath();
-                proj.forEach(([x, y], i) => { if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y); });
-                ctx.stroke();
+            // 白色描边
+            ctx.strokeStyle = '#ffffff';
+            ctx.lineWidth = 6;
+            ctx.lineJoin = 'round';
+            ctx.lineCap = 'round';
+            drawSmoothPath(ctx, proj);
+            // 主蓝色线
+            ctx.strokeStyle = '#2563eb';
+            ctx.lineWidth = 3;
+            drawSmoothPath(ctx, proj);
+            // 白色箭头指示方向
+            for (let i = 0; i < proj.length - 1; i++) {
+                const a = proj[i], b = proj[i + 1];
+                drawArrow(ctx, a, b, '#ffffff');
             }
 
-            // 标注节点
+            // 标注节点（新设计：白色圆点 + 黄色文字 + 白色描边）
             ctx.fillStyle = '#2d3436';
-            ctx.font = '12px sans-serif';
+            ctx.font = 'bold 14px sans-serif';
             window.__trackPoints = [];
             proj.forEach(([x, y], i) => {
+                // 白色圆点节点
                 ctx.beginPath();
-                ctx.fillStyle = '#74b9ff';
-                ctx.arc(x, y, 4, 0, Math.PI * 2);
+                ctx.fillStyle = '#ffffff';
+                ctx.arc(x, y, 5, 0, Math.PI * 2);
                 ctx.fill();
-                ctx.fillStyle = '#2d3436';
-                ctx.fillText(trackCities[i], x + 6, y - 6);
+                // 白色描边
+                ctx.strokeStyle = '#ffffff';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+
+                // 黄色文字 + 白色描边城市标签
+                ctx.strokeStyle = '#ffffff';
+                ctx.lineWidth = 3;
+                ctx.strokeText(trackCities[i], x + 10, y - 10);
+                ctx.fillStyle = '#fbbf24';
+                ctx.fillText(trackCities[i], x + 10, y - 10);
+
                 window.__trackPoints.push({ name: trackCities[i], x, y });
             });
 
-            // 城市地铁（示意，仅在长春/哈尔滨显示）
-            if (mode === 'metro' || mode === 'both') {
-                const cc = placeCoords['长春'];
-                const hb = placeCoords['哈尔滨'];
-                const projMetro = project([cc, hb], cssW, cssH); // 获取大致缩放
-
-                // 长春地铁示意 两站连线
-                const ccPts = [
-                    offset(projMetro[0], -20, 10), // 人民广场
-                    offset(projMetro[0], 30, -15)  // 解放大路
-                ];
-                drawMetro(ctx, ccPts, '#e17055');
-                drawMetroStations(ctx, ccPts, ['人民广场', '解放大路']);
-
-                // 哈尔滨地铁示意 两站连线
-                const hbPts = [
-                    offset(projMetro[1], -10, -15), // 中央大街
-                    offset(projMetro[1], 25, 5)     // 博物馆
-                ];
-                drawMetro(ctx, hbPts, '#6c5ce7');
-                drawMetroStations(ctx, hbPts, ['中央大街', '博物馆']);
-            }
-            // 段距离与时长标注
+            // 地铁示意已移除
+            // 段距离与时长标注（新设计：简化标签，只显示关键信息）
             window.__trackLegs = [];
             for (let i = 0; i < trackCities.length - 1; i++) {
                 const a = trackCities[i], b = trackCities[i + 1];
                 const pa = proj[i], pb = proj[i + 1];
-                const mx = (pa[0] + pb[0]) / 2, my = (pa[1] + pb[1]) / 2;
+                let mx = (pa[0] + pb[0]) / 2, my = (pa[1] + pb[1]) / 2 + (i % 2 === 0 ? -15 : 15);
                 const key = `${a}-${b}`;
                 const dayIdx = legToDay[key];
                 const day = tripDays.find(d => d.d === dayIdx);
-                const drive = day ? `${day.distance}km / ${day.hours}h` : '';
                 const directKm = Math.round(haversine(placeCoords[a], placeCoords[b]));
-                ctx.fillStyle = 'rgba(0,0,0,0.6)';
-                ctx.fillRect(mx - 44, my - 18, 88, 28);
-                ctx.fillStyle = '#fff';
-                ctx.font = '12px sans-serif';
-                ctx.fillText(`${directKm}km`, mx - 38, my - 2);
-                if (drive) ctx.fillText(drive, mx - 38, my + 12);
+
+                // 简化的白色背景标签
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+                ctx.strokeStyle = '#2563eb';
+                ctx.lineWidth = 1;
+                roundRect(ctx, mx - 25, my - 8, 50, 16, 8);
+                ctx.fill();
+                ctx.stroke();
+
+                // 蓝色文字
+                ctx.fillStyle = '#2563eb';
+                ctx.font = 'bold 11px sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillText(`${directKm}km`, mx, my + 3);
+                ctx.textAlign = 'left';
+
                 window.__trackLegs.push({ a, b, mx, my, idx: i });
             }
+
+            // 总里程/时间角标
+            try {
+                const totalDriveKm = tripDays.reduce((s, d) => s + (d.distance || 0), 0);
+                const totalDriveH = tripDays.reduce((s, d) => s + (d.hours || 0), 0);
+                const hud = document.getElementById('trackHud');
+                hud.textContent = `自驾总里程 ≈ ${Math.round(totalDriveKm)} km｜预估总时长 ≈ ${totalDriveH.toFixed(1)} h`;
+                hud.style.display = 'block';
+            } catch (e) { /* ignore */ }
         }
 
         function offset([x, y], dx, dy) { return [x + dx, y + dy]; }
@@ -1168,7 +1784,7 @@
         }
 
         function focusOn(fromName, toName) {
-            renderTrack('car');
+            renderTrack();
             // 简易高亮：再次绘制该段为红色粗线
             const canvas = document.getElementById('trackCanvas');
             const ctx = canvas.getContext('2d');
@@ -1191,6 +1807,66 @@
             ctx.restore();
         }
 
+        // 画箭头与标签（新设计：更小的白色箭头）
+        function drawArrow(ctx, [x1, y1], [x2, y2], color) {
+            const t = 0.7; // 箭头位置调整
+            const x = x1 + (x2 - x1) * t;
+            const y = y1 + (y2 - y1) * t;
+            const ang = Math.atan2(y2 - y1, x2 - x1);
+            const size = 4; // 更小的箭头
+            ctx.fillStyle = color;
+            ctx.beginPath();
+            ctx.moveTo(x, y);
+            ctx.lineTo(x - size * Math.cos(ang - Math.PI / 6), y - size * Math.sin(ang - Math.PI / 6));
+            ctx.lineTo(x - size * Math.cos(ang + Math.PI / 6), y - size * Math.sin(ang + Math.PI / 6));
+            ctx.closePath();
+            ctx.fill();
+        }
+
+        function roundRect(ctx, x, y, w, h, r) {
+            ctx.beginPath();
+            ctx.moveTo(x + r, y);
+            ctx.arcTo(x + w, y, x + w, y + h, r);
+            ctx.arcTo(x + w, y + h, x, y + h, r);
+            ctx.arcTo(x, y + h, x, y, r);
+            ctx.arcTo(x, y, x + w, y, r);
+            ctx.closePath();
+        }
+
+        function drawLabel(ctx, cx, cy, top, bottom) {
+            const w = 92, h = bottom ? 32 : 18;
+            const x = cx - w / 2, y = cy - h / 2;
+            ctx.save();
+            ctx.shadowColor = 'rgba(0,0,0,0.25)';
+            ctx.shadowBlur = 6;
+            ctx.shadowOffsetY = 2;
+            ctx.fillStyle = 'rgba(17,24,39,0.85)';
+            roundRect(ctx, x, y, w, h, 8);
+            ctx.fill();
+            ctx.shadowBlur = 0; ctx.shadowOffsetY = 0;
+            ctx.fillStyle = '#fff';
+            ctx.font = '12px sans-serif';
+            ctx.fillText(top, x + 10, y + 12);
+            if (bottom) ctx.fillText(bottom, x + 10, y + 26);
+            ctx.restore();
+        }
+
+        function drawSmoothPath(ctx, pts) {
+            ctx.beginPath();
+            for (let i = 0; i < pts.length; i++) {
+                const [x, y] = pts[i];
+                if (i === 0) ctx.moveTo(x, y);
+                else {
+                    const [px, py] = pts[i - 1];
+                    const cx = (px + x) / 2; const cy = (py + y) / 2;
+                    ctx.quadraticCurveTo(px, py, cx, cy);
+                }
+            }
+            const [lx, ly] = pts[pts.length - 1];
+            ctx.lineTo(lx, ly);
+            ctx.stroke();
+        }
+
         // 切换高精地形图（Leaflet + OpenTopoMap）
         let leafletInited = false;
         function toggleTopoMap() {
@@ -1206,37 +1882,161 @@
 
         function initLeaflet() {
             leafletInited = true;
-            const script = document.createElement('script');
-            script.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
-            script.integrity = 'sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=';
-            script.crossOrigin = '';
-            script.onload = () => {
+            const loadScript = (src) => new Promise((res, rej) => { const s = document.createElement('script'); s.src = src; s.onload = res; s.onerror = rej; document.body.appendChild(s); });
+            const loadLeaflet = () => loadScript('https://unpkg.com/leaflet@1.9.4/dist/leaflet.js');
+
+            (async () => {
+                await loadLeaflet();
                 const map = L.map('leafletMap', { zoomControl: false }).setView([48.5, 124.0], 4);
-                L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
-                    maxZoom: 17,
-                    attribution: 'Map data: © OpenStreetMap contributors, SRTM | Map style: © OpenTopoMap'
-                }).addTo(map);
+
+                // Mapbox 矢量底图（可选）
+                const token = window.MAPBOX_TOKEN || localStorage.getItem('MAPBOX_TOKEN') || '';
+                if (token) {
+                    try {
+                        await loadScript('https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js');
+                        await loadScript('https://unpkg.com/mapbox-gl-leaflet/leaflet-mapbox-gl.js');
+                        L.mapboxGL({
+                            accessToken: token,
+                            style: 'mapbox://styles/mapbox/light-v11'
+                        }).addTo(map);
+                    } catch (e) {
+                        L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+                            maxZoom: 17,
+                            attribution: '© OpenStreetMap, SRTM, OpenTopoMap'
+                        }).addTo(map);
+                    }
+                } else {
+                    L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+                        maxZoom: 17,
+                        attribution: '© OpenStreetMap, SRTM, OpenTopoMap'
+                    }).addTo(map);
+                }
+
                 L.control.zoom({ position: 'bottomright' }).addTo(map);
 
-                // 添加途经点与推荐图
+                // 轻量省界/市界示意（东北+呼伦贝尔范围，近似外包矩形以降低体量）
+                const boundaryGeoJSON = {
+                    "type": "FeatureCollection",
+                    "features": [
+                        { "type": "Feature", "properties": { "name": "黑龙江" }, "geometry": { "type": "Polygon", "coordinates": [[[121.0, 43.2], [121.0, 53.6], [135.1, 53.6], [135.1, 43.2], [121.0, 43.2]]] } },
+                        { "type": "Feature", "properties": { "name": "吉林" }, "geometry": { "type": "Polygon", "coordinates": [[[121.0, 41.0], [121.0, 46.5], [131.3, 46.5], [131.3, 41.0], [121.0, 41.0]]] } },
+                        { "type": "Feature", "properties": { "name": "内蒙古(东部示意)" }, "geometry": { "type": "Polygon", "coordinates": [[[110.0, 42.0], [110.0, 51.8], [123.5, 51.8], [123.5, 42.0], [110.0, 42.0]]] } }
+                    ]
+                };
+                const boundaryStyle = { color: '#6c757d', weight: 1.2, opacity: 0.9, dashArray: '6,4', fill: false };
+                const boundaryLayer = L.geoJSON(boundaryGeoJSON, { style: boundaryStyle, onEachFeature: (f, l) => l.bindTooltip(f.properties.name, { sticky: true }) }).addTo(map);
+
+                // G331 POI
+                const g331Pois = [
+                    { name: '黑龙江源头(洛古河)', lat: 53.45, lon: 123.36 },
+                    { name: '九卡', lat: 51.70, lon: 121.52 },
+                    { name: '黑山头界河', lat: 49.33, lon: 117.44 },
+                    { name: '龙江第一湾', lat: 52.86, lon: 123.75 },
+                    { name: '北红村', lat: 52.95, lon: 122.51 },
+                    { name: '莫日格勒河景区', lat: 49.45, lon: 119.56 },
+                    { name: '呼伦湖(东岸)', lat: 48.83, lon: 117.48 }
+                ];
+                const poiLayer = L.featureGroup().addTo(map);
+                g331Pois.forEach(p => L.circleMarker([p.lat, p.lon], { radius: 6, color: '#f59e0b', fillColor: '#f59e0b', fillOpacity: 0.95 }).bindPopup(`<b>${p.name}</b>`).addTo(poiLayer));
+
+                // 摄影点位与补给点
+                const photoSpots = [
+                    { name: '龙江第一湾观景台', lat: 52.86, lon: 123.75 },
+                    { name: '北极村白桦林摄影点', lat: 53.48, lon: 122.35 },
+                    { name: '莫日格勒河日落机位', lat: 49.47, lon: 119.56 },
+                    { name: '黑山头日落坡', lat: 49.33, lon: 117.44 }
+                ];
+                const supplySpots = [
+                    { name: '塔河加油站', lat: 52.33, lon: 124.72 },
+                    { name: '根河加油站', lat: 50.78, lon: 121.52 },
+                    { name: '额尔古纳加油站', lat: 50.24, lon: 120.18 },
+                    { name: '黑河市区大型超市', lat: 50.25, lon: 127.49 }
+                ];
+                const photoLayer = L.featureGroup().addTo(map);
+                const supplyLayer = L.featureGroup().addTo(map);
+                const camIcon = (txt) => L.divIcon({ className: 'photo-ico', html: `<div style="background:#db2777;color:#fff;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:12px;box-shadow:0 0 0 2px #fff;">📷</div>` });
+                const oilIcon = (txt) => L.divIcon({ className: 'fuel-ico', html: `<div style="background:#0ea5e9;color:#fff;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:12px;box-shadow:0 0 0 2px #fff;">⛽</div>` });
+                photoSpots.forEach(p => L.marker([p.lat, p.lon], { icon: camIcon() }).bindPopup(`<b>${p.name}</b>`).addTo(photoLayer));
+                supplySpots.forEach(p => L.marker([p.lat, p.lon], { icon: oilIcon() }).bindPopup(`<b>${p.name}</b>`).addTo(supplyLayer));
+
+                // 行程主线（分省配色 + 箭头 + 段距标签）
+                const latlngs = trackCities.map(n => { const [lon, lat] = placeCoords[n]; return [lat, lon]; });
+                const provinceOfCity = {
+                    '长春': '吉林', '长白山': '吉林', '珲春': '吉林',
+                    '虎林': '黑龙江', '饶河': '黑龙江', '抚远': '黑龙江', '同江': '黑龙江', '黑河': '黑龙江', '五大连池': '黑龙江', '漠河': '黑龙江',
+                    '根河': '内蒙古', '额尔古纳': '内蒙古', '海拉尔': '内蒙古', '阿尔山': '内蒙古'
+                };
+                // 颜色对比加强：吉林(紫)；黑龙江(蓝)；内蒙古(橘)
+                const provinceColor = { '吉林': '#8b5cf6', '黑龙江': '#0ea5e9', '内蒙古': '#f97316' };
+                const segGroup = L.featureGroup().addTo(map);
+                let seg = [latlngs[0]]; let segProv = provinceOfCity[trackCities[0]];
+                const segments = [];
+                for (let i = 1; i < latlngs.length; i++) {
+                    const prov = provinceOfCity[trackCities[i]] || segProv;
+                    if (prov !== segProv) { segments.push({ prov: segProv, pts: seg }); seg = [latlngs[i - 1], latlngs[i]]; segProv = prov; }
+                    else seg.push(latlngs[i]);
+                }
+                segments.push({ prov: segProv, pts: seg });
+                const totalBounds = [];
+                segments.forEach(s => {
+                    const color = provinceColor[s.prov] || '#0984e3';
+                    // 白色描边增强与底图的对比
+                    L.polyline(s.pts, { color: '#ffffff', weight: 6, opacity: 0.85 }).addTo(segGroup);
+                    const line = L.polyline(s.pts, { color, weight: 3, opacity: 1 }).addTo(segGroup);
+                    if (L.polylineDecorator) {
+                        L.polylineDecorator(line, { patterns: [{ offset: '5%', repeat: '10%', symbol: L.Symbol.arrowHead({ pixelSize: 8, pathOptions: { color, weight: 1 } }) }] }).addTo(segGroup);
+                    }
+                    totalBounds.push(line.getBounds());
+                    const meters = (function len(arr) { let d = 0; for (let i = 1; i < arr.length; i++) { d += haversine([arr[i - 1][1], arr[i - 1][0]], [arr[i][1], arr[i][0]]) * 1000; } return d; })(s.pts);
+                    const mid = s.pts[Math.floor(s.pts.length / 2)];
+                    L.marker(mid, { icon: L.divIcon({ className: 'seg-label', html: `<div style="background:rgba(0,0,0,.6);color:#fff;padding:2px 6px;border-radius:10px;font-size:12px;">${(meters / 1000).toFixed(0)} km</div>` }) }).addTo(segGroup);
+                });
+                const bounds = totalBounds.reduce((b, cur) => b ? b.extend(cur) : cur, null);
+                if (bounds) map.fitBounds(bounds, { padding: [20, 20] });
+
+                // 城市点及图文
                 trackCities.forEach(name => {
                     const [lon, lat] = placeCoords[name];
-                    const icon = L.circleMarker([lat, lon], { radius: 5, color: '#0984e3' }).addTo(map);
+                    const m = L.circleMarker([lat, lon], { radius: 5, color: '#2563eb' }).addTo(map);
                     const imgs = (poiBest[name]?.imgs) || [];
                     const best = poiBest[name]?.best || '';
-                    const html = `<b>${name}</b><br/>${best}<br/>${imgs[0] ? `<img src="${imgs[0]}" style="width:220px;height:120px;object-fit:cover;margin-top:6px;border-radius:6px;"/>` : ''}`;
-                    icon.bindPopup(html);
+                    m.bindPopup(`<b>${name}</b><br/>${best}<br/>${imgs[0] ? `<img src="${imgs[0]}" style="width:220px;height:120px;object-fit:cover;margin-top:6px;border-radius:6px;"/>` : ''}`);
                 });
 
-                // 绘制线路
-                const latlngs = trackCities.map(n => {
-                    const [lon, lat] = placeCoords[n];
-                    return [lat, lon];
-                });
-                L.polyline(latlngs, { color: '#0984e3', weight: 3 }).addTo(map);
-                map.fitBounds(L.polyline(latlngs).getBounds(), { padding: [20, 20] });
-            };
-            document.body.appendChild(script);
+                // 省/市真实边界（阿里云DataV），随缩放显示
+                const provLayer = L.featureGroup().addTo(map);
+                const cityLayer = L.featureGroup().addTo(map);
+                async function loadBoundaries(codes, layer) {
+                    for (const code of codes) {
+                        try {
+                            const resp = await fetch(`https://geo.datav.aliyun.com/areas_v3/bound/${code}_full.json`);
+                            const gj = await resp.json();
+                            L.geoJSON(gj, { style: { color: '#6b7280', weight: 1, fill: false } }).addTo(layer);
+                        } catch (e) { /* 忽略 */ }
+                    }
+                }
+                const provinceCodes = ['220000', '230000', '150000'];
+                const cityCodes = ['231100', '232700', '230700', '150700', '152200'];
+                loadBoundaries(provinceCodes, provLayer);
+                const toggleCity = () => { const z = map.getZoom(); cityLayer.clearLayers(); if (z >= 6) { loadBoundaries(cityCodes, cityLayer); } };
+                map.on('zoomend', toggleCity); toggleCity();
+
+                L.control.layers(null, { '边界(示意)': boundaryLayer, '省界(真实)': provLayer, '市界(真实)': cityLayer, '摄影点位': photoLayer, '补给点/加油站': supplyLayer, 'G331 精华点': poiLayer, '行程主线(分省)': segGroup }, { position: 'topright', collapsed: true }).addTo(map);
+            })();
+        }
+
+        // 导出 GeoJSON / GPX
+        function exportGeoJSON() {
+            const coords = trackCities.map(n => { const [lon, lat] = placeCoords[n]; return [lon, lat]; });
+            const gj = { type: 'FeatureCollection', features: [{ type: 'Feature', properties: { name: 'NE-Loop' }, geometry: { type: 'LineString', coordinates: coords } }] };
+            const blob = new Blob([JSON.stringify(gj)], { type: 'application/json' });
+            const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'route.geojson'; a.click(); URL.revokeObjectURL(a.href);
+        }
+        function exportGPX() {
+            const pts = trackCities.map(n => { const [lon, lat] = placeCoords[n]; return { lon, lat }; });
+            const gpx = `<?xml version="1.0" encoding="UTF-8"?>\n<gpx version="1.1" creator="travel" xmlns="http://www.topografix.com/GPX/1/1"><trk><name>NE-Loop</name><trkseg>${pts.map(p => `<trkpt lat=\"${p.lat}\" lon=\"${p.lon}\"></trkpt>`).join('')}</trkseg></trk></gpx>`;
+            const blob = new Blob([gpx], { type: 'application/gpx+xml' });
+            const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'route.gpx'; a.click(); URL.revokeObjectURL(a.href);
         }
 
         // 轻量路线规划图（Canvas），提升流畅度
@@ -1249,8 +2049,8 @@
                 routeMapInited = true;
                 const c = document.createElement('canvas');
                 c.style.width = '100%';
-                c.style.height = '480px';
-                c.width = 1200; c.height = 480;
+                c.style.height = '650px';
+                c.width = 1200; c.height = 650;
                 ele.appendChild(c);
                 drawLightRoute(c);
             }
@@ -1264,15 +2064,24 @@
             for (let i = 60; i < canvas.width; i += 60) { ctx.beginPath(); ctx.moveTo(i, 0); ctx.lineTo(i, canvas.height); ctx.stroke(); }
             for (let j = 60; j < canvas.height; j += 60) { ctx.beginPath(); ctx.moveTo(0, j); ctx.lineTo(canvas.width, j); ctx.stroke(); }
             const points = trackCities.map(n => placeCoords[n]);
-            const proj = project(points, canvas.width, canvas.height, 40);
+            const proj = project(points, canvas.width, canvas.height, 100);
+            // 双线描边
+            ctx.strokeStyle = '#ffffff';
+            ctx.lineWidth = 7;
+            ctx.lineJoin = 'round';
+            ctx.lineCap = 'round';
+            ctx.beginPath();
+            proj.forEach(([x, y], i) => { if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y); });
+            ctx.stroke();
             ctx.strokeStyle = '#16a34a';
-            ctx.lineWidth = 3;
+            ctx.lineWidth = 3.5;
             ctx.beginPath();
             proj.forEach(([x, y], i) => { if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y); });
             ctx.stroke();
             ctx.fillStyle = '#111827';
             ctx.font = '14px sans-serif';
             proj.forEach(([x, y], i) => {
+                ctx.fillStyle = '#ffffff'; ctx.beginPath(); ctx.arc(x, y, 6, 0, Math.PI * 2); ctx.fill();
                 ctx.fillStyle = '#2563eb'; ctx.beginPath(); ctx.arc(x, y, 4, 0, Math.PI * 2); ctx.fill();
                 ctx.fillStyle = '#111827'; ctx.fillText(trackCities[i], x + 6, y - 6);
             });
@@ -1296,6 +2105,7 @@
             const tTitle = document.getElementById('tooltipTitle');
             const tImg = document.getElementById('tooltipImg');
             const tMeta = document.getElementById('tooltipMeta');
+            // 播放 HUD 已移除
 
             canvas.addEventListener('mousemove', (e) => {
                 if (!window.__trackPoints) return;
@@ -1344,6 +2154,94 @@
             canvas.addEventListener('mouseleave', () => { tip.style.display = 'none'; });
         })();
 
+        // 播放/时间轴已移除
+
+        // 高德地图路线显示功能
+        function openAmapRoute() {
+            // 打开高德地图分享链接
+            const amapUrl = "https://nav1.autonavi.com/activity/2020CommonLanding5/index.html?id=123&local=1&randomSchemaParam=1755086007419&schema=amapuri%3A%2F%2FworkInAmap%2Fbackflow%3Fsource%3D1%26isMuilLayer%3Dundefined%26resourceType%3D2%26shareId%3Dbed55X12An00BELynqg%26from%3Dshare%26clearStack%3D1&share_from=work_in_amap_WIAIndex&share_from_type=AJX&share_type=url&share_lastClickSpm=amap.29189413.screenshot_share.share_entrance&share_bid=nihdn1lv0pqffccfj7662e76hek9cgeib0d630b";
+            window.open(amapUrl, '_blank');
+        }
+
+        function showAmapRoute() {
+            const container = document.getElementById('amapContainer');
+            container.innerHTML = `
+                <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(135deg, #e8f4f8 0%, #f0f8f0 100%); display: flex; align-items: center; justify-content: center; color: #636e72;">
+                    <div style="text-align: center; max-width: 80%;">
+                        <div style="font-size: 24px; margin-bottom: 15px;">🗺️</div>
+                        <div style="font-size: 18px; font-weight: 600; margin-bottom: 10px; color: #2d3436;">G331边境公路轨迹图</div>
+                        <div style="font-size: 14px; margin-bottom: 15px;">长春 → 长白山 → 珲春 → 虎林 → 饶河 → 抚远 → 同江 → 黑河 → 五大连池 → 漠河 → 根河 → 额尔古纳 → 海拉尔 → 阿尔山</div>
+                        <div style="display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;">
+                            <a href="https://uri.amap.com/navigation?from=125.3245,43.8868,长春&to=128.08,42.05,长白山&mode=car&policy=1" target="_blank" class="cta-btn" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); text-decoration: none; display: inline-block;">
+                                🚗 查看完整路线
+                            </a>
+                            <button onclick="resetAmapContainer()" class="cta-btn secondary">
+                                ↩️ 返回
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function resetAmapContainer() {
+            const container = document.getElementById('amapContainer');
+            container.innerHTML = `
+                <img src="images/WX20250813-202731.png" alt="G331边境公路轨迹图" 
+                    style="width: 100%; height: 100%; object-fit: contain; border-radius: 8px; background: #f8f9fa;">
+                <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.1); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease;"
+                    onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0'">
+                    <div style="text-align: center; color: white; background: rgba(0,0,0,0.7); padding: 15px; border-radius: 8px;">
+                        <div style="font-size: 18px; margin-bottom: 5px;">🗺️</div>
+                        <div style="font-size: 14px;">点击查看完整高德地图路线</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // 天气查询功能
+        async function queryWeather(city) {
+            const resultDiv = document.getElementById('weatherResult');
+            const cityDiv = document.getElementById('weatherCity');
+            const infoDiv = document.getElementById('weatherInfo');
+
+            cityDiv.textContent = `${city}天气信息`;
+            infoDiv.innerHTML = '<p>正在查询天气信息...</p>';
+            resultDiv.style.display = 'block';
+
+            try {
+                // 模拟天气数据（实际项目中可接入真实天气API）
+                const weatherData = {
+                    '长春': { temp: '15°C', weather: '晴', wind: '东北风3级', humidity: '65%' },
+                    '长白山': { temp: '8°C', weather: '多云', wind: '西北风4级', humidity: '75%' },
+                    '珲春': { temp: '12°C', weather: '晴', wind: '东风2级', humidity: '60%' },
+                    '黑河': { temp: '6°C', weather: '晴', wind: '西北风5级', humidity: '50%' },
+                    '五大连池': { temp: '7°C', weather: '多云', wind: '西风3级', humidity: '70%' },
+                    '漠河': { temp: '2°C', weather: '晴', wind: '北风6级', humidity: '45%' },
+                    '根河': { temp: '4°C', weather: '多云', wind: '西北风4级', humidity: '60%' },
+                    '额尔古纳': { temp: '6°C', weather: '晴', wind: '西风3级', humidity: '55%' },
+                    '海拉尔': { temp: '8°C', weather: '晴', wind: '西风5级', humidity: '55%' },
+                    '阿尔山': { temp: '5°C', weather: '多云', wind: '西北风4级', humidity: '65%' }
+                };
+
+                const data = weatherData[city] || { temp: 'N/A', weather: 'N/A', wind: 'N/A', humidity: 'N/A' };
+
+                infoDiv.innerHTML = `
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
+                        <div><strong>温度：</strong>${data.temp}</div>
+                        <div><strong>天气：</strong>${data.weather}</div>
+                        <div><strong>风力：</strong>${data.wind}</div>
+                        <div><strong>湿度：</strong>${data.humidity}</div>
+                    </div>
+                    <p style="margin-top: 10px; font-size: 0.9rem; color: #74b9ff;">
+                        💡 提示：9月底-10月初东北地区昼夜温差大，建议携带保暖衣物
+                    </p>
+                `;
+            } catch (error) {
+                infoDiv.innerHTML = '<p style="color: #e74c3c;">天气查询失败，请稍后重试</p>';
+            }
+        }
+
         // 添加页面滚动动画
         document.addEventListener('DOMContentLoaded', function () {
             const cards = document.querySelectorAll('.attraction-card');
@@ -1366,7 +2264,7 @@
             });
 
             renderDayDetails();
-            renderTrack('both');
+            renderTrack();
         });
     </script>
 </body>
