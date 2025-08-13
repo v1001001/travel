@@ -15,10 +15,38 @@
         }
 
         body {
-            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
-            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
-            min-height: 100vh;
-            color: #333;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+            background-color: #FDFBF7;
+            color: #4A4A4A;
+        }
+
+        /* 秋季主题色彩系统 */
+        .bg-autumn-gold {
+            background-color: #D4A276;
+        }
+
+        .bg-autumn-deep-green {
+            background-color: #6A7B53;
+        }
+
+        .bg-autumn-light {
+            background-color: #FDFBF7;
+        }
+
+        .bg-autumn-paper {
+            background-color: #F3EFE7;
+        }
+
+        .text-autumn-dark {
+            color: #594A3C;
+        }
+
+        .text-autumn-accent {
+            color: #BC5A45;
+        }
+
+        .border-autumn-gold {
+            border-color: #D4A276;
         }
 
         .container {
@@ -29,20 +57,30 @@
 
         .header {
             text-align: center;
-            color: white;
+            color: #594A3C;
             margin-bottom: 40px;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #F3EFE7 0%, #E9E4D9 100%);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
         .header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: #594A3C;
+            font-weight: 700;
+            letter-spacing: -0.02em;
         }
 
         .header p {
-            font-size: 1.1rem;
-            opacity: 0.9;
+            font-size: 1.2rem;
+            color: #6A7B53;
             margin-bottom: 20px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
         }
 
         .stats {
@@ -53,10 +91,17 @@
         }
 
         .stat-item {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 15px 25px;
-            border-radius: 10px;
-            backdrop-filter: blur(10px);
+            background: linear-gradient(135deg, #D4A276 0%, #BC5A45 100%);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(212, 162, 118, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(212, 162, 118, 0.4);
         }
 
         .stat-number {
@@ -66,7 +111,7 @@
         }
 
         .overview-section {
-            background: white;
+            background: #F3EFE7;
             border-radius: 15px;
             padding: 30px;
             margin-bottom: 30px;
@@ -104,7 +149,7 @@
         }
 
         .trip-section {
-            background: white;
+            background: #F3EFE7;
             border-radius: 15px;
             padding: 30px;
             margin-bottom: 30px;
@@ -305,7 +350,7 @@
         }
 
         .timeline-section {
-            background: white;
+            background: #F3EFE7;
             border-radius: 15px;
             padding: 30px;
             margin-bottom: 30px;
@@ -489,9 +534,33 @@
 </head>
 
 <body>
+    <!-- 粘性导航栏 -->
+    <nav class="sticky-nav"
+        style="position: sticky; top: 0; z-index: 50; background: rgba(243, 239, 231, 0.95); backdrop-filter: blur(10px); box-shadow: 0 2px 20px rgba(0,0,0,0.1);">
+        <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <div style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 15px 0;">
+                <a href="#overview" class="nav-link"
+                    style="padding: 12px 20px; border-radius: 25px; transition: all 0.3s ease; color: #594A3C; text-decoration: none; font-weight: 500;">🗺️
+                    路线总览</a>
+                <a href="#timeline" class="nav-link"
+                    style="padding: 12px 20px; border-radius: 25px; transition: all 0.3s ease; color: #594A3C; text-decoration: none; font-weight: 500;">📅
+                    详细行程</a>
+                <a href="#highlights" class="nav-link"
+                    style="padding: 12px 20px; border-radius: 25px; transition: all 0.3s ease; color: #594A3C; text-decoration: none; font-weight: 500;">🌟
+                    行程亮点</a>
+                <a href="#budget" class="nav-link"
+                    style="padding: 12px 20px; border-radius: 25px; transition: all 0.3s ease; color: #594A3C; text-decoration: none; font-weight: 500;">💰
+                    预算估算</a>
+                <a href="#tips" class="nav-link"
+                    style="padding: 12px 20px; border-radius: 25px; transition: all 0.3s ease; color: #594A3C; text-decoration: none; font-weight: 500;">💡
+                    实用贴士</a>
+            </div>
+        </div>
+    </nav>
+
     <div class="container">
         <div class="header">
-            <h1>东北+呼伦贝尔精华环线</h1>
+            <h1>金秋弧线：东北+呼伦贝尔精华环线</h1>
             <p>沿G331国道穿越东北边境，探秘大兴安岭，感受草原风情，体验最美边境公路，总里程5000公里，涵盖7大核心区域</p>
             <div class="stats">
                 <div class="stat-item">
@@ -513,7 +582,7 @@
             </div>
         </div>
 
-        <div class="overview-section">
+        <div class="overview-section" id="overview">
             <h2 style="color: #2d3436; margin-bottom: 30px; text-align: center;">🗺️ G331边境公路环线路线概览（长春出发，阿尔山收官）</h2>
             <div class="route-map">
                 <h3>长春 → 长白山 → 珲春 → 虎林 → 饶河 → 抚远 → 同江 → 黑河 → 五大连池 → 漠河 → 根河 → 额尔古纳 → 海拉尔 → 阿尔山</h3>
@@ -536,7 +605,7 @@
             </div>
         </div>
 
-        <div class="timeline-section">
+        <div class="timeline-section" id="timeline">
             <h2 style="color: #2d3436; margin-bottom: 30px; text-align: center;">📅 详细行程时间线（13天G331边境公路环线）</h2>
 
             <!-- 去程交通建议 -->
@@ -614,7 +683,7 @@
             </div>
         </div>
 
-        <div class="trip-section">
+        <div class="trip-section" id="highlights">
             <h2 style="color: #2d3436; margin-bottom: 30px; text-align: center;">🏔️ 7大核心区域详解</h2>
 
             <!-- 1. 长白山区域 -->
@@ -636,6 +705,21 @@
                             <span>📍 长白山</span>
                             <span>⏰ 建议4-5小时</span>
                         </div>
+                        <div class="cultural-tags" style="margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap;">
+                            <span
+                                style="background: #e3f2fd; color: #1976d2; padding: 4px 8px; border-radius: 12px; font-size: 12px;">📸
+                                6:00-10:00最佳光线</span>
+                            <span
+                                style="background: #f3e5f5; color: #7b1fa2; padding: 4px 8px; border-radius: 12px; font-size: 12px;">🏔️
+                                火山地貌</span>
+                            <span
+                                style="background: #e8f5e8; color: #388e3c; padding: 4px 8px; border-radius: 12px; font-size: 12px;">♨️
+                                温泉体验</span>
+                        </div>
+                        <div class="photo-tips"
+                            style="margin-top: 8px; padding: 8px; background: #f8f9fa; border-radius: 6px; font-size: 12px; color: #636e72;">
+                            <strong>📸 摄影提示：</strong>清晨顺光拍摄，使用偏振镜减少水面反光，广角镜头捕捉全景
+                        </div>
                     </div>
                 </div>
                 <div class="attraction-card">
@@ -647,6 +731,21 @@
                         <div class="attraction-details">
                             <span>📍 长白山</span>
                             <span>⏰ 建议2小时</span>
+                        </div>
+                        <div class="cultural-tags" style="margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap;">
+                            <span
+                                style="background: #e3f2fd; color: #1976d2; padding: 4px 8px; border-radius: 12px; font-size: 12px;">📸
+                                14:00-17:00侧光</span>
+                            <span
+                                style="background: #fff3e0; color: #f57c00; padding: 4px 8px; border-radius: 12px; font-size: 12px;">🌊
+                                慢门拍摄</span>
+                            <span
+                                style="background: #f3e5f5; color: #7b1fa2; padding: 4px 8px; border-radius: 12px; font-size: 12px;">🏔️
+                                火山地貌</span>
+                        </div>
+                        <div class="photo-tips"
+                            style="margin-top: 8px; padding: 8px; background: #f8f9fa; border-radius: 6px; font-size: 12px; color: #636e72;">
+                            <strong>📸 摄影提示：</strong>使用1/8-1秒慢门拍摄水流，三脚架稳定，侧光突出瀑布层次
                         </div>
                     </div>
                 </div>
@@ -707,6 +806,21 @@
                         <div class="attraction-details">
                             <span>📍 漠河市</span>
                             <span>⏰ 建议3-4小时</span>
+                        </div>
+                        <div class="cultural-tags" style="margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap;">
+                            <span
+                                style="background: #e3f2fd; color: #1976d2; padding: 4px 8px; border-radius: 12px; font-size: 12px;">📸
+                                14:00-16:00白桦林</span>
+                            <span
+                                style="background: #fff3e0; color: #f57c00; padding: 4px 8px; border-radius: 12px; font-size: 12px;">📍
+                                最北地标</span>
+                            <span
+                                style="background: #f3e5f5; color: #7b1fa2; padding: 4px 8px; border-radius: 12px; font-size: 12px;">🌲
+                                白桦林</span>
+                        </div>
+                        <div class="photo-tips"
+                            style="margin-top: 8px; padding: 8px; background: #f8f9fa; border-radius: 6px; font-size: 12px; color: #636e72;">
+                            <strong>📸 摄影提示：</strong>白桦林逆光拍摄叶片透亮，最北地标清晨少人好拍，可能看到极光
                         </div>
                     </div>
                 </div>
@@ -851,6 +965,21 @@
                         <div class="attraction-details">
                             <span>📍 额尔古纳市</span>
                             <span>⏰ 建议3-4小时</span>
+                        </div>
+                        <div class="cultural-tags" style="margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap;">
+                            <span
+                                style="background: #e3f2fd; color: #1976d2; padding: 4px 8px; border-radius: 12px; font-size: 12px;">📸
+                                16:00-18:00日落</span>
+                            <span
+                                style="background: #e8f5e8; color: #388e3c; padding: 4px 8px; border-radius: 12px; font-size: 12px;">🌿
+                                亚洲第一湿地</span>
+                            <span
+                                style="background: #fff3e0; color: #f57c00; padding: 4px 8px; border-radius: 12px; font-size: 12px;">🦅
+                                候鸟栖息地</span>
+                        </div>
+                        <div class="photo-tips"
+                            style="margin-top: 8px; padding: 8px; background: #f8f9fa; border-radius: 6px; font-size: 12px; color: #636e72;">
+                            <strong>📸 摄影提示：</strong>日落时分金色湿地最美，广角镜头捕捉全景，注意候鸟拍摄时机
                         </div>
                     </div>
                 </div>
@@ -1101,50 +1230,207 @@
         </div>
 
         <!-- 预算估算 -->
-        <div class="budget-section"
+        <div class="budget-section" id="budget"
             style="background: white; border-radius: 15px; padding: 30px; margin-bottom: 30px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);">
             <h2 style="color: #2d3436; margin-bottom: 30px; text-align: center;">💰 预算估算（4人拼车）</h2>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
-                <div
-                    style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 10px; text-align: center;">
-                    <div style="font-size: 2rem; margin-bottom: 10px;">🎫</div>
-                    <h3>门票费用</h3>
-                    <p style="font-size: 1.5rem; font-weight: bold;">约 ¥600</p>
-                    <p style="font-size: 0.9rem; opacity: 0.9;">长白山、五大连池、北极村、阿尔山等主要景点</p>
+
+            <!-- 不同预算档次 -->
+            <div
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 30px;">
+                <!-- 经济型预算 -->
+                <div style="border: 2px solid #e9ecef; border-radius: 15px; padding: 20px; background: #f8f9fa;">
+                    <div style="text-align: center; margin-bottom: 15px;">
+                        <h3 style="color: #28a745; margin-bottom: 5px;">💰 经济型</h3>
+                        <p style="font-size: 1.8rem; font-weight: bold; color: #28a745;">¥3,800/人</p>
+                    </div>
+                    <ul style="list-style: none; padding: 0; font-size: 14px; color: #636e72;">
+                        <li style="margin-bottom: 8px;">🏨 住宿：经济型酒店/民宿 ¥100/晚</li>
+                        <li style="margin-bottom: 8px;">🍽️ 餐饮：当地特色小店 ¥80/天</li>
+                        <li style="margin-bottom: 8px;">🎫 门票：主要景点 ¥500</li>
+                        <li style="margin-bottom: 8px;">⛽ 油费：经济型车辆 ¥800</li>
+                        <li style="margin-bottom: 8px;">🛒 购物：纪念品 ¥200</li>
+                    </ul>
+                    <div
+                        style="background: #e8f5e8; padding: 10px; border-radius: 6px; margin-top: 15px; font-size: 12px; color: #155724;">
+                        <strong>适合人群：</strong>预算有限，注重性价比的旅行者
+                    </div>
                 </div>
+
+                <!-- 标准型预算 -->
                 <div
-                    style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; padding: 20px; border-radius: 10px; text-align: center;">
-                    <div style="font-size: 2rem; margin-bottom: 10px;">⛽</div>
-                    <h3>油费路费</h3>
-                    <p style="font-size: 1.5rem; font-weight: bold;">约 ¥900</p>
-                    <p style="font-size: 0.9rem; opacity: 0.9;">4500公里，含高速费、停车费</p>
+                    style="border: 2px solid #007bff; border-radius: 15px; padding: 20px; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);">
+                    <div style="text-align: center; margin-bottom: 15px;">
+                        <h3 style="color: #007bff; margin-bottom: 5px;">💎 标准型</h3>
+                        <p style="font-size: 1.8rem; font-weight: bold; color: #007bff;">¥4,900/人</p>
+                    </div>
+                    <ul style="list-style: none; padding: 0; font-size: 14px; color: #636e72;">
+                        <li style="margin-bottom: 8px;">🏨 住宿：三星级酒店 ¥150/晚</li>
+                        <li style="margin-bottom: 8px;">🍽️ 餐饮：特色餐厅 ¥100/天</li>
+                        <li style="margin-bottom: 8px;">🎫 门票：主要景点 ¥600</li>
+                        <li style="margin-bottom: 8px;">⛽ 油费：舒适型车辆 ¥900</li>
+                        <li style="margin-bottom: 8px;">🛒 购物：纪念品+特产 ¥300</li>
+                    </ul>
+                    <div
+                        style="background: #e3f2fd; padding: 10px; border-radius: 6px; margin-top: 15px; font-size: 12px; color: #1976d2;">
+                        <strong>适合人群：</strong>追求舒适体验，平衡性价比的旅行者
+                    </div>
                 </div>
+
+                <!-- 豪华型预算 -->
                 <div
-                    style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; padding: 20px; border-radius: 10px; text-align: center;">
-                    <div style="font-size: 2rem; margin-bottom: 10px;">🏨</div>
-                    <h3>住宿费用</h3>
-                    <p style="font-size: 1.5rem; font-weight: bold;">约 ¥2,100</p>
-                    <p style="font-size: 0.9rem; opacity: 0.9;">14晚，平均¥150/晚/人</p>
-                </div>
-                <div
-                    style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); color: white; padding: 20px; border-radius: 10px; text-align: center;">
-                    <div style="font-size: 2rem; margin-bottom: 10px;">🍽️</div>
-                    <h3>餐饮费用</h3>
-                    <p style="font-size: 1.5rem; font-weight: bold;">约 ¥1,300</p>
-                    <p style="font-size: 0.9rem; opacity: 0.9;">13天，平均¥100/天/人</p>
+                    style="border: 2px solid #ffc107; border-radius: 15px; padding: 20px; background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%);">
+                    <div style="text-align: center; margin-bottom: 15px;">
+                        <h3 style="color: #f57c00; margin-bottom: 5px;">👑 豪华型</h3>
+                        <p style="font-size: 1.8rem; font-weight: bold; color: #f57c00;">¥6,500/人</p>
+                    </div>
+                    <ul style="list-style: none; padding: 0; font-size: 14px; color: #636e72;">
+                        <li style="margin-bottom: 8px;">🏨 住宿：四星级酒店/特色民宿 ¥250/晚</li>
+                        <li style="margin-bottom: 8px;">🍽️ 餐饮：高档餐厅 ¥150/天</li>
+                        <li style="margin-bottom: 8px;">🎫 门票：全景点+体验项目 ¥800</li>
+                        <li style="margin-bottom: 8px;">⛽ 油费：豪华型车辆 ¥1,200</li>
+                        <li style="margin-bottom: 8px;">🛒 购物：纪念品+特产+手工艺品 ¥500</li>
+                    </ul>
+                    <div
+                        style="background: #fff3e0; padding: 10px; border-radius: 6px; margin-top: 15px; font-size: 12px; color: #f57c00;">
+                        <strong>适合人群：</strong>追求高品质体验，预算充足的旅行者
+                    </div>
                 </div>
             </div>
+
+            <!-- 省钱攻略 -->
             <div
-                style="text-align: center; margin-top: 30px; padding: 20px; background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); border-radius: 10px; color: white;">
+                style="background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%); border-radius: 10px; padding: 20px; margin-bottom: 20px;">
+                <h3 style="color: #2d3436; margin-bottom: 15px;">💡 省钱攻略</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                    <div style="background: white; padding: 15px; border-radius: 8px;">
+                        <h4 style="color: #28a745; margin-bottom: 8px;">🏨 住宿省钱</h4>
+                        <ul style="margin: 0; padding-left: 20px; font-size: 14px; color: #636e72;">
+                            <li>景区木屋（人均150元）</li>
+                            <li>度假村（性价比高）</li>
+                            <li>民宿（体验当地风情）</li>
+                            <li>避开旺季出行</li>
+                        </ul>
+                    </div>
+                    <div style="background: white; padding: 15px; border-radius: 8px;">
+                        <h4 style="color: #28a745; margin-bottom: 8px;">🍽️ 餐饮省钱</h4>
+                        <ul style="margin: 0; padding-left: 20px; font-size: 14px; color: #636e72;">
+                            <li>自带野餐节省餐费</li>
+                            <li>当地特色小店</li>
+                            <li>避免景区高价餐厅</li>
+                            <li>品尝江鲜提升体验</li>
+                        </ul>
+                    </div>
+                    <div style="background: white; padding: 15px; border-radius: 8px;">
+                        <h4 style="color: #28a745; margin-bottom: 8px;">🎫 门票省钱</h4>
+                        <ul style="margin: 0; padding-left: 20px; font-size: 14px; color: #636e72;">
+                            <li>免费景点（湿地、森林）</li>
+                            <li>避开高门票景点副线</li>
+                            <li>网上预订享受优惠</li>
+                            <li>购买景点联票</li>
+                        </ul>
+                    </div>
+                    <div style="background: white; padding: 15px; border-radius: 8px;">
+                        <h4 style="color: #28a745; margin-bottom: 8px;">⛽ 交通省钱</h4>
+                        <ul style="margin: 0; padding-left: 20px; font-size: 14px; color: #636e72;">
+                            <li>每日驾驶200-300km</li>
+                            <li>满油行驶（边疆油站稀疏）</li>
+                            <li>选择经济型租车</li>
+                            <li>拼车分摊费用</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 总预算总结 -->
+            <div
+                style="text-align: center; padding: 20px; background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); border-radius: 10px; color: white;">
                 <h3 style="margin-bottom: 10px;">总预算估算</h3>
-                <p style="font-size: 2rem; font-weight: bold; margin-bottom: 10px;">约 ¥4,900/人</p>
-                <p style="font-size: 1.2rem; font-weight: bold; margin-bottom: 10px; color: #2d3436;">预算范围：¥4,500 -
-                    ¥5,800/人</p>
-                <p style="font-size: 0.9rem; opacity: 0.9;">不含往返机票，建议准备¥6,500/人</p>
+                <p style="font-size: 2rem; font-weight: bold; margin-bottom: 10px;">¥3,800 - ¥6,500/人</p>
+                <p style="font-size: 1.2rem; font-weight: bold; margin-bottom: 10px; color: #2d3436;">推荐预算：¥4,900/人</p>
+                <p style="font-size: 0.9rem; opacity: 0.9;">不含往返机票，建议准备¥6,500/人（含应急资金）</p>
             </div>
         </div>
 
-        <div class="tips-section">
+        <!-- 专业摄影指导 -->
+        <div class="photo-guide-section"
+            style="background: white; border-radius: 15px; padding: 30px; margin-bottom: 30px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);">
+            <h2 style="color: #2d3436; margin-bottom: 30px; text-align: center;">📸 专业摄影指导</h2>
+
+            <div
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 30px;">
+                <!-- 长白山摄影指导 -->
+                <div
+                    style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 10px;">
+                    <h3 style="margin-bottom: 15px;">🏔️ 长白山摄影</h3>
+                    <div style="margin-bottom: 10px;">
+                        <strong>天池最佳时间：</strong>6:00-10:00<br>
+                        <strong>拍摄技巧：</strong>顺光拍摄，偏振镜减少反光<br>
+                        <strong>设备建议：</strong>广角镜头(16-35mm)，三脚架
+                    </div>
+                    <div style="margin-bottom: 10px;">
+                        <strong>瀑布拍摄：</strong>14:00-17:00侧光<br>
+                        <strong>慢门参数：</strong>1/8-1秒，ISO 100，f/8
+                    </div>
+                </div>
+
+                <!-- 大兴安岭摄影指导 -->
+                <div
+                    style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; padding: 20px; border-radius: 10px;">
+                    <h3 style="margin-bottom: 15px;">🌲 大兴安岭摄影</h3>
+                    <div style="margin-bottom: 10px;">
+                        <strong>白桦林时间：</strong>14:00-16:00<br>
+                        <strong>拍摄技巧：</strong>逆光拍摄，突出叶片纹理<br>
+                        <strong>设备建议：</strong>长焦镜头(70-200mm)，偏光镜
+                    </div>
+                    <div style="margin-bottom: 10px;">
+                        <strong>林海全景：</strong>全天适合<br>
+                        <strong>延时摄影：</strong>云海变化，30秒间隔
+                    </div>
+                </div>
+
+                <!-- 湿地摄影指导 -->
+                <div
+                    style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; padding: 20px; border-radius: 10px;">
+                    <h3 style="margin-bottom: 15px;">🌿 湿地摄影</h3>
+                    <div style="margin-bottom: 10px;">
+                        <strong>最佳时间：</strong>16:00-18:00日落<br>
+                        <strong>拍摄技巧：</strong>广角镜头，压低地平线<br>
+                        <strong>设备建议：</strong>超广角(14-24mm)，渐变镜
+                    </div>
+                    <div style="margin-bottom: 10px;">
+                        <strong>候鸟拍摄：</strong>清晨和黄昏<br>
+                        <strong>参数设置：</strong>高速连拍，1/1000秒以上
+                    </div>
+                </div>
+            </div>
+
+            <!-- 摄影时间轴 -->
+            <div style="background: #f8f9fa; border-radius: 10px; padding: 20px;">
+                <h3 style="color: #2d3436; margin-bottom: 15px;">📅 每日摄影时间轴</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                    <div style="background: white; padding: 15px; border-radius: 8px; border-left: 4px solid #667eea;">
+                        <strong style="color: #667eea;">6:00-10:00</strong><br>
+                        <span style="font-size: 14px; color: #636e72;">长白山天池顺光拍摄</span>
+                    </div>
+                    <div style="background: white; padding: 15px; border-radius: 8px; border-left: 4px solid #f093fb;">
+                        <strong style="color: #f093fb;">14:00-16:00</strong><br>
+                        <span style="font-size: 14px; color: #636e72;">白桦林逆光拍摄</span>
+                    </div>
+                    <div style="background: white; padding: 15px; border-radius: 8px; border-left: 4px solid #4facfe;">
+                        <strong style="color: #4facfe;">16:00-18:00</strong><br>
+                        <span style="font-size: 14px; color: #636e72;">湿地日落黄金时间</span>
+                    </div>
+                    <div style="background: white; padding: 15px; border-radius: 8px; border-left: 4px solid #43e97b;">
+                        <strong style="color: #43e97b;">18:00-20:00</strong><br>
+                        <span style="font-size: 14px; color: #636e72;">草原日落蓝调时间</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="tips-section" id="tips">
             <h2 style="color: #2d3436; margin-bottom: 30px;">💡 实用贴士</h2>
 
             <!-- 重要提醒与紧急联系 -->
@@ -1160,6 +1446,184 @@
                     <li><strong>车辆救援：</strong>记录保险公司救援电话，准备拖车绳</li>
                     <li><strong>医疗准备：</strong>常用药品（感冒药、肠胃药、创可贴），高原反应药物</li>
                 </ul>
+            </div>
+
+            <!-- 应急预案系统 -->
+            <div class="emergency-plan"
+                style="margin-bottom: 25px; padding: 20px; background: linear-gradient(135deg, #fff5f5 0%, #fed7d7 100%); border-radius: 10px; border-left: 4px solid #e53e3e;">
+                <h3 style="color: #2d3436; margin-bottom: 15px; font-size: 18px;">🚨 应急预案系统</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                    <div style="background: white; padding: 15px; border-radius: 8px;">
+                        <h4 style="color: #e53e3e; margin-bottom: 10px;">🚗 车辆故障</h4>
+                        <ul style="margin: 0; padding-left: 20px; color: #636e72; font-size: 14px;">
+                            <li>记录保险公司救援电话</li>
+                            <li>准备拖车绳和千斤顶</li>
+                            <li>携带备用轮胎和工具</li>
+                            <li>边境地区联系当地救援</li>
+                        </ul>
+                    </div>
+                    <div style="background: white; padding: 15px; border-radius: 8px;">
+                        <h4 style="color: #e53e3e; margin-bottom: 10px;">🌦️ 天气突变</h4>
+                        <ul style="margin: 0; padding-left: 20px; color: #636e72; font-size: 14px;">
+                            <li>关注当地天气预报</li>
+                            <li>准备防寒保暖装备</li>
+                            <li>雨雪天气减速慢行</li>
+                            <li>必要时寻找安全避风处</li>
+                        </ul>
+                    </div>
+                    <div style="background: white; padding: 15px; border-radius: 8px;">
+                        <h4 style="color: #e53e3e; margin-bottom: 10px;">📱 通讯中断</h4>
+                        <ul style="margin: 0; padding-left: 20px; color: #636e72; font-size: 14px;">
+                            <li>准备对讲机和离线地图</li>
+                            <li>提前告知家人行程</li>
+                            <li>记录重要联系电话</li>
+                            <li>边境地区注意信号覆盖</li>
+                        </ul>
+                    </div>
+                    <div style="background: white; padding: 15px; border-radius: 8px;">
+                        <h4 style="color: #e53e3e; margin-bottom: 10px;">🏥 医疗急救</h4>
+                        <ul style="margin: 0; padding-left: 20px; color: #636e72; font-size: 14px;">
+                            <li>携带常用药品和急救包</li>
+                            <li>记录沿途医院位置</li>
+                            <li>准备高原反应药物</li>
+                            <li>购买旅行保险</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- 高性价比攻略系统 -->
+            <div class="cost-effective-guide"
+                style="margin-bottom: 25px; padding: 20px; background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%); border-radius: 10px; border-left: 4px solid #ff9800;">
+                <h3 style="color: #2d3436; margin-bottom: 15px; font-size: 18px;">💰 高性价比攻略系统</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                    <div style="background: white; padding: 15px; border-radius: 8px;">
+                        <h4 style="color: #ff9800; margin-bottom: 10px;">🎫 免费景点攻略</h4>
+                        <ul style="margin: 0; padding-left: 20px; color: #636e72; font-size: 14px;">
+                            <li>湿地公园（额尔古纳、根河）</li>
+                            <li>森林景区（大兴安岭）</li>
+                            <li>边境风光（G331沿线）</li>
+                            <li>草原日落（呼伦贝尔）</li>
+                        </ul>
+                    </div>
+                    <div style="background: white; padding: 15px; border-radius: 8px;">
+                        <h4 style="color: #ff9800; margin-bottom: 10px;">🏨 住宿省钱技巧</h4>
+                        <ul style="margin: 0; padding-left: 20px; color: #636e72; font-size: 14px;">
+                            <li>景区木屋（人均150元）</li>
+                            <li>度假村（性价比高）</li>
+                            <li>民宿（体验当地风情）</li>
+                            <li>避开高门票景点副线</li>
+                        </ul>
+                    </div>
+                    <div style="background: white; padding: 15px; border-radius: 8px;">
+                        <h4 style="color: #ff9800; margin-bottom: 10px;">🍽️ 餐饮省钱方案</h4>
+                        <ul style="margin: 0; padding-left: 20px; color: #636e72; font-size: 14px;">
+                            <li>自带野餐节省餐费</li>
+                            <li>当地特色小店</li>
+                            <li>避免景区高价餐厅</li>
+                            <li>品尝江鲜提升体验</li>
+                        </ul>
+                    </div>
+                    <div style="background: white; padding: 15px; border-radius: 8px;">
+                        <h4 style="color: #ff9800; margin-bottom: 10px;">🚗 交通优化建议</h4>
+                        <ul style="margin: 0; padding-left: 20px; color: #636e72; font-size: 14px;">
+                            <li>每日驾驶200-300km</li>
+                            <li>不超过8小时驾驶</li>
+                            <li>满油行驶（边疆油站稀疏）</li>
+                            <li>避开国庆高峰出行</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 视觉冲击力优化指南 -->
+            <div class="visual-impact-guide"
+                style="margin-bottom: 25px; padding: 20px; background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%); border-radius: 10px; border-left: 4px solid #4caf50;">
+                <h3 style="color: #2d3436; margin-bottom: 15px; font-size: 18px;">🎨 视觉冲击力优化指南</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                    <div style="background: white; padding: 15px; border-radius: 8px;">
+                        <h4 style="color: #4caf50; margin-bottom: 10px;">🍁 秋季红叶攻略</h4>
+                        <ul style="margin: 0; padding-left: 20px; color: #636e72; font-size: 14px;">
+                            <li>长白山（红黄交织）</li>
+                            <li>阿尔山（五彩山林）</li>
+                            <li>大兴安岭（原始森林）</li>
+                            <li>红叶覆盖率高的景点</li>
+                        </ul>
+                    </div>
+                    <div style="background: white; padding: 15px; border-radius: 8px;">
+                        <h4 style="color: #4caf50; margin-bottom: 10px;">🌅 日出日落最佳点</h4>
+                        <ul style="margin: 0; padding-left: 20px; color: #636e72; font-size: 14px;">
+                            <li>抚远（中国最东日出）</li>
+                            <li>额尔古纳（湿地日落）</li>
+                            <li>长白山天池（晨雾缭绕）</li>
+                            <li>草原日落（呼伦贝尔）</li>
+                        </ul>
+                    </div>
+                    <div style="background: white; padding: 15px; border-radius: 8px;">
+                        <h4 style="color: #4caf50; margin-bottom: 10px;">📸 摄影时机优化</h4>
+                        <ul style="margin: 0; padding-left: 20px; color: #636e72; font-size: 14px;">
+                            <li>9月底-10月初最佳</li>
+                            <li>避开国庆高峰</li>
+                            <li>捕捉红黄交织秋叶</li>
+                            <li>江天一色景观</li>
+                        </ul>
+                    </div>
+                    <div style="background: white; padding: 15px; border-radius: 8px;">
+                        <h4 style="color: #4caf50; margin-bottom: 10px;">🏔️ 自然奇观聚焦</h4>
+                        <ul style="margin: 0; padding-left: 20px; color: #636e72; font-size: 14px;">
+                            <li>火山湖泊（长白山、五大连池）</li>
+                            <li>湿地河流（额尔古纳）</li>
+                            <li>原始森林（大兴安岭）</li>
+                            <li>边境奇观（G331沿线）</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 艰苦条件应对指南 -->
+            <div class="harsh-conditions-guide"
+                style="margin-bottom: 25px; padding: 20px; background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%); border-radius: 10px; border-left: 4px solid #9c27b0;">
+                <h3 style="color: #2d3436; margin-bottom: 15px; font-size: 18px;">🏕️ 艰苦条件应对指南</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                    <div style="background: white; padding: 15px; border-radius: 8px;">
+                        <h4 style="color: #9c27b0; margin-bottom: 10px;">🏨 住宿条件应对</h4>
+                        <ul style="margin: 0; padding-left: 20px; color: #636e72; font-size: 14px;">
+                            <li>边疆地区可能无WiFi/热水稳定</li>
+                            <li>备睡袋应对简陋住宿</li>
+                            <li>木屋或营地住宿体验</li>
+                            <li>接受艰苦条件的心理准备</li>
+                        </ul>
+                    </div>
+                    <div style="background: white; padding: 15px; border-radius: 8px;">
+                        <h4 style="color: #9c27b0; margin-bottom: 10px;">🚗 驾驶安全提醒</h4>
+                        <ul style="margin: 0; padding-left: 20px; color: #636e72; font-size: 14px;">
+                            <li>每日不超过8小时驾驶</li>
+                            <li>注意疲劳驾驶</li>
+                            <li>下载离线地图</li>
+                            <li>备防滑链条（初霜）</li>
+                        </ul>
+                    </div>
+                    <div style="background: white; padding: 15px; border-radius: 8px;">
+                        <h4 style="color: #9c27b0; margin-bottom: 10px;">🌦️ 天气变化应对</h4>
+                        <ul style="margin: 0; padding-left: 20px; color: #636e72; font-size: 14px;">
+                            <li>10月中旬大兴安岭可能初雪</li>
+                            <li>边疆风大需防尘</li>
+                            <li>雨天少但需准备雨具</li>
+                            <li>温差大注意保暖</li>
+                        </ul>
+                    </div>
+                    <div style="background: white; padding: 15px; border-radius: 8px;">
+                        <h4 style="color: #9c27b0; margin-bottom: 10px;">🛠️ 装备准备建议</h4>
+                        <ul style="margin: 0; padding-left: 20px; color: #636e72; font-size: 14px;">
+                            <li>四驱SUV（推荐车型）</li>
+                            <li>备用轮胎和工具</li>
+                            <li>应急食品和饮用水</li>
+                            <li>导航APP（高德地图）</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
 
             <!-- 个人携带装备清单 -->
@@ -1620,6 +2084,10 @@
         let __bgImg = null;
         function renderTrack() {
             const canvas = document.getElementById('trackCanvas');
+            if (!canvas) {
+                console.log('trackCanvas元素不存在，跳过渲染');
+                return;
+            }
             const ctx = canvas.getContext('2d');
             // 处理高分屏
             const cssW = canvas.clientWidth;
@@ -1787,6 +2255,10 @@
             renderTrack();
             // 简易高亮：再次绘制该段为红色粗线
             const canvas = document.getElementById('trackCanvas');
+            if (!canvas) {
+                console.log('trackCanvas元素不存在，跳过focusOn');
+                return;
+            }
             const ctx = canvas.getContext('2d');
             const cssW = canvas.clientWidth;
             const cssH = canvas.clientHeight;
@@ -1871,6 +2343,10 @@
         let leafletInited = false;
         function toggleTopoMap() {
             const ele = document.getElementById('leafletMap');
+            if (!ele) {
+                console.log('leafletMap元素不存在，跳过切换');
+                return;
+            }
             const isHidden = ele.style.display === 'none' || ele.style.display === '';
             if (isHidden) {
                 ele.style.display = 'block';
@@ -2105,6 +2581,13 @@
             const tTitle = document.getElementById('tooltipTitle');
             const tImg = document.getElementById('tooltipImg');
             const tMeta = document.getElementById('tooltipMeta');
+
+            // 检查元素是否存在，如果不存在则直接返回
+            if (!canvas || !tip || !tTitle || !tImg || !tMeta) {
+                console.log('轨迹悬浮提示元素不存在，跳过初始化');
+                return;
+            }
+
             // 播放 HUD 已移除
 
             canvas.addEventListener('mousemove', (e) => {
@@ -2165,6 +2648,10 @@
 
         function showAmapRoute() {
             const container = document.getElementById('amapContainer');
+            if (!container) {
+                console.log('amapContainer元素不存在，跳过显示');
+                return;
+            }
             container.innerHTML = `
                 <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(135deg, #e8f4f8 0%, #f0f8f0 100%); display: flex; align-items: center; justify-content: center; color: #636e72;">
                     <div style="text-align: center; max-width: 80%;">
@@ -2186,6 +2673,10 @@
 
         function resetAmapContainer() {
             const container = document.getElementById('amapContainer');
+            if (!container) {
+                console.log('amapContainer元素不存在，跳过重置');
+                return;
+            }
             container.innerHTML = `
                 <img src="images/WX20250813-202731.png" alt="G331边境公路轨迹图" 
                     style="width: 100%; height: 100%; object-fit: contain; border-radius: 8px; background: #f8f9fa;">
@@ -2205,6 +2696,12 @@
             const cityDiv = document.getElementById('weatherCity');
             const infoDiv = document.getElementById('weatherInfo');
 
+            // 检查元素是否存在
+            if (!resultDiv || !cityDiv || !infoDiv) {
+                console.log('天气查询元素不存在，跳过查询');
+                return;
+            }
+
             cityDiv.textContent = `${city}天气信息`;
             infoDiv.innerHTML = '<p>正在查询天气信息...</p>';
             resultDiv.style.display = 'block';
@@ -2212,29 +2709,68 @@
             try {
                 // 模拟天气数据（实际项目中可接入真实天气API）
                 const weatherData = {
-                    '长春': { temp: '15°C', weather: '晴', wind: '东北风3级', humidity: '65%' },
-                    '长白山': { temp: '8°C', weather: '多云', wind: '西北风4级', humidity: '75%' },
-                    '珲春': { temp: '12°C', weather: '晴', wind: '东风2级', humidity: '60%' },
-                    '黑河': { temp: '6°C', weather: '晴', wind: '西北风5级', humidity: '50%' },
-                    '五大连池': { temp: '7°C', weather: '多云', wind: '西风3级', humidity: '70%' },
-                    '漠河': { temp: '2°C', weather: '晴', wind: '北风6级', humidity: '45%' },
-                    '根河': { temp: '4°C', weather: '多云', wind: '西北风4级', humidity: '60%' },
-                    '额尔古纳': { temp: '6°C', weather: '晴', wind: '西风3级', humidity: '55%' },
-                    '海拉尔': { temp: '8°C', weather: '晴', wind: '西风5级', humidity: '55%' },
-                    '阿尔山': { temp: '5°C', weather: '多云', wind: '西北风4级', humidity: '65%' }
+                    '长春': {
+                        temp: '15°C', weather: '晴', wind: '东北风3级', humidity: '65%',
+                        advice: '适合户外活动，注意防晒', clothing: '薄外套+长袖衬衫'
+                    },
+                    '长白山': {
+                        temp: '8°C', weather: '多云', wind: '西北风4级', humidity: '75%',
+                        advice: '山顶温度低，需保暖', clothing: '冲锋衣+保暖内衣'
+                    },
+                    '珲春': {
+                        temp: '12°C', weather: '晴', wind: '东风2级', humidity: '60%',
+                        advice: '边境地区，注意证件', clothing: '薄外套+长袖'
+                    },
+                    '黑河': {
+                        temp: '6°C', weather: '晴', wind: '西北风5级', humidity: '50%',
+                        advice: '风力较大，注意保暖', clothing: '厚外套+帽子'
+                    },
+                    '五大连池': {
+                        temp: '7°C', weather: '多云', wind: '西风3级', humidity: '70%',
+                        advice: '火山地貌，注意安全', clothing: '厚外套+防滑鞋'
+                    },
+                    '漠河': {
+                        temp: '2°C', weather: '晴', wind: '北风6级', humidity: '45%',
+                        advice: '最北端，温度最低', clothing: '羽绒服+保暖装备'
+                    },
+                    '根河': {
+                        temp: '4°C', weather: '多云', wind: '西北风4级', humidity: '60%',
+                        advice: '林区湿度大', clothing: '厚外套+防水鞋'
+                    },
+                    '额尔古纳': {
+                        temp: '6°C', weather: '晴', wind: '西风3级', humidity: '55%',
+                        advice: '湿地风光，注意防蚊', clothing: '厚外套+防蚊装备'
+                    },
+                    '海拉尔': {
+                        temp: '8°C', weather: '晴', wind: '西风5级', humidity: '55%',
+                        advice: '草原风大', clothing: '厚外套+防风装备'
+                    },
+                    '阿尔山': {
+                        temp: '5°C', weather: '多云', wind: '西北风4级', humidity: '65%',
+                        advice: '火山温泉，注意保暖', clothing: '厚外套+温泉装备'
+                    }
                 };
 
-                const data = weatherData[city] || { temp: 'N/A', weather: 'N/A', wind: 'N/A', humidity: 'N/A' };
+                const data = weatherData[city] || {
+                    temp: 'N/A', weather: 'N/A', wind: 'N/A', humidity: 'N/A',
+                    advice: '暂无建议', clothing: '暂无建议'
+                };
 
                 infoDiv.innerHTML = `
-                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 15px;">
                         <div><strong>温度：</strong>${data.temp}</div>
                         <div><strong>天气：</strong>${data.weather}</div>
                         <div><strong>风力：</strong>${data.wind}</div>
                         <div><strong>湿度：</strong>${data.humidity}</div>
                     </div>
+                    <div style="background: #e3f2fd; padding: 10px; border-radius: 6px; margin-bottom: 10px;">
+                        <strong>💡 出行建议：</strong>${data.advice}
+                    </div>
+                    <div style="background: #f3e5f5; padding: 10px; border-radius: 6px; margin-bottom: 10px;">
+                        <strong>👕 穿衣建议：</strong>${data.clothing}
+                    </div>
                     <p style="margin-top: 10px; font-size: 0.9rem; color: #74b9ff;">
-                        💡 提示：9月底-10月初东北地区昼夜温差大，建议携带保暖衣物
+                        🌟 9月15-20°C，10月5-15°C，早晚温差10°C以上，10月中旬大兴安岭可能初雪
                     </p>
                 `;
             } catch (error) {
@@ -2242,8 +2778,54 @@
             }
         }
 
-        // 添加页面滚动动画
+        // 导航链接交互效果
         document.addEventListener('DOMContentLoaded', function () {
+            // 导航链接点击效果
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            navLinks.forEach((link, index) => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    // 移除所有活动状态
+                    navLinks.forEach(l => {
+                        l.style.background = '';
+                        l.style.color = '#594A3C';
+                    });
+
+                    // 添加活动状态
+                    this.style.background = '#6A7B53';
+                    this.style.color = 'white';
+
+                    // 平滑滚动到目标区域
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+
+                // 悬停效果
+                link.addEventListener('mouseenter', function () {
+                    if (!this.style.background || this.style.background === '') {
+                        this.style.background = '#D4A276';
+                        this.style.color = 'white';
+                    }
+                });
+
+                link.addEventListener('mouseleave', function () {
+                    if (this.style.background === 'rgb(212, 162, 118)') {
+                        this.style.background = '';
+                        this.style.color = '#594A3C';
+                    }
+                });
+            });
+
+            // 页面滚动动画
             const cards = document.querySelectorAll('.attraction-card');
             cards.forEach(card => {
                 card.style.opacity = '0';
@@ -2265,6 +2847,8 @@
 
             renderDayDetails();
             renderTrack();
+
+            console.log('所有功能初始化完成');
         });
     </script>
 </body>

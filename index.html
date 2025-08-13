@@ -13,10 +13,38 @@
         }
 
         body {
-            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            color: #333;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+            background-color: #FDFBF7;
+            color: #4A4A4A;
+        }
+
+        /* 秋季主题色彩系统 */
+        .bg-autumn-gold {
+            background-color: #D4A276;
+        }
+
+        .bg-autumn-deep-green {
+            background-color: #6A7B53;
+        }
+
+        .bg-autumn-light {
+            background-color: #FDFBF7;
+        }
+
+        .bg-autumn-paper {
+            background-color: #F3EFE7;
+        }
+
+        .text-autumn-dark {
+            color: #594A3C;
+        }
+
+        .text-autumn-accent {
+            color: #BC5A45;
+        }
+
+        .border-autumn-gold {
+            border-color: #D4A276;
         }
 
         .container {
@@ -27,20 +55,30 @@
 
         .header {
             text-align: center;
-            color: white;
+            color: #594A3C;
             margin-bottom: 50px;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #F3EFE7 0%, #E9E4D9 100%);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
         .header h1 {
             font-size: 3rem;
             margin-bottom: 15px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            color: #594A3C;
+            font-weight: 700;
+            letter-spacing: -0.02em;
         }
 
         .header p {
             font-size: 1.2rem;
-            opacity: 0.9;
+            color: #6A7B53;
             margin-bottom: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
         }
 
         .travel-grid {
@@ -51,17 +89,19 @@
         }
 
         .travel-card {
-            background: white;
+            background: #F3EFE7;
             border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
+            border: 1px solid rgba(212, 162, 118, 0.2);
         }
 
         .travel-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 25px 50px rgba(212, 162, 118, 0.3);
+            border-color: #D4A276;
         }
 
         .card-image {
@@ -76,20 +116,20 @@
 
         .card-title {
             font-size: 1.5rem;
-            color: #2d3436;
+            color: #594A3C;
             margin-bottom: 10px;
             font-weight: bold;
         }
 
         .card-subtitle {
-            color: #74b9ff;
+            color: #BC5A45;
             font-size: 0.9rem;
             margin-bottom: 15px;
             font-weight: 500;
         }
 
         .card-description {
-            color: #636e72;
+            color: #6A7B53;
             line-height: 1.6;
             margin-bottom: 20px;
         }
@@ -102,12 +142,13 @@
         }
 
         .feature-tag {
-            background: #f8f9fa;
-            color: #74b9ff;
+            background: rgba(212, 162, 118, 0.1);
+            color: #BC5A45;
             padding: 5px 12px;
             border-radius: 15px;
             font-size: 0.8rem;
             font-weight: 500;
+            border: 1px solid rgba(212, 162, 118, 0.3);
         }
 
         .card-buttons {
@@ -129,14 +170,14 @@
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, #74b9ff, #0984e3);
+            background: linear-gradient(135deg, #D4A276, #BC5A45);
             color: white;
         }
 
         .btn-secondary {
-            background: #f8f9fa;
-            color: #74b9ff;
-            border: 2px solid #74b9ff;
+            background: rgba(212, 162, 118, 0.1);
+            color: #BC5A45;
+            border: 2px solid #D4A276;
         }
 
         .btn:hover {
@@ -144,7 +185,7 @@
         }
 
         .stats-section {
-            background: white;
+            background: #F3EFE7;
             border-radius: 20px;
             padding: 30px;
             margin-bottom: 30px;
@@ -166,19 +207,19 @@
         .stat-number {
             font-size: 2.5rem;
             font-weight: bold;
-            color: #74b9ff;
+            color: #BC5A45;
             display: block;
         }
 
         .stat-label {
-            color: #636e72;
+            color: #6A7B53;
             font-size: 1rem;
             margin-top: 5px;
         }
 
         .footer {
             text-align: center;
-            color: white;
+            color: #6A7B53;
             margin-top: 50px;
             opacity: 0.8;
         }
@@ -212,34 +253,34 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>东北+呼伦贝尔精华环线</h1>
-            <p>长春出发 · 海拉尔收官 · 秋季自然风光最佳路线</p>
+            <h1>金秋弧线：东北旅行攻略集合</h1>
+            <p>精选东北地区最精华的自驾路线，从长白山到呼伦贝尔，从大兴安岭到阿尔山，带您领略东北最美的秋季风光</p>
         </div>
 
         <div class="stats-section">
-            <h2 style="color: #2d3436; margin-bottom: 20px;">📊 行程概要</h2>
+            <h2 style="color: #594A3C; margin-bottom: 20px;">📊 东北旅行概览</h2>
             <div class="stats-grid">
                 <div class="stat-item">
-                    <span class="stat-number">13</span>
-                    <span class="stat-label">行程天数</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">5000</span>
-                    <span class="stat-label">总里程(公里)</span>
+                    <span class="stat-number">3</span>
+                    <span class="stat-label">精选路线</span>
                 </div>
                 <div class="stat-item">
                     <span class="stat-number">20+</span>
                     <span class="stat-label">核心景点</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-number">7</span>
-                    <span class="stat-label">核心区域</span>
+                    <span class="stat-number">8000+</span>
+                    <span class="stat-label">总里程(公里)</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">9-10月</span>
+                    <span class="stat-label">最佳季节</span>
                 </div>
             </div>
         </div>
 
         <div class="travel-grid">
-            <!-- 仅保留这个行程入口 -->
+            <!-- 主要推荐路线 -->
             <div class="travel-card" onclick="openTravel('northeast-hulunbeier-travel.html')">
                 <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=200&fit=crop"
                     alt="东北+呼伦贝尔环线" class="card-image">
@@ -247,7 +288,7 @@
                     <div class="card-title">东北+呼伦贝尔精华环线</div>
                     <div class="card-subtitle">🌟 史诗级自驾 - 最新推荐</div>
                     <div class="card-description">
-                        穿越长白山、大兴安岭、呼伦贝尔草原的史诗级自驾之旅，总里程5000公里，涵盖7大核心区域。
+                        穿越长白山、大兴安岭、呼伦贝尔草原的史诗级自驾之旅，总里程5000公里，涵盖7大核心区域。秋季最佳，风景如画。
                     </div>
                     <div class="card-features">
                         <span class="feature-tag">🏔️ 长白山</span>
@@ -257,15 +298,62 @@
                     </div>
                     <div class="card-buttons">
                         <a href="northeast-hulunbeier-travel.html" class="btn btn-primary">进入行程</a>
-                        <a href="ne3-7d.html" class="btn btn-secondary">东北三省7天</a>
+                        <span class="btn btn-secondary" style="cursor: default;">13天 · 5000km</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 东北三省7天精华 -->
+            <div class="travel-card" onclick="openTravel('ne3-7d.html')">
+                <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=200&fit=crop"
+                    alt="东北三省7天" class="card-image">
+                <div class="card-content">
+                    <div class="card-title">东北三省7天精华游</div>
+                    <div class="card-subtitle">⚡ 紧凑行程 - 经典路线</div>
+                    <div class="card-description">
+                        7天时间深度体验东北三省精华景点，从长春到哈尔滨，从长白山到镜泊湖，适合时间有限的旅行者。
+                    </div>
+                    <div class="card-features">
+                        <span class="feature-tag">🏔️ 长白山</span>
+                        <span class="feature-tag">🏛️ 哈尔滨</span>
+                        <span class="feature-tag">🌊 镜泊湖</span>
+                        <span class="feature-tag">🏙️ 长春</span>
+                    </div>
+                    <div class="card-buttons">
+                        <a href="ne3-7d.html" class="btn btn-primary">进入行程</a>
+                        <span class="btn btn-secondary" style="cursor: default;">7天 · 1500km</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 黑龙江深度游 -->
+            <div class="travel-card" onclick="openTravel('heilongjiang-travel-enhanced.html')">
+                <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=200&fit=crop"
+                    alt="黑龙江深度游" class="card-image">
+                <div class="card-content">
+                    <div class="card-title">黑龙江深度自驾游</div>
+                    <div class="card-subtitle">🌊 边境风光 - 深度体验</div>
+                    <div class="card-description">
+                        探索黑龙江边境地区的独特风光，从哈尔滨到漠河，从五大连池到黑河，体验东北边境的神秘魅力。
+                    </div>
+                    <div class="card-features">
+                        <span class="feature-tag">🏛️ 哈尔滨</span>
+                        <span class="feature-tag">🌋 五大连池</span>
+                        <span class="feature-tag">❄️ 漠河</span>
+                        <span class="feature-tag">🌊 黑河</span>
+                    </div>
+                    <div class="card-buttons">
+                        <a href="heilongjiang-travel-enhanced.html" class="btn btn-primary">进入行程</a>
+                        <span class="btn btn-secondary" style="cursor: default;">10天 · 2000km</span>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="footer">
-            <p>© 2024 旅行攻略项目 | 基于小红书旅行笔记创建</p>
+            <p>© 2024 金秋弧线旅行攻略 | 基于小红书旅行笔记创建</p>
             <p>探索美丽中国，发现精彩旅程 🚗✨</p>
+            <p style="margin-top: 10px; font-size: 0.9rem; opacity: 0.7;">精选东北地区最精华的自驾路线，带您领略最美的秋季风光</p>
         </div>
     </div>
 

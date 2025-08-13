@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>金秋弧线：中国东北边疆13日自驾史诗</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Chosen Palette: Autumn Road -->
+    <!-- Application Structure Plan: The SPA is designed with a top-level tabbed navigation (Route Overview, Pre-trip Prep, Food, Lodging) to break down the dense report into thematic, manageable sections. This non-linear structure allows users to jump directly to information they need, which is more user-friendly than a long, linear document. The core 'Route Overview' uses an interactive vertical timeline, allowing users to expand each day's details on demand, preventing information overload. A bar chart visualizes driving effort, providing an instant quantitative summary. This structure was chosen to transform a static travel guide into an interactive planning tool, prioritizing quick access to key data and scannable content over the original narrative flow. -->
+    <!-- Visualization & Content Choices: 1. Itinerary Data -> Goal: Organize & explore daily details -> Method: Interactive HTML/JS timeline/accordion -> Interaction: Click to expand/collapse daily info -> Justification: Breaks down a long 13-day narrative into digestible, user-controlled chunks, improving engagement. 2. Driving Data (km/hrs) -> Goal: Compare daily driving effort -> Viz: Bar Chart (Chart.js) -> Interaction: Hover for tooltips with exact figures -> Justification: Provides a quick, clear visual comparison of travel intensity, which is a key planning factor. 3. Pre-trip Advice -> Goal: Organize categorical info -> Method: HTML/JS Accordion -> Interaction: Click to expand/collapse topics -> Justification: Standard UI pattern for presenting distinct blocks of text cleanly. 4. Accommodation List -> Goal: Organize and filter lodging options -> Method: HTML cards + JS filter buttons -> Interaction: Click button to show hotels for a specific city -> Justification: Adds utility by allowing users to easily find relevant information. CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+            background-color: #FDFBF7;
+            color: #4A4A4A;
+        }
+
+        .bg-autumn-gold {
+            background-color: #D4A276;
+        }
+
+        .bg-autumn-deep-green {
+            background-color: #6A7B53;
+        }
+
+        .bg-autumn-light {
+            background-color: #FDFBF7;
+        }
+
+        .bg-autumn-paper {
+            background-color: #F3EFE7;
+        }
+
+        .text-autumn-dark {
+            color: #594A3C;
+        }
+
+        .text-autumn-accent {
+            color: #BC5A45;
+        }
+
+        .border-autumn-gold {
+            border-color: #D4A276;
+        }
+
+        .nav-link {
+            padding: 0.75rem 1rem;
+            border-radius: 0.375rem;
+            transition: background-color 0.3s, color 0.3s;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            background-color: #6A7B53;
+            color: white;
+        }
+
+        .timeline-item-header {
+            transition: background-color 0.3s;
+            cursor: pointer;
+        }
+
+        .timeline-item-header:hover {
+            background-color: #E9E4D9;
+        }
+
+        .timeline-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out, padding 0.5s ease-out;
+            padding: 0 1.5rem;
+        }
+
+        .timeline-content.open {
+            max-height: 1000px;
+            /* Adjust as needed */
+            padding: 1.5rem 1.5rem;
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 400px;
+            max-height: 50vh;
+        }
+
+        .accordion-header {
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .accordion-header:hover {
+            background-color: #E9E4D9;
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-in-out;
+        }
+
+        .accordion-content.open {
+            max-height: 1000px;
+            /* Adjust as needed */
+        }
+
+        .filter-btn {
+            transition: all 0.2s;
+        }
+
+        .filter-btn.active {
+            background-color: #6A7B53;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+    </style>
+</head>
+
+<body class="bg-autumn-light text-autumn-dark">
+
+    <header class="text-center py-12 px-4">
+        <h1 class="text-4xl md:text-5xl font-bold text-autumn-dark tracking-tight">金秋弧线</h1>
+        <p class="mt-4 text-lg md:text-xl max-w-3xl mx-auto text-gray-600">穿越中国东北边疆的13日自驾史诗：交互式旅行规划</p>
+    </header>
+
+    <nav class="sticky top-0 z-50 bg-autumn-paper/80 backdrop-blur-sm shadow-md">
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="flex justify-center items-center space-x-2 sm:space-x-4 py-2">
+                <a href="#overview" class="nav-link">路线总览</a>
+                <a href="#prep" class="nav-link">行前准备</a>
+                <a href="#food" class="nav-link">风味美食</a>
+                <a href="#lodging" class="nav-link">推荐住宿</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+        <section id="overview" class="mb-20 scroll-mt-24">
+            <h2 class="text-3xl font-bold text-center mb-4 text-autumn-dark">路线总览</h2>
+            <p class="text-center max-w-3xl mx-auto mb-12 text-gray-600">
+                本应用的核心是“金秋弧线”路线。我们摒弃了机械的地理连线，构建了一条兼具逻辑性与视觉冲击力的圆弧形路线。您可以通过下方的每日驾驶强度图表和可交互的行程时间线，全面掌握每日的节奏、驾驶强度和核心体验。
+            </p>
+
+            <div class="bg-autumn-paper p-6 rounded-xl shadow-lg mb-12">
+                <h3 class="text-2xl font-semibold text-center mb-4 text-autumn-dark">每日驾驶强度分析</h3>
+                <div class="chart-container">
+                    <canvas id="drivingChart"></canvas>
+                </div>
+            </div>
+
+            <div class="space-y-4">
+                <h3 class="text-2xl font-semibold text-center mb-6 text-autumn-dark">交互式每日行程</h3>
+                <div id="timeline" class="space-y-2">
+                </div>
+            </div>
+        </section>
+
+        <section id="prep" class="mb-20 scroll-mt-24">
+            <h2 class="text-3xl font-bold text-center mb-4 text-autumn-dark">行前准备</h2>
+            <p class="text-center max-w-3xl mx-auto mb-12 text-gray-600">
+                一次成功的长途自驾，周密的行前准备是保障。这里汇总了车辆选择、导航网络、着装建议和至关重要的边防手续等核心后勤要素，点击各项以展开查看详细建议。
+            </p>
+            <div id="prepAccordion" class="space-y-3">
+            </div>
+        </section>
+
+        <section id="food" class="mb-20 scroll-mt-24">
+            <h2 class="text-3xl font-bold text-center mb-4 text-autumn-dark">风味美食巡礼</h2>
+            <p class="text-center max-w-3xl mx-auto mb-12 text-gray-600">
+                本次旅程不仅是视觉的盛宴，更是一场味觉的探索。沿途的美食随着地域文化的变化而呈现出丰富的层次，从关东的醇厚到草原的馈赠，不一而足。
+            </p>
+            <div id="food-cards" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            </div>
+        </section>
+
+        <section id="lodging" class="scroll-mt-24">
+            <h2 class="text-3xl font-bold text-center mb-4 text-autumn-dark">推荐住宿</h2>
+            <p class="text-center max-w-3xl mx-auto mb-8 text-gray-600">
+                合理的住宿选择能极大提升旅行体验。我们根据路线特点，提供一份兼顾舒适性与地方特色的精选住宿参考。您可以通过下方的按钮筛选不同地点的住宿。
+            </p>
+            <div id="lodging-filters" class="flex flex-wrap justify-center gap-2 mb-8">
+            </div>
+            <div id="lodging-cards" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="text-center py-8 mt-12 border-t border-gray-200">
+        <p class="text-gray-500">&copy; 2025 金秋弧线交互式旅行规划. 版权所有.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const itineraryData = [
+                { day: 1, route: '长春 → 二道白河镇', distance: 450, time: 5, experience: '抵达与适应；长白山麓风光', details: '在吉林省会长春完成租车手续后，正式开启北上征程。沿G12珲乌高速等路网驱车前往长白山北坡的山麓小镇——二道白河。抵达后入住酒店，适应环境。选择靠近北坡游客集散中心的酒店会为次日行程提供便利。' },
+                { day: 2, route: '长白山北坡全天游览', distance: 0, time: 0, experience: '登顶天池，探秘火山瀑布与绿渊潭', details: '全天时间用于探索长白山北坡景区的壮丽风光。核心目标是亲睹天池的真容，此外，长白瀑布的雄浑、小天池的静谧以及绿渊潭的深邃，都是不容错过的景致。官方门票125元，环保车85元，倒站车80元。建议尽早出发。' },
+                { day: 3, route: '二道白河镇 → 延吉市', distance: 170, time: 2.5, experience: '朝鲜族文化与美食体验', details: '一段轻松的旅程，抵达延边朝鲜族自治州的首府——延吉市。此行的目的是一次文化与味蕾的转换。可以深入体验这座城市的独特魅力：在延边大学周边感受青春活力，打卡网红的“弹幕墙”，品尝地道的朝鲜族炭火烤肉、冷面。' },
+                { day: 4, route: '延吉市 → 哈尔滨市', distance: 550, time: 6, experience: '长途转场，可选经停镜泊湖', details: '战略性的一天，主要任务是完成长距离的转场，为向西进入内蒙古草原做准备。为缓解驾驶疲劳，可选择在途中的镜泊湖风景区稍作停留，欣赏火山堰塞湖的风光。' },
+                { day: 5, route: '哈尔滨市区探索', distance: 0, time: 0, experience: '“东方莫斯科”风情，中央大街与索菲亚教堂', details: '在“冰城”哈尔滨休整并探索。可以安排一次徒步游览，漫步于充满俄罗斯风情的中央大街，欣赏两侧的巴洛克、拜占庭式建筑，并参观标志性的圣索菲亚大教堂。这一天也是补充物资、检查车辆的绝佳时机。' },
+                { day: 6, route: '哈尔滨 → 齐齐哈尔', distance: 280, time: 3.5, experience: '湿地鹤乡，观丹顶鹤放飞', details: '为避免从哈尔滨到海拉尔的超长途奔袭，本日抵达齐齐哈尔市附近的扎龙国家级自然保护区。这里是世界最大的芦苇湿地，也是著名的“丹顶鹤故乡”。下午的核心活动是观看定时进行的丹顶鹤野化放飞。' },
+                { day: 7, route: '齐齐哈尔 → 海拉尔区', distance: 470, time: 5.5, experience: '景观过渡，进入呼伦贝尔大草原', details: '地貌景观发生根本性变化的一天。窗外的景象将从黑龙江的湿地平原，逐渐演变为内蒙古呼伦贝尔一望无际、起伏舒缓的金色草原。抵达呼伦贝尔的首府海拉尔区后，可将其作为进入草原腹地前最后的综合补给站。' },
+                { day: 8, route: '海拉尔 → 恩和', distance: 200, time: 4, experience: '莫日格勒河，额尔古纳湿地，俄罗斯民族乡', details: '沿途精华荟萃。先驱车至莫日格勒河观景台，欣赏“天下第一曲水”。随后游览“亚洲第一湿地”额尔古纳湿地。下午抵达恩和俄罗斯民族乡，入住当地特色的木刻楞家庭旅馆，体验别样的民俗风情。' },
+                { day: 9, route: '恩和 → 黑山头', distance: 160, time: 3, experience: '中俄边防公路，草原骑马，湿地日落', details: '体验传说中的中俄边境“卡线”公路。这条路紧贴国境线，风光无限。核心活动集中在黑山头镇：下午体验草原骑马；傍晚登上日落山，欣赏额尔古纳河湿地壮美的日落。' },
+                { day: 10, route: '黑山头 → 满洲里', distance: 200, time: 3, experience: '边境公路风光，套娃广场，国门景区', details: '抵达中国最大的陆路口岸城市——满洲里。下午可以游览充满奇趣的套娃广场和庄严的国门景区。当夜幕降临，整座城市的建筑被璀璨的灯光点亮，宛如童话世界。' },
+                { day: 11, route: '满洲里 → 阿尔山市', distance: 450, time: 5.5, experience: 'S203景观大道，草原向森林过渡', details: '选择风景优美的S203省道，向东南方向前往阿尔山。这条公路本身就是一道风景线，沿途景观从纯粹的草原，逐渐过渡到草原、湿地与森林交错的地带，最终进入大兴安岭的林区。' },
+                { day: 12, route: '阿尔山国家森林公园全天游览', distance: 0, time: 0, experience: '火山地质奇观，驼峰岭天池，石塘林', details: '全天沉浸在阿尔山国家森林公园的火山地质奇观之中。核心必游景点包括：驼峰岭天池、石塘林和杜鹃湖。公园旺季门票180元，观光车105元，门票两日内有效。' },
+                { day: 13, route: '行程结束，前往机场', distance: 250, time: 3, experience: '整理行装，驱车至乌兰浩特机场返程', details: '上午可再次进入公园游览，或在市区购物。下午驱车前往乌兰浩特机场（HLH）。选择从乌兰浩特返程，航班选择更多。在机场办理还车手续后，搭乘航班离开。' },
+            ];
+
+            const prepData = [
+                { title: '良驹之选：车辆选择与租赁', content: '对于这条路线，选择一辆SUV是保障安全与舒适的必要条件。G331国道部分路段存在“冻土路面”，路面波浪状起伏，对车辆底盘和悬挂要求高。建议在长春选择神州租车或一嗨租车等大型服务商，提前预订并确认允许跨省行驶。', icon: '🚗' },
+                { title: '数字罗盘：导航与网络连接', content: '首选高德地图或百度地图。关键挑战：边境公路和林区信号可能中断。强制性安全规程：出发前必须下载覆盖吉林、黑龙江、内蒙古的离线地图数据包。低温会加速电量消耗，务必携带大容量充电宝。', icon: '🛰️' },
+                { title: '秋色调色盘：多层穿衣法则', content: '9-10月昼夜温差巨大。推荐“洋葱式”多层穿衣法。清单：速干保暖内衣（基础层）、抓绒衣/羊毛衫（中间层）、防水防风冲锋衣（外层）、轻便羽绒服（保暖层）。配件：帽子、手套、围巾、太阳镜。鞋履：防水防滑高帮徒步鞋。', icon: '🧥' },
+                { title: '边境规程：至关重要的“边防证”', content: '<span class="text-autumn-accent font-bold">[极其重要]</span> G331国道紧贴中俄边境，进入这些区域通常需要办理《边境管理区通行证》。若无证进入极可能被劝返。强烈建议：出发前主动致电将要经过的边境区域公安局（如额尔古纳市、满洲里市公安局），核实当前对外地户籍游客的边防证政策、办理地点和所需材料。', icon: '🛂' }
+            ];
+
+            const foodData = [
+                { region: '吉林：关东的醇厚', dishes: '锅包肉、铁锅炖（炖鱼、炖大鹅）、各类满族菜肴', icon: '🍲' },
+                { region: '延边：朝鲜族的鲜辣', dishes: '朝鲜冷面、炭火烤肉、各式泡菜（Kimchi）', icon: '🌶️' },
+                { region: '哈尔滨：俄罗斯的余韵', dishes: '俄式红肠、大列巴面包、改良版罗宋汤（苏波汤）', icon: '🍞' },
+                { region: '呼伦贝尔：草原的馈赠', dishes: '手把肉、烤羊腿、咸味奶茶、自制酸奶', icon: '🍖' }
+            ];
+
+            const lodgingData = [
+                { location: '二道白河镇', name: '长白山二道白河美居酒店', style: '国际连锁', audience: '追求可靠服务与舒适度的旅行者', category: '二道白河镇' },
+                { location: '二道白河镇', name: '霁月山居酒店', style: '本地精品', audience: '喜欢设计感和便利位置的旅行者', category: '二道白河镇' },
+                { location: '恩和乡', name: '额尔古纳安东之家宾馆', style: '俄式木刻楞', audience: '寻求深度文化沉浸体验的旅行者', category: '恩和乡' },
+                { location: '黑山头镇', name: '黑山头明枫小筑酒店', style: '草原精品民宿', audience: '希望观赏湿地日落，体验草原氛围的旅行者', category: '黑山头镇' },
+                { location: '黑山头镇', name: '蒙古包营地', style: '蒙古包体验', audience: '渴望体验传统蒙古族居住方式的旅行者', category: '黑山头镇' },
+                { location: '满洲里市', name: '满洲里香格里拉大酒店', style: '国际五星', audience: '追求顶级舒适与服务的旅行者', category: '满洲里市' },
+                { location: '阿尔山/伊尔施镇', name: '阿尔山涧山喜山精品民宿', style: '设计型民宿', audience: '看重住宿品质与安静环境的旅行者', category: '阿尔山' },
+                { location: '阿尔山/伊尔施镇', name: '杜鹃山庄', style: '传统舒适型', audience: '寻求性价比和便利性的家庭或团队', category: '阿尔山' }
+            ];
+
+
+            const renderDrivingChart = () => {
+                const ctx = document.getElementById('drivingChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: itineraryData.map(d => `第${d.day}天`),
+                        datasets: [
+                            {
+                                label: '驾驶距离 (公里)',
+                                data: itineraryData.map(d => d.distance),
+                                backgroundColor: '#6A7B53',
+                                yAxisID: 'y',
+                            },
+                            {
+                                label: '驾驶时间 (小时)',
+                                data: itineraryData.map(d => d.time),
+                                backgroundColor: '#D4A276',
+                                yAxisID: 'y1',
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        interaction: {
+                            mode: 'index',
+                            intersect: false,
+                        },
+                        scales: {
+                            x: {
+                                grid: {
+                                    display: false
+                                }
+                            },
+                            y: {
+                                type: 'linear',
+                                display: true,
+                                position: 'left',
+                                title: {
+                                    display: true,
+                                    text: '距离 (公里)'
+                                }
+                            },
+                            y1: {
+                                type: 'linear',
+                                display: true,
+                                position: 'right',
+                                title: {
+                                    display: true,
+                                    text: '时间 (小时)'
+                                },
+                                grid: {
+                                    drawOnChartArea: false,
+                                }
+                            }
+                        },
+                        plugins: {
+                            tooltip: {
+                                callbacks: {
+                                    label: function (context) {
+                                        let label = context.dataset.label || '';
+                                        if (label) {
+                                            label += ': ';
+                                        }
+                                        if (context.parsed.y !== null) {
+                                            label += context.parsed.y + (context.dataset.label.includes('公里') ? ' 公里' : ' 小时');
+                                        }
+                                        return label;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            };
+
+            const renderTimeline = () => {
+                const timelineContainer = document.getElementById('timeline');
+                itineraryData.forEach(item => {
+                    const div = document.createElement('div');
+                    div.className = 'bg-autumn-paper rounded-lg shadow-md overflow-hidden';
+                    div.innerHTML = `
+                        <div class="timeline-item-header flex items-center justify-between p-4">
+                            <div class="flex items-center space-x-4">
+                                <div class="bg-autumn-gold text-white w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg">${item.day}</div>
+                                <div>
+                                    <p class="font-semibold text-lg text-autumn-dark">${item.route}</p>
+                                    <p class="text-sm text-gray-500">${item.experience}</p>
+                                </div>
+                            </div>
+                            <div class="text-gray-400 transform transition-transform">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                            </div>
+                        </div>
+                        <div class="timeline-content border-t border-gray-200">
+                            <p class="text-gray-700">${item.details}</p>
+                        </div>
+                    `;
+                    timelineContainer.appendChild(div);
+                });
+
+                timelineContainer.addEventListener('click', (e) => {
+                    const header = e.target.closest('.timeline-item-header');
+                    if (header) {
+                        const content = header.nextElementSibling;
+                        const icon = header.querySelector('svg');
+                        content.classList.toggle('open');
+                        icon.parentElement.classList.toggle('rotate-180');
+                    }
+                });
+            };
+
+            const renderPrepAccordion = () => {
+                const accordionContainer = document.getElementById('prepAccordion');
+                prepData.forEach(item => {
+                    const div = document.createElement('div');
+                    div.className = 'bg-autumn-paper rounded-lg shadow-md';
+                    div.innerHTML = `
+                        <div class="accordion-header flex justify-between items-center p-5">
+                            <h3 class="text-xl font-semibold flex items-center gap-3"><span class="text-2xl">${item.icon}</span> ${item.title}</h3>
+                            <div class="text-gray-400 transform transition-transform">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                            </div>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="p-5 pt-0">
+                                <p class="text-gray-700">${item.content}</p>
+                            </div>
+                        </div>
+                    `;
+                    accordionContainer.appendChild(div);
+                });
+
+                accordionContainer.addEventListener('click', (e) => {
+                    const header = e.target.closest('.accordion-header');
+                    if (header) {
+                        const content = header.nextElementSibling;
+                        const icon = header.querySelector('svg');
+                        content.classList.toggle('open');
+                        icon.parentElement.classList.toggle('rotate-180');
+                    }
+                });
+            };
+
+            const renderFoodCards = () => {
+                const container = document.getElementById('food-cards');
+                foodData.forEach(item => {
+                    const card = document.createElement('div');
+                    card.className = 'bg-autumn-paper p-6 rounded-xl shadow-lg flex items-start space-x-4';
+                    card.innerHTML = `
+                        <div class="text-4xl">${item.icon}</div>
+                        <div>
+                            <h3 class="text-xl font-bold text-autumn-dark">${item.region}</h3>
+                            <p class="mt-2 text-gray-600">${item.dishes}</p>
+                        </div>
+                    `;
+                    container.appendChild(card);
+                });
+            };
+
+            const renderLodgingCards = (filter = 'All') => {
+                const container = document.getElementById('lodging-cards');
+                container.innerHTML = '';
+                const filteredData = filter === 'All' ? lodgingData : lodgingData.filter(item => item.category === filter);
+
+                filteredData.forEach(item => {
+                    const card = document.createElement('div');
+                    card.className = 'bg-autumn-paper p-6 rounded-xl shadow-lg flex flex-col justify-between';
+                    card.innerHTML = `
+                        <div>
+                            <p class="text-sm text-autumn-accent font-semibold">${item.location}</p>
+                            <h3 class="text-xl font-bold text-autumn-dark mt-1">${item.name}</h3>
+                            <p class="mt-2 text-gray-600">${item.audience}</p>
+                        </div>
+                        <div class="mt-4">
+                            <span class="inline-block bg-autumn-gold/20 text-autumn-dark text-sm font-medium px-3 py-1 rounded-full">${item.style}</span>
+                        </div>
+                    `;
+                    container.appendChild(card);
+                });
+            };
+
+            const renderLodgingFilters = () => {
+                const container = document.getElementById('lodging-filters');
+                const locations = ['All', ...new Set(lodgingData.map(item => item.category))];
+                locations.forEach(location => {
+                    const button = document.createElement('button');
+                    button.className = 'filter-btn px-4 py-2 bg-white rounded-full shadow text-gray-700 font-medium';
+                    if (location === 'All') {
+                        button.classList.add('active');
+                    }
+                    button.textContent = location === 'All' ? '全部' : location;
+                    button.dataset.filter = location;
+                    container.appendChild(button);
+                });
+
+                container.addEventListener('click', e => {
+                    if (e.target.tagName === 'BUTTON') {
+                        container.querySelector('.active').classList.remove('active');
+                        e.target.classList.add('active');
+                        renderLodgingCards(e.target.dataset.filter);
+                    }
+                });
+            };
+
+            const setupSmoothScrolling = () => {
+                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                    anchor.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        document.querySelector(this.getAttribute('href')).scrollIntoView({
+                            behavior: 'smooth'
+                        });
+
+                        document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+                        this.classList.add('active');
+                    });
+                });
+            };
+
+            renderDrivingChart();
+            renderTimeline();
+            renderPrepAccordion();
+            renderFoodCards();
+            renderLodgingFilters();
+            renderLodgingCards();
+            setupSmoothScrolling();
+
+            // Set initial active nav link
+            const overviewLink = document.querySelector('a[href="#overview"]');
+            if (overviewLink) overviewLink.classList.add('active');
+        });
+    </script>
+</body>
+
+</html>
