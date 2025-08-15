@@ -1,0 +1,88 @@
+[
+    {
+        "id": "changbai",
+        "name": "长白山",
+        "country": "中国",
+        "description": "长白山是东北地区最著名的自然景观，以天池、瀑布、温泉和秋季色彩闻名。",
+        "cover": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=200&fit=crop",
+        "tags": [
+            "天池",
+            "瀑布",
+            "温泉",
+            "秋季"
+        ],
+        "coordinates": {
+            "lat": 41.9942,
+            "lng": 128.0615
+        }
+    },
+    {
+        "id": "hulunbeier",
+        "name": "呼伦贝尔",
+        "country": "中国",
+        "description": "呼伦贝尔草原是中国最大的草原，秋季色彩丰富，是摄影爱好者的天堂。",
+        "cover": "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=200&fit=crop",
+        "tags": [
+            "草原",
+            "秋季",
+            "摄影",
+            "蒙古包"
+        ],
+        "coordinates": {
+            "lat": 49.2153,
+            "lng": 119.7589
+        }
+    },
+    {
+        "id": "daxinganling",
+        "name": "大兴安岭",
+        "country": "中国",
+        "description": "大兴安岭是中国最大的原始森林，秋季白桦林色彩绚丽。",
+        "cover": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=200&fit=crop",
+        "tags": [
+            "森林",
+            "白桦林",
+            "秋季",
+            "原始"
+        ],
+        "coordinates": {
+            "lat": 51.6720,
+            "lng": 124.1960
+        }
+    },
+    {
+        "id": "aershan",
+        "name": "阿尔山",
+        "country": "中国",
+        "description": "阿尔山国家森林公园以火山地貌和秋季色彩著称。",
+        "cover": "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=200&fit=crop",
+        "tags": [
+            "火山",
+            "天池",
+            "秋季",
+            "森林公园"
+        ],
+        "coordinates": {
+            "lat": 47.1770,
+            "lng": 119.9430
+        }
+    },
+    {
+        "id": "mohe",
+        "name": "漠河",
+        "country": "中国",
+        "description": "漠河是中国最北端的城市，以极地风光和北极村闻名。",
+        "cover": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=200&fit=crop",
+        "tags": [
+            "极地",
+            "北极村",
+            "冬季",
+            "最北端"
+        ],
+        "coordinates": {
+            "lat": 52.9721,
+            "lng": 122.5370
+        }
+    }
+]
+

@@ -1,0 +1,46 @@
+[
+    {
+        "id": "northeast-hulunbeier",
+        "title": "东北+呼伦贝尔精华环线",
+        "destination": "东北三省+内蒙古",
+        "bestSeason": "9-10月",
+        "days": 13,
+        "budget": {
+            "min": 8000,
+            "max": 15000,
+            "currency": "CNY"
+        },
+        "tags": [
+            "长白山",
+            "大兴安岭",
+            "呼伦贝尔",
+            "阿尔山",
+            "自驾"
+        ],
+        "cover": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=200&fit=crop",
+        "excerpt": "穿越长白山、大兴安岭、呼伦贝尔草原的史诗级自驾之旅，总里程5000公里，涵盖7大核心区域。秋季最佳，风景如画。",
+        "createdAt": "2024-08-15"
+    },
+    {
+        "id": "dongbei-hulunbeier-loop",
+        "title": "东三省环线+呼伦贝尔环线",
+        "destination": "东三省+呼伦贝尔",
+        "bestSeason": "9-10月",
+        "days": 14,
+        "budget": {
+            "min": 7000,
+            "max": 12000,
+            "currency": "CNY"
+        },
+        "tags": [
+            "长白山",
+            "呼伦贝尔",
+            "漠河",
+            "阿尔山",
+            "双环线"
+        ],
+        "cover": "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=200&fit=crop",
+        "excerpt": "14天双环线自驾之旅，环线1：东三省边境风光；环线2：呼伦贝尔草原风情。秋季最佳，风景如画。",
+        "createdAt": "2024-08-15"
+    }
+]
