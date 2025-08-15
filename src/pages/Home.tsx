@@ -348,7 +348,7 @@ const Home: React.FC = () => {
                             精选行程推荐
                         </h2>
                         <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-                            精选东北地区最精华的自驾路线，带您领略最美的秋季风光
+                            精选全球精彩旅行路线，带您探索世界的美好
                         </p>
                     </motion.div>
 
