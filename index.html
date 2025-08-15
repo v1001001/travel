@@ -3,8 +3,13 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>旅行攻略集合 - 探索美丽中国</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <title>Timeless Trips - 无尽之旅 | 东北旅行攻略</title>
+    <link rel="icon" type="image/png" href="jimeng-2.png">
+    <link rel="apple-touch-icon" href="jimeng-2.png">
     <style>
         * {
             margin: 0;
@@ -57,28 +62,74 @@
             text-align: center;
             color: #594A3C;
             margin-bottom: 50px;
-            padding: 40px 20px;
+            padding: 60px 30px;
             background: linear-gradient(135deg, #F3EFE7 0%, #E9E4D9 100%);
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #D4A276, #BC5A45, #6A7B53);
+            border-radius: 20px 20px 0 0;
+        }
+
+        .logo-container {
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+
+        .logo-container:hover {
+            opacity: 1;
+        }
+
+        .logo {
+            max-width: 50px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .header-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
 
         .header h1 {
-            font-size: 3rem;
-            margin-bottom: 15px;
+            font-size: 2.8rem;
+            margin-bottom: 20px;
             color: #594A3C;
             font-weight: 700;
             letter-spacing: -0.02em;
+            line-height: 1.2;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .header p {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: #6A7B53;
-            margin-bottom: 30px;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.6;
+            margin-bottom: 0;
+            line-height: 1.7;
+            opacity: 0.9;
+            font-weight: 400;
         }
 
         .travel-grid {
@@ -229,8 +280,26 @@
                 padding: 15px;
             }
 
+            .header {
+                padding: 50px 20px;
+            }
+
+            .logo-container {
+                top: 15px;
+                left: 20px;
+            }
+
+            .logo {
+                max-width: 40px;
+            }
+
             .header h1 {
-                font-size: 2rem;
+                font-size: 2.2rem;
+                margin-bottom: 15px;
+            }
+
+            .header p {
+                font-size: 1rem;
             }
 
             .travel-grid {
@@ -253,8 +322,13 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>金秋弧线：东北旅行攻略集合</h1>
-            <p>精选东北地区最精华的自驾路线，从长白山到呼伦贝尔，从大兴安岭到阿尔山，带您领略东北最美的秋季风光</p>
+            <div class="logo-container">
+                <img src="jimeng-2.png" alt="Timeless Trips - 无尽之旅" class="logo">
+            </div>
+            <div class="header-content">
+                <h1>金秋弧线：东北旅行攻略集合</h1>
+                <p>精选东北地区最精华的自驾路线，从长白山到呼伦贝尔，从大兴安岭到阿尔山，带您领略东北最美的秋季风光</p>
+            </div>
         </div>
 
         <div class="stats-section">
