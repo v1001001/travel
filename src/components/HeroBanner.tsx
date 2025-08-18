@@ -4,7 +4,7 @@ import { Search, MapPin, Globe, Compass } from 'lucide-react';
 
 const HeroBanner: React.FC = () => {
     return (
-        <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-amber-50 via-orange-50 to-red-50">
+        <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
             {/* 背景装饰 - 极简几何元素 */}
             <div className="absolute inset-0 opacity-5">
                 <div className="absolute top-20 left-20 w-64 h-64 bg-amber-300 rounded-full blur-3xl"></div>
@@ -36,7 +36,7 @@ const HeroBanner: React.FC = () => {
                     transition={{ duration: 1 }}
                 >
                     {/* Logo */}
-                    <div className="flex justify-center mb-8">
+                    <div className="flex justify-center mb-12">
                         <div className="relative">
                             <img
                                 src="/images/jimeng-2.png"
@@ -54,10 +54,10 @@ const HeroBanner: React.FC = () => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 1, delay: 0.2 }}
-                        className="text-5xl md:text-7xl lg:text-8xl font-bold text-gray-800 mb-6 leading-tight"
+                        className="text-5xl md:text-7xl lg:text-8xl font-bold text-gray-800 mb-8 leading-tight"
                     >
                         <span className="block">环形世界</span>
-                        <span className="block text-4xl md:text-5xl lg:text-6xl text-amber-600 mt-2">
+                        <span className="block text-4xl md:text-5xl lg:text-6xl text-amber-600 mt-4">
                             Timeless Trips
                         </span>
                     </motion.h1>
@@ -67,7 +67,7 @@ const HeroBanner: React.FC = () => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 1, delay: 0.4 }}
-                        className="text-xl md:text-2xl text-gray-600 mb-12 max-w-4xl mx-auto leading-relaxed"
+                        className="text-xl md:text-2xl text-gray-600 mb-16 max-w-4xl mx-auto leading-relaxed"
                     >
                         重返20岁，致敬青春。在地图上记录每一次旅程，让世界成为你的故事。
                     </motion.p>
@@ -77,7 +77,7 @@ const HeroBanner: React.FC = () => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 1, delay: 0.6 }}
-                        className="max-w-2xl mx-auto mb-12"
+                        className="max-w-2xl mx-auto mb-16"
                     >
                         <div className="relative">
                             <Search className="absolute left-6 top-1/2 transform -translate-y-1/2 text-gray-400 w-6 h-6" />
@@ -97,10 +97,10 @@ const HeroBanner: React.FC = () => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 1, delay: 0.8 }}
-                        className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto"
+                        className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-5xl mx-auto"
                     >
                         <div className="group cursor-pointer">
-                            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 hover:bg-white hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 hover:bg-white hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
                                 <div className="w-16 h-16 bg-amber-100 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-amber-200 transition-colors">
                                     <MapPin className="w-8 h-8 text-amber-600" />
                                 </div>
@@ -110,7 +110,7 @@ const HeroBanner: React.FC = () => {
                         </div>
 
                         <div className="group cursor-pointer">
-                            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 hover:bg-white hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 hover:bg-white hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
                                 <div className="w-16 h-16 bg-orange-100 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-orange-200 transition-colors">
                                     <Compass className="w-8 h-8 text-orange-600" />
                                 </div>
@@ -120,7 +120,7 @@ const HeroBanner: React.FC = () => {
                         </div>
 
                         <div className="group cursor-pointer">
-                            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 hover:bg-white hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 hover:bg-white hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
                                 <div className="w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-red-200 transition-colors">
                                     <Globe className="w-8 h-8 text-red-600" />
                                 </div>
@@ -130,7 +130,7 @@ const HeroBanner: React.FC = () => {
                         </div>
 
                         <div className="group cursor-pointer">
-                            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 hover:bg-white hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 hover:bg-white hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
                                 <div className="w-16 h-16 bg-amber-100 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-amber-200 transition-colors">
                                     <span className="text-2xl">📖</span>
                                 </div>
