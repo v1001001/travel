@@ -7,7 +7,7 @@ const Home: React.FC = () => {
     return (
         <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-red-50">
             <HeroBanner />
-            
+
             {/* 精选攻略区域 */}
             <section className="py-20 px-4 sm:px-6 lg:px-8">
                 <div className="max-w-7xl mx-auto">
@@ -25,7 +25,7 @@ const Home: React.FC = () => {
                             发现最精彩的旅行路线，让每一次旅程都成为难忘的回忆
                         </p>
                     </motion.div>
-                    
+
                     <FeaturedRoutes />
                 </div>
             </section>

@@ -82,7 +82,7 @@ export interface BudgetOption {
     amount: number;
     description: string;
     items: string[];
-    suitableFor: string;
+    suitableFor?: string;
 }
 
 // 摄影指导
