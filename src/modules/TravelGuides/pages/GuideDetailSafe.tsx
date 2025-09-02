@@ -757,7 +757,7 @@ const GuideDetailSafe: React.FC = () => {
                                 <Phone className="w-5 h-5" />
                                 紧急联系方式
                             </h3>
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
                                 <div className="bg-white p-4 rounded-lg">
                                     <div className="font-semibold text-blue-700 mb-2">🚨 报警电话</div>
                                     <div className="text-gray-700">110</div>
@@ -770,99 +770,83 @@ const GuideDetailSafe: React.FC = () => {
                                     <div className="font-semibold text-blue-700 mb-2">🚒 火警电话</div>
                                     <div className="text-gray-700">119</div>
                                 </div>
+                                <div className="bg-white p-4 rounded-lg">
+                                    <div className="font-semibold text-blue-700 mb-2">🧳 旅游投诉</div>
+                                    <div className="text-gray-700">12301</div>
+                                </div>
+                            </div>
+                            
+                            {/* 呼伦贝尔地区重要联系方式 */}
+                            <div className="mt-6 pt-6 border-t border-blue-200">
+                                <h4 className="font-semibold text-blue-800 mb-4">📍 呼伦贝尔地区重要联系方式</h4>
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                                    <div>
+                                        <div className="font-semibold text-blue-700 mb-1">海拉尔区人民医院:</div>
+                                        <div className="text-blue-600">0470-8223597</div>
+                                    </div>
+                                    <div>
+                                        <div className="font-semibold text-blue-700 mb-1">满洲里市人民医院:</div>
+                                        <div className="text-blue-600">0470-6223295</div>
+                                    </div>
+                                    <div>
+                                        <div className="font-semibold text-blue-700 mb-1">呼伦贝尔旅游局:</div>
+                                        <div className="text-blue-600">0470-8217020</div>
+                                    </div>
+                                </div>
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm mt-4">
+                                    <div>
+                                        <div className="font-semibold text-blue-700 mb-1">道路救援:</div>
+                                        <div className="text-red-600">12122</div>
+                                    </div>
+                                    <div>
+                                        <div className="font-semibold text-blue-700 mb-1">天气预报:</div>
+                                        <div className="text-green-600">12121</div>
+                                    </div>
+                                    <div>
+                                        <div className="font-semibold text-blue-700 mb-1">旅行社24h:</div>
+                                        <div className="text-orange-600">400-000-0470</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </motion.section>
             </div>
 
-            {/* 精美底部区域 - 完美旅程展示 */}
-            <motion.section
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                viewport={{ once: true }}
-                className="bg-gradient-to-br from-amber-50 via-yellow-50 to-orange-50 py-16"
-            >
+            {/* 简洁底部区域 */}
+            <section className="bg-gradient-to-r from-amber-50 to-orange-50 py-12">
                 <div className="max-w-7xl mx-auto px-6 text-center">
-                    {/* 装饰图标 */}
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.5 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.6, delay: 0.2 }}
-                        viewport={{ once: true }}
-                        className="text-6xl mb-8"
-                    >
-                        🎒✨
-                    </motion.div>
-
-                    {/* 主标题 */}
-                    <motion.h2
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.3 }}
-                        viewport={{ once: true }}
-                        className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-6"
-                    >
+                    <div className="text-4xl mb-4">🎒✨</div>
+                    
+                    <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4">
                         呼伦贝尔环线7日游 - 完美旅程等你开启
-                    </motion.h2>
-
-                    {/* 描述文字 */}
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.4 }}
-                        viewport={{ once: true }}
-                        className="text-lg md:text-xl text-gray-600 max-w-4xl mx-auto mb-12 leading-relaxed"
-                    >
+                    </h2>
+                    
+                    <p className="text-gray-600 max-w-3xl mx-auto mb-8 leading-relaxed">
                         从海拉尔的都市风情到莫日格勒河的九曲十八弯，从额尔古纳湿地的生态天堂到满洲里的异国风情，
                         这条精心规划的7日环线将带你领略呼伦贝尔草原最精华的美景。
-                    </motion.p>
+                    </p>
 
-                    {/* 四个特色服务点 */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.5 }}
-                        viewport={{ once: true }}
-                        className="grid grid-cols-2 md:grid-cols-4 gap-6"
-                    >
-                        {[
-                            {
-                                icon: "🌤️",
-                                color: "from-blue-500 to-cyan-500",
-                                title: "实时天气查询"
-                            },
-                            {
-                                icon: "🧭",
-                                color: "from-green-500 to-emerald-500",
-                                title: "智能导航助手"
-                            },
-                            {
-                                icon: "📋",
-                                color: "from-purple-500 to-pink-500",
-                                title: "详细装备清单"
-                            },
-                            {
-                                icon: "🆘",
-                                color: "from-red-500 to-orange-500",
-                                title: "24小时紧急联系"
-                            }
-                        ].map((service, index) => (
-                            <motion.div
-                                key={index}
-                                whileHover={{ scale: 1.05, y: -5 }}
-                                className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
-                            >
-                                <div className={`w-12 h-12 rounded-full bg-gradient-to-r ${service.color} flex items-center justify-center mx-auto mb-4 text-white text-xl shadow-lg`}>
-                                    {service.icon}
-                                </div>
-                                <div className="text-sm font-medium text-gray-700">{service.title}</div>
-                            </motion.div>
-                        ))}
-                    </motion.div>
+                    <div className="flex flex-wrap justify-center gap-4 text-sm">
+                        <div className="flex items-center gap-2 text-blue-600">
+                            <span>🌤️</span>
+                            <span>实时天气查询</span>
+                        </div>
+                        <div className="flex items-center gap-2 text-green-600">
+                            <span>🧭</span>
+                            <span>智能导航助手</span>
+                        </div>
+                        <div className="flex items-center gap-2 text-purple-600">
+                            <span>📋</span>
+                            <span>详细装备清单</span>
+                        </div>
+                        <div className="flex items-center gap-2 text-red-600">
+                            <span>🆘</span>
+                            <span>24小时紧急联系</span>
+                        </div>
+                    </div>
                 </div>
-            </motion.section>
+            </section>
 
             {/* 回到顶部按钮 */}
             {showScrollTop && (
