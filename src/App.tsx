@@ -7,7 +7,7 @@ import TravelMap from './modules/TravelMap/components/TravelMap';
 import Timeline from './modules/Timeline/components/Timeline';
 import PhotoGallery from './modules/PhotoMemories/components/PhotoGallery';
 import GuidesList from './modules/TravelGuides/pages/GuidesList';
-import GuideDetail from './modules/TravelGuides/pages/GuideDetail';
+import GuideDetailSafe from './modules/TravelGuides/pages/GuideDetailSafe';
 
 function App() {
     return (
@@ -32,7 +32,7 @@ function App() {
 
                         {/* 旅行攻略 */}
                         <Route path="/guides" element={<GuidesList />} />
-                        <Route path="/guides/:id" element={<GuideDetail />} />
+                        <Route path="/guides/:id" element={<GuideDetailSafe />} />
 
                         {/* 目的地探索 */}
                         <Route path="/destinations" element={

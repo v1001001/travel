@@ -122,8 +122,8 @@ const GuideDetailSimple: React.FC = () => {
                                 key={item.id}
                                 onClick={() => scrollToSection(item.id)}
                                 className={`flex items-center gap-2 px-4 py-2 rounded-lg whitespace-nowrap transition-all ${activeSection === item.id
-                                        ? 'bg-amber-500 text-white'
-                                        : 'text-gray-600 hover:bg-amber-100'
+                                    ? 'bg-amber-500 text-white'
+                                    : 'text-gray-600 hover:bg-amber-100'
                                     }`}
                             >
                                 <item.icon className="w-4 h-4" />

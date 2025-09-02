@@ -776,6 +776,94 @@ const GuideDetailSafe: React.FC = () => {
                 </motion.section>
             </div>
 
+            {/* 精美底部区域 - 完美旅程展示 */}
+            <motion.section
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true }}
+                className="bg-gradient-to-br from-amber-50 via-yellow-50 to-orange-50 py-16"
+            >
+                <div className="max-w-7xl mx-auto px-6 text-center">
+                    {/* 装饰图标 */}
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.5 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.6, delay: 0.2 }}
+                        viewport={{ once: true }}
+                        className="text-6xl mb-8"
+                    >
+                        🎒✨
+                    </motion.div>
+
+                    {/* 主标题 */}
+                    <motion.h2
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.3 }}
+                        viewport={{ once: true }}
+                        className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-6"
+                    >
+                        呼伦贝尔环线7日游 - 完美旅程等你开启
+                    </motion.h2>
+
+                    {/* 描述文字 */}
+                    <motion.p
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.4 }}
+                        viewport={{ once: true }}
+                        className="text-lg md:text-xl text-gray-600 max-w-4xl mx-auto mb-12 leading-relaxed"
+                    >
+                        从海拉尔的都市风情到莫日格勒河的九曲十八弯，从额尔古纳湿地的生态天堂到满洲里的异国风情，
+                        这条精心规划的7日环线将带你领略呼伦贝尔草原最精华的美景。
+                    </motion.p>
+
+                    {/* 四个特色服务点 */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.5 }}
+                        viewport={{ once: true }}
+                        className="grid grid-cols-2 md:grid-cols-4 gap-6"
+                    >
+                        {[
+                            {
+                                icon: "🌤️",
+                                color: "from-blue-500 to-cyan-500",
+                                title: "实时天气查询"
+                            },
+                            {
+                                icon: "🧭",
+                                color: "from-green-500 to-emerald-500",
+                                title: "智能导航助手"
+                            },
+                            {
+                                icon: "📋",
+                                color: "from-purple-500 to-pink-500",
+                                title: "详细装备清单"
+                            },
+                            {
+                                icon: "🆘",
+                                color: "from-red-500 to-orange-500",
+                                title: "24小时紧急联系"
+                            }
+                        ].map((service, index) => (
+                            <motion.div
+                                key={index}
+                                whileHover={{ scale: 1.05, y: -5 }}
+                                className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
+                            >
+                                <div className={`w-12 h-12 rounded-full bg-gradient-to-r ${service.color} flex items-center justify-center mx-auto mb-4 text-white text-xl shadow-lg`}>
+                                    {service.icon}
+                                </div>
+                                <div className="text-sm font-medium text-gray-700">{service.title}</div>
+                            </motion.div>
+                        ))}
+                    </motion.div>
+                </div>
+            </motion.section>
+
             {/* 回到顶部按钮 */}
             {showScrollTop && (
                 <motion.button
