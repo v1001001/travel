@@ -114,9 +114,6 @@ const GuideDetailSafe: React.FC = () => {
                     </div>
                 </div>
 
-                {/* 微妙的噪点纹理 */}
-                <div className="absolute inset-0 opacity-[0.02] bg-gradient-to-br from-gray-900 via-transparent to-gray-900"></div>
-
                 {/* 返回按钮 - 专业设计 */}
                 <motion.div
                     className="absolute top-8 left-8"
@@ -192,8 +189,8 @@ const GuideDetailSafe: React.FC = () => {
                                 key={item.id}
                                 onClick={() => scrollToSection(item.id)}
                                 className={`flex items-center gap-2 px-4 py-2 rounded-lg whitespace-nowrap transition-all font-medium ${activeSection === item.id
-                                        ? 'bg-gradient-to-r from-amber-500 to-orange-500 text-white shadow-md'
-                                        : 'text-gray-600 hover:bg-amber-50 hover:text-amber-600'
+                                    ? 'bg-gradient-to-r from-amber-500 to-orange-500 text-white shadow-md'
+                                    : 'text-gray-600 hover:bg-amber-50 hover:text-amber-600'
                                     }`}
                             >
                                 <item.icon className="w-4 h-4" />
