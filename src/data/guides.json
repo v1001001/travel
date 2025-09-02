@@ -467,19 +467,14 @@
                     "description": "大兴安岭原始森林，龙岩山观景"
                 },
                 {
-                    "icon": "🏡",
-                    "title": "室韦俄罗斯民族乡",
-                    "description": "中俄边境小镇，原生态俄式木屋"
+                    "icon": "🏛️",
+                    "title": "满洲里国门",
+                    "description": "中俄边境，异国风情"
                 },
                 {
                     "icon": "🏔️",
                     "title": "阿尔山国家森林公园",
                     "description": "火山地貌，森林湖泊，天池温泉"
-                },
-                {
-                    "icon": "🏛️",
-                    "title": "满洲里国门",
-                    "description": "中俄边境，异国风情"
                 }
             ],
             "tips": [

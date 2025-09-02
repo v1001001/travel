@@ -588,11 +588,10 @@ const GuideDetailSafe: React.FC = () => {
                             const highlightImages: Record<string, string> = {
                                 '莫日格勒河九曲十八弯': 'https://dimg04.c-ctrip.com/images/0101112000nmt5n5z66A3_R_1600_10000.jpg', // 携程精选莫日格勒河实景
                                 '额尔古纳湿地': 'https://dimg04.c-ctrip.com/images/0101712000j10ws6n39FA_R_1600_10000.jpg', // 携程精选额尔古纳湿地新图
-                                '白桦林': 'https://dimg04.c-ctrip.com/images/100c0o000000gokpgC1D3_C_1600_1200.jpg', // 携程精选白桦林实景
-                                '莫尔道嘎国家森林公园': 'https://dimg04.c-ctrip.com/images/100q0r000000gyjyy2E53_C_1600_1200.jpg', // 携程精选莫尔道嘎森林公园实景
-                                '室韦俄罗斯民族乡': 'https://dimg04.c-ctrip.com/images/0105412000aj6yzpqD23B_R_1600_10000.jpg', // 携程精选室韦俄罗斯民族乡实景
-                                '阿尔山国家森林公园': 'https://dimg04.c-ctrip.com/images/100i1d000001e7nni3F3E_C_1600_1200.jpg', // 携程精选阿尔山森林公园实景
-                                '满洲里国门': 'https://dimg04.c-ctrip.com/images/100f0r000000gw5o32751_C_1600_1200.jpg' // 携程精选满洲里国门实景
+                                '白桦林': 'https://dimg04.c-ctrip.com/images/0305g1200085phgxu6FDC_R_1600_10000.jpg', // 携程精选白桦林实景（用户指定）
+                                '莫尔道嘎国家森林公园': 'https://dimg04.c-ctrip.com/images/fd/tg/g3/M0B/59/5D/CggYGVYzBi6AZtrvABEwrw5X3nI294_R_1600_10000.jpg', // 携程精选莫尔道嘎森林公园实景（用户指定）
+                                '满洲里国门': 'https://dimg04.c-ctrip.com/images/100f0r000000gw5o32751_C_1600_1200.jpg', // 携程精选满洲里国门实景
+                                '阿尔山国家森林公园': 'https://dimg04.c-ctrip.com/images/100i1d000001e7nni3F3E_C_1600_1200.jpg' // 携程精选阿尔山森林公园实景
                             };
 
                             const imageUrl = highlightImages[String(highlight.title)] || 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop&crop=center';
