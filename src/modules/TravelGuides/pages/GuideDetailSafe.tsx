@@ -588,10 +588,10 @@ const GuideDetailSafe: React.FC = () => {
                             const highlightImages: Record<string, string> = {
                                 '莫日格勒河九曲十八弯': 'https://dimg04.c-ctrip.com/images/0101112000nmt5n5z66A3_R_1600_10000.jpg', // 携程精选莫日格勒河实景
                                 '额尔古纳湿地': 'https://dimg04.c-ctrip.com/images/0101712000j10ws6n39FA_R_1600_10000.jpg', // 携程精选额尔古纳湿地新图
-                                '呼伦湖': 'https://dimg04.c-ctrip.com/images/1mh5y12000c21bbsi48F9_R_10000_1200.jpg', // 携程精选呼伦湖实景
+                                '莫尔道嘎国家森林公园': 'https://dimg04.c-ctrip.com/images/100q0r000000gyjyy2E53_C_1600_1200.jpg', // 携程精选莫尔道嘎森林公园实景
+                                '室韦俄罗斯民族乡': 'https://dimg04.c-ctrip.com/images/0105412000aj6yzpqD23B_R_1600_10000.jpg', // 携程精选室韦俄罗斯民族乡实景
                                 '阿尔山国家森林公园': 'https://dimg04.c-ctrip.com/images/100i1d000001e7nni3F3E_C_1600_1200.jpg', // 携程精选阿尔山森林公园实景
-                                '满洲里国门': 'https://dimg04.c-ctrip.com/images/100f0r000000gw5o32751_C_1600_1200.jpg', // 携程精选满洲里国门实景
-                                '恩和俄罗斯民族乡': 'https://dimg04.c-ctrip.com/images/0104n12000ji0xib02019_R_1600_10000.jpg' // 携程精选恩和俄罗斯民族乡实景
+                                '满洲里国门': 'https://dimg04.c-ctrip.com/images/100f0r000000gw5o32751_C_1600_1200.jpg' // 携程精选满洲里国门实景
                             };
 
                             const imageUrl = highlightImages[String(highlight.title)] || 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop&crop=center';
@@ -775,7 +775,7 @@ const GuideDetailSafe: React.FC = () => {
                                     <div className="text-gray-700">12301</div>
                                 </div>
                             </div>
-                            
+
                             {/* 呼伦贝尔地区重要联系方式 */}
                             <div className="mt-6 pt-6 border-t border-blue-200">
                                 <h4 className="font-semibold text-blue-800 mb-4">📍 呼伦贝尔地区重要联系方式</h4>
@@ -817,11 +817,11 @@ const GuideDetailSafe: React.FC = () => {
             <section className="bg-gradient-to-r from-amber-50 to-orange-50 py-12">
                 <div className="max-w-7xl mx-auto px-6 text-center">
                     <div className="text-4xl mb-4">🎒✨</div>
-                    
+
                     <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4">
                         呼伦贝尔环线7日游 - 完美旅程等你开启
                     </h2>
-                    
+
                     <p className="text-gray-600 max-w-3xl mx-auto mb-8 leading-relaxed">
                         从海拉尔的都市风情到莫日格勒河的九曲十八弯，从额尔古纳湿地的生态天堂到满洲里的异国风情，
                         这条精心规划的7日环线将带你领略呼伦贝尔草原最精华的美景。
