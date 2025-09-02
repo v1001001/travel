@@ -37,7 +37,7 @@ const GuideDetailSafe: React.FC = () => {
             setShowScrollTop(window.scrollY > 300);
 
             // 检测当前所在区域
-            const sections = ['overview', 'timeline', 'weather', 'navigation', 'highlights', 'budget', 'tips'];
+            const sections = ['stats', 'overview', 'timeline', 'weather', 'navigation', 'highlights', 'budget', 'tips'];
             for (const section of sections) {
                 const element = document.getElementById(section);
                 if (element) {
@@ -179,7 +179,8 @@ const GuideDetailSafe: React.FC = () => {
                 <div className="max-w-7xl mx-auto px-6">
                     <nav className="flex space-x-1 overflow-x-auto py-4">
                         {[
-                            { id: 'overview', label: '路线总览', icon: MapPin },
+                            { id: 'stats', label: '攻略总览', icon: MapPin },
+                            { id: 'overview', label: '路线概览', icon: MapPin },
                             { id: 'timeline', label: '详细行程', icon: Calendar },
                             { id: 'weather', label: '天气查询', icon: Cloud },
                             { id: 'navigation', label: '交通导航', icon: Navigation },
@@ -190,10 +191,11 @@ const GuideDetailSafe: React.FC = () => {
                             <button
                                 key={item.id}
                                 onClick={() => scrollToSection(item.id)}
-                                className={`flex items-center gap-2 px-4 py-2 rounded-lg whitespace-nowrap transition-all font-medium ${activeSection === item.id
-                                    ? 'bg-primary-500 text-white shadow-md'
-                                    : 'text-gray-600 hover:bg-primary-50 hover:text-primary-600'
-                                    }`}
+                                className={`flex items-center gap-2 px-4 py-2 rounded-lg whitespace-nowrap transition-all font-medium ${
+                                    activeSection === item.id
+                                        ? 'bg-gradient-to-r from-amber-500 to-orange-500 text-white shadow-md'
+                                        : 'text-gray-600 hover:bg-amber-50 hover:text-amber-600'
+                                }`}
                             >
                                 <item.icon className="w-4 h-4" />
                                 {item.label}
@@ -206,7 +208,45 @@ const GuideDetailSafe: React.FC = () => {
             {/* 主要内容 */}
             <div className="max-w-7xl mx-auto px-6 py-12 space-y-16">
 
-                {/* 路线总览 */}
+                {/* 攻略总览 - 统计卡片 */}
+                <motion.section
+                    id="stats"
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8 }}
+                    viewport={{ once: true }}
+                    className="bg-gradient-to-br from-white to-amber-50/30 rounded-2xl p-8 shadow-xl border border-amber-100/50"
+                >
+                    <h2 className="text-3xl font-bold text-gray-800 mb-8 text-center">
+                        <span className="bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">
+                            攻略总览
+                        </span>
+                    </h2>
+
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                        {[
+                            { label: '行程天数', value: String(guide.days || '7'), unit: '天', color: 'bg-gradient-to-br from-amber-500 to-amber-600', icon: '📅' },
+                            { label: '总里程', value: guide.id === 'hulunbeier-loop' ? '1200' : '5000', unit: '公里', color: 'bg-gradient-to-br from-orange-500 to-orange-600', icon: '🛣️' },
+                            { label: '主要景点', value: '15+', unit: '个', color: 'bg-gradient-to-br from-yellow-500 to-amber-500', icon: '🏞️' },
+                            { label: '核心区域', value: guide.id === 'hulunbeier-loop' ? '6' : '7', unit: '个', color: 'bg-gradient-to-br from-amber-600 to-orange-700', icon: '⭐' }
+                        ].map((stat, index) => (
+                            <motion.div
+                                key={index}
+                                whileHover={{ scale: 1.05, y: -5 }}
+                                className="text-center p-6 bg-white rounded-xl border border-gray-200 shadow-lg hover:shadow-2xl transition-all cursor-pointer backdrop-blur-sm"
+                            >
+                                <div className={`w-16 h-16 ${stat.color} rounded-full flex items-center justify-center mx-auto mb-4 text-white text-xl font-bold shadow-lg`}>
+                                    {stat.icon}
+                                </div>
+                                <div className="text-3xl font-bold text-gray-800 mb-2">{stat.value}</div>
+                                <div className="text-sm text-gray-600 mb-1">{stat.label}</div>
+                                <div className="text-xs text-gray-400">{stat.unit}</div>
+                            </motion.div>
+                        ))}
+                    </div>
+                </motion.section>
+
+                {/* 路线概览 */}
                 <motion.section
                     id="overview"
                     initial={{ opacity: 0, y: 30 }}
@@ -216,32 +256,26 @@ const GuideDetailSafe: React.FC = () => {
                     className="bg-white rounded-2xl p-8 shadow-xl"
                 >
                     <h2 className="text-3xl font-bold text-gray-800 mb-6 flex items-center gap-3">
-                        <MapPin className="w-8 h-8 text-primary-600" />
-                        路线总览
+                        <MapPin className="w-8 h-8 text-amber-600" />
+                        路线概览
                     </h2>
 
+                    <div className="space-y-6">
+                        {/* 路线描述 */}
+                        <div className="bg-gradient-to-r from-amber-50 to-orange-50 rounded-xl p-6 border border-amber-200">
+                            <h3 className="text-lg font-semibold text-amber-800 mb-3">🗺️ 经典路线</h3>
+                            <p className="text-gray-700 text-base leading-relaxed">
+                                {detailedContent.routeDescription || '海拉尔 → 莫日格勒河 → 额尔古纳湿地 → 白桦林 → 恩和 → 黑山头 → 满洲里 → 呼伦湖 → 阿尔山 → 海拉尔'}
+                            </p>
+                        </div>
 
-
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                        {[
-                            { label: '行程天数', value: String(guide.days || '7'), unit: '天', color: 'bg-amber-500', icon: '📅' },
-                            { label: '总里程', value: guide.id === 'hulunbeier-loop' ? '1200' : '5000', unit: '公里', color: 'bg-orange-500', icon: '🛣️' },
-                            { label: '主要景点', value: '15+', unit: '个', color: 'bg-yellow-500', icon: '🏞️' },
-                            { label: '核心区域', value: guide.id === 'hulunbeier-loop' ? '6' : '7', unit: '大', color: 'bg-amber-600', icon: '⭐' }
-                        ].map((stat, index) => (
-                            <motion.div
-                                key={index}
-                                whileHover={{ scale: 1.05, y: -5 }}
-                                className="text-center p-6 bg-gradient-to-br from-white to-gray-50 rounded-xl border border-gray-200 shadow-lg hover:shadow-xl transition-all cursor-pointer"
-                            >
-                                <div className={`w-16 h-16 ${stat.color} rounded-full flex items-center justify-center mx-auto mb-4 text-white text-xl font-bold shadow-lg`}>
-                                    {stat.icon}
-                                </div>
-                                <div className="text-2xl font-bold text-gray-800 mb-1">{stat.value}</div>
-                                <div className="text-sm text-gray-500 mb-1">{stat.label}</div>
-                                <div className="text-xs text-gray-400">{stat.unit}</div>
-                            </motion.div>
-                        ))}
+                        {/* 路线特色 */}
+                        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6 border border-blue-200">
+                            <h3 className="text-lg font-semibold text-blue-800 mb-3">✨ 路线特色</h3>
+                            <p className="text-gray-700 text-base leading-relaxed">
+                                {detailedContent.overview || '环线设计，无重复路段，涵盖草原、湿地、森林、湖泊、边境等多种地貌，体验最纯正的呼伦贝尔风情。'}
+                            </p>
+                        </div>
                     </div>
                 </motion.section>
 
@@ -542,10 +576,15 @@ const GuideDetailSafe: React.FC = () => {
                     viewport={{ once: true }}
                     className="bg-white rounded-2xl p-8 shadow-xl"
                 >
-                    <h2 className="text-3xl font-bold text-gray-800 mb-8 flex items-center gap-3">
-                        <Camera className="w-8 h-8 text-accent-600" />
-                        行程亮点
-                    </h2>
+                    <div className="text-center mb-8">
+                        <h2 className="text-3xl font-bold text-gray-800 mb-4 flex items-center justify-center gap-3">
+                            <Camera className="w-8 h-8 text-orange-600" />
+                            行程亮点
+                        </h2>
+                        <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+                            精选6大核心景点，每一处都是大自然的杰作，值得您驻足欣赏
+                        </p>
+                    </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {highlights.length > 0 ? highlights.map((highlight: any, index: number) => {
@@ -568,15 +607,21 @@ const GuideDetailSafe: React.FC = () => {
                                     className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer border border-gray-200"
                                 >
                                     {/* 精美图片 */}
-                                    <div className="relative h-48 overflow-hidden">
+                                    <div className="relative h-48 overflow-hidden group">
                                         <img
                                             src={imageUrl}
                                             alt={String(highlight.title || '')}
-                                            className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                            loading="lazy"
+                                            onError={(e) => {
+                                                console.log('Image failed to load:', imageUrl);
+                                                const img = e.target as HTMLImageElement;
+                                                img.src = 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop&crop=center';
+                                            }}
                                         />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                                         <div className="absolute top-4 right-4">
-                                            <div className="bg-white/90 backdrop-blur-sm rounded-full p-2">
+                                            <div className="bg-white/90 backdrop-blur-sm rounded-full p-2 shadow-sm">
                                                 <span className="text-2xl">{String(highlight.icon || '🏞️')}</span>
                                             </div>
                                         </div>
