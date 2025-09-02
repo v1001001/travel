@@ -656,16 +656,16 @@ const GuideDetailSafe: React.FC = () => {
                     </div>
 
                     {/* 省钱贴士 */}
-                    {budgetDetails.moneySavingTips && (budgetDetails.moneySavingTips as string[]).length > 0 && (
+                    {budgetDetails && 'moneySavingTips' in budgetDetails && Array.isArray(budgetDetails.moneySavingTips) && budgetDetails.moneySavingTips.length > 0 && (
                         <div className="bg-amber-50 border border-amber-200 rounded-xl p-6">
                             <h3 className="font-semibold text-amber-800 mb-4 flex items-center gap-2">
                                 💡 省钱贴士
                             </h3>
                             <ul className="space-y-2">
-                                {(budgetDetails.moneySavingTips as string[]).map((tip: string, index: number) => (
+                                {budgetDetails.moneySavingTips.map((tip: string, index: number) => (
                                     <li key={index} className="text-sm text-amber-700 flex items-start gap-2">
                                         <span className="w-1.5 h-1.5 bg-amber-500 rounded-full mt-2 flex-shrink-0"></span>
-                                        {String(tip)}
+                                        {String(tip || '')}
                                     </li>
                                 ))}
                             </ul>
