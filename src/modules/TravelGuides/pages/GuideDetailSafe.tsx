@@ -96,9 +96,9 @@ const GuideDetailSafe: React.FC = () => {
     const budgetDetails = detailedContent.budgetDetails || {};
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-primary-50 via-accent-50 to-primary-100">
+        <div className="min-h-screen bg-white">
             {/* 英雄区域 - 专业级设计 */}
-            <div className="relative h-[700px] overflow-hidden bg-gradient-to-br from-amber-50 via-orange-50 to-red-50">
+            <div className="relative h-[700px] overflow-hidden bg-white">
                 {/* 多层背景装饰 - 秋季金黄色调 */}
                 <div className="absolute inset-0">
                     {/* 主要装饰层 */}
@@ -191,11 +191,10 @@ const GuideDetailSafe: React.FC = () => {
                             <button
                                 key={item.id}
                                 onClick={() => scrollToSection(item.id)}
-                                className={`flex items-center gap-2 px-4 py-2 rounded-lg whitespace-nowrap transition-all font-medium ${
-                                    activeSection === item.id
+                                className={`flex items-center gap-2 px-4 py-2 rounded-lg whitespace-nowrap transition-all font-medium ${activeSection === item.id
                                         ? 'bg-gradient-to-r from-amber-500 to-orange-500 text-white shadow-md'
                                         : 'text-gray-600 hover:bg-amber-50 hover:text-amber-600'
-                                }`}
+                                    }`}
                             >
                                 <item.icon className="w-4 h-4" />
                                 {item.label}
